@@ -7,6 +7,7 @@
 //
 
 #import "NCSAppDelegate.h"
+#import "NCSPostsController.h"
 
 @implementation NCSAppDelegate
 
@@ -16,6 +17,11 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    NCSPostsController *postsController = [[NCSPostsController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:postsController];
+    
+    self.window.rootViewController = navigationController;
     return YES;
 }
 
