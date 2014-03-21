@@ -46,7 +46,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return 40;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -64,8 +64,12 @@
     }
     if (indexPath.row == 4){
         cell.title.text = @"Cannons are really large in the biggest gnome";
-        cell.details.text = @"details";
+    } else {
+        cell.title.text = @"bacon";
     }
+    
+    cell.details.text = [NSString stringWithFormat:@"%d", indexPath.row ];
+    
     return cell;
 }
 
