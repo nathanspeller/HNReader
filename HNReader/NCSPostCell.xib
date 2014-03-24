@@ -14,38 +14,62 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="La Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="Vjg-Op-ygB">
-                        <rect key="frame" x="15" y="12" width="290" height="21"/>
+                        <rect key="frame" x="15" y="11" width="290" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="290" id="qiE-52-S8F"/>
-                        </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Details" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAG-i3-1fZ">
-                        <rect key="frame" x="15" y="40" width="280" height="17"/>
+                        <rect key="frame" x="15" y="37" width="253" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="280" id="dnL-ZG-eCB"/>
-                            <constraint firstAttribute="height" constant="17" id="lif-YH-FPM"/>
+                            <constraint firstAttribute="width" constant="253" id="DBT-r5-HOV"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                         <color key="textColor" red="0.60392159223556519" green="0.60392159223556519" blue="0.56470590829849243" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pC8-yq-sTW">
+                        <rect key="frame" x="258" y="37" width="29" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="5ip-N4-ZMH"/>
+                            <constraint firstAttribute="width" constant="29" id="aUQ-rQ-PNS"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                        <color key="textColor" red="0.60392159219999997" green="0.60392159219999997" blue="0.5647059083" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comment_bubble.png" translatesAutoresizingMaskIntoConstraints="NO" id="V4q-G2-XB5">
+                        <rect key="frame" x="293" y="41" width="12" height="12"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="12" id="1ms-y2-Exh"/>
+                            <constraint firstAttribute="height" constant="12" id="ThF-rt-S32"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="YAG-i3-1fZ" firstAttribute="top" secondItem="Vjg-Op-ygB" secondAttribute="bottom" constant="7" id="BTv-jH-kyB"/>
-                    <constraint firstItem="Vjg-Op-ygB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="aC5-MW-Xgv"/>
-                    <constraint firstItem="YAG-i3-1fZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="lpG-c3-fP2"/>
-                    <constraint firstItem="Vjg-Op-ygB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="mvg-rj-ZT0"/>
+                    <constraint firstItem="Vjg-Op-ygB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="3rh-jL-6bR"/>
+                    <constraint firstItem="V4q-G2-XB5" firstAttribute="leading" secondItem="pC8-yq-sTW" secondAttribute="trailing" constant="6" id="FAi-ex-LRW"/>
+                    <constraint firstAttribute="trailing" secondItem="Vjg-Op-ygB" secondAttribute="trailing" constant="15" id="O0y-ij-1cp"/>
+                    <constraint firstAttribute="trailing" secondItem="V4q-G2-XB5" secondAttribute="trailing" constant="15" id="br0-JJ-F8P"/>
+                    <constraint firstItem="Vjg-Op-ygB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="gud-wy-s64"/>
+                    <constraint firstItem="V4q-G2-XB5" firstAttribute="top" secondItem="Vjg-Op-ygB" secondAttribute="bottom" constant="9" id="jcW-3Y-RFU"/>
+                    <constraint firstItem="YAG-i3-1fZ" firstAttribute="top" secondItem="Vjg-Op-ygB" secondAttribute="bottom" constant="5" id="mOl-P7-ZL1"/>
+                    <constraint firstItem="YAG-i3-1fZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="sR3-ae-OgT"/>
+                    <constraint firstItem="pC8-yq-sTW" firstAttribute="top" secondItem="Vjg-Op-ygB" secondAttribute="bottom" constant="5" id="zIk-gz-NRg"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="comments" destination="pC8-yq-sTW" id="nc9-wx-0If"/>
                 <outlet property="details" destination="YAG-i3-1fZ" id="4tb-Kz-tKU"/>
                 <outlet property="title" destination="Vjg-Op-ygB" id="UhC-Ha-OeO"/>
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="comment_bubble.png" width="24" height="24"/>
+    </resources>
 </document>

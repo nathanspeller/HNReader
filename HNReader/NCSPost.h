@@ -21,5 +21,7 @@
 // Designated Initializer
 - (id) initWithTitle:(NSString *)title;
 
+- (id) initWithDictionary:(NSDictionary *)dict;
+
 + (id) entryWithTitle:(NSString *)title;
 @end

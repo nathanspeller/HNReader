@@ -25,6 +25,19 @@
     return self;
 }
 
+- (id) initWithDictionary:(NSDictionary *)dict{
+    self = [super init];
+    self.title     = dict[@"title"];
+    self.date      = dict[@"date"];
+    self.itemid    = dict[@"itemid"];
+    self.submitter = dict[@"submitter"];
+    self.domain    = dict[@"domain"];
+    self.points    = dict[@"points"];
+    self.comments  = dict[@"comments"];
+    self.url       = dict[@"url"];
+    return self;
+}
+
 + (id) entryWithTitle:(NSString *)title{
     return [[self alloc] initWithTitle:title];
 }

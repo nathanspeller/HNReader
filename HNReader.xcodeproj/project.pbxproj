@@ -25,6 +25,7 @@
 		7E970C3F18DBE21E00517A1F /* NCSPostsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E970C3D18DBE21E00517A1F /* NCSPostsController.m */; };
 		7E970C4018DBE21E00517A1F /* NCSPostsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E970C3E18DBE21E00517A1F /* NCSPostsController.xib */; };
 		7E970C4E18DEB4A500517A1F /* NCSPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E970C4D18DEB4A500517A1F /* NCSPost.m */; };
+		7E970C5418DFC3D400517A1F /* comment_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E970C5318DFC3D400517A1F /* comment_bubble.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		7E970C3E18DBE21E00517A1F /* NCSPostsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NCSPostsController.xib; sourceTree = "<group>"; };
 		7E970C4C18DEB4A500517A1F /* NCSPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSPost.h; sourceTree = "<group>"; };
 		7E970C4D18DEB4A500517A1F /* NCSPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSPost.m; sourceTree = "<group>"; };
+		7E970C5318DFC3D400517A1F /* comment_bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment_bubble.png; sourceTree = "<group>"; };
 		B4DF7D3DFB484EBC9A5606E5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -126,6 +128,7 @@
 		7E970C0B18DBCF9300517A1F /* HNReader */ = {
 			isa = PBXGroup;
 			children = (
+				7E970C5318DFC3D400517A1F /* comment_bubble.png */,
 				7E970C1418DBCF9300517A1F /* NCSAppDelegate.h */,
 				7E970C1518DBCF9300517A1F /* NCSAppDelegate.m */,
 				7E970C1718DBCF9300517A1F /* Images.xcassets */,
@@ -250,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E970C4018DBE21E00517A1F /* NCSPostsController.xib in Resources */,
+				7E970C5418DFC3D400517A1F /* comment_bubble.png in Resources */,
 				7E970C1018DBCF9300517A1F /* InfoPlist.strings in Resources */,
 				7E970C1818DBCF9300517A1F /* Images.xcassets in Resources */,
 				7E970C3818DBE1CA00517A1F /* NCSPostCell.xib in Resources */,

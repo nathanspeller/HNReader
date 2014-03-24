@@ -37,29 +37,28 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.96 green:0.96 blue:0.94 alpha:1.0];
+//    [self.tableView setSeparatorColor:[UIColor colorWithRed:1.000 green:0.396 blue:0.000 alpha:0.500]];
     
+    NSArray *articlesArray = [self fetchData];
+    
+    self.articles = [NSMutableArray array];
+    
+    for (NSDictionary *dict in articlesArray) {
+        NCSPost *post = [[NCSPost alloc] initWithDictionary:dict];
+        [self.articles addObject:post];
+    }
+    
+    [self.tableView reloadData];
+}
+
+- (NSArray *)fetchData {
     NSURL *articlesURL = [NSURL URLWithString:@"http://hnapp.com/api/items/json/40f0eed66f239ed673554fb1e6b97315"];
     NSData *jsonData = [NSData dataWithContentsOfURL:articlesURL];
     NSError *error = nil;
     NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
     
-    self.articles = [NSMutableArray array];
-    
     NSArray *articlesArray = [dataDictionary objectForKey:@"results"];
-    
-    for (NSDictionary *bpDictionary in articlesArray) {
-        NCSPost *en = [NCSPost entryWithTitle:[bpDictionary objectForKey:@"title"]];
-        en.date = [bpDictionary objectForKey:@"date"];
-        en.itemid = [bpDictionary objectForKey:@"itemid"];
-        en.submitter = [bpDictionary objectForKey:@"submitter"];
-        en.domain = [bpDictionary objectForKey:@"domain"];
-        en.points = [bpDictionary objectForKey:@"points"];
-        en.comments = [bpDictionary objectForKey:@"comments"];
-        en.url = [NSURL URLWithString:[bpDictionary objectForKey:@"url"]];
-        [self.articles addObject:en];
-    }
-    
-    [self.tableView reloadData];
+    return articlesArray;
 }
 
 - (void)didReceiveMemoryWarning
@@ -97,13 +96,14 @@
     NSMutableString *encodedString = [NSMutableString stringWithString: post.title];
     [encodedString replaceOccurrencesOfString:@"&#039;" withString:@"’" options:NSCaseInsensitiveSearch range:(NSRange){0,[encodedString length]}];
     cell.title.text = encodedString;
+    cell.comments.text = [NSString stringWithFormat:@"%@", post.comments];
     if ([post.domain length] == 0) {
         cell.details.text = post.submitter;
     } else {
-        cell.details.text = [NSString stringWithFormat:@"%@ · %@",post.domain ,post.submitter];
+        cell.details.text = [NSString stringWithFormat:@"%@ pts · %@",post.points , post.domain];
     }
     
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(15, 0, ([post.points floatValue]/2), 3)];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(15, 0, ([post.points floatValue]), 3)];
     lineView.backgroundColor = [UIColor colorWithRed:1.0 green:0.4 blue:0.0 alpha:1.0];
     
     lineView.tag = POINTS_TAG;
@@ -127,7 +127,7 @@
     
     CGRect requiredHeight = [string boundingRectWithSize:constrainedSize options:NSStringDrawingUsesLineFragmentOrigin context:nil];
     
-    return 50+requiredHeight.size.height;
+    return 56+requiredHeight.size.height;
 }
 
 
