@@ -10,8 +10,7 @@
 #import "NCSPostCell.h"
 #import "NCSPostsController.h"
 #import "NCSPost.h"
-
-#define POINTS_TAG 9017
+#import "NCSWebViewController.h"
 
 @interface NCSPostsController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -78,6 +77,30 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    //one
+    NCSWebViewController *webView = [[NCSWebViewController alloc] init];
+    webView.post = self.articles[indexPath.row];
+    UINavigationController *firstNavigationController = [[UINavigationController alloc] initWithRootViewController:webView];
+    firstNavigationController.tabBarItem.title = @"Web";
+    
+    //two
+    NCSWebViewController *readingView = [[NCSWebViewController alloc] init];
+    readingView.post = self.articles[indexPath.row];
+    readingView.isReadable = YES;
+    UINavigationController *secondNavigationController = [[UINavigationController alloc] initWithRootViewController:readingView];
+    secondNavigationController.tabBarItem.title = @"Reading";
+    
+    //one
+    NCSWebViewController *webViewThree = [[NCSWebViewController alloc] init];
+    webViewThree.post = self.articles[indexPath.row];
+    UINavigationController *thirdNavigationController = [[UINavigationController alloc] initWithRootViewController:webViewThree];
+    thirdNavigationController.tabBarItem.title = @"Comments";
+    
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    tabBarController.viewControllers = @[firstNavigationController, secondNavigationController, thirdNavigationController];
+    [tabBarController setSelectedIndex:1];
+    [self.navigationController pushViewController:tabBarController animated:YES];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -91,24 +114,7 @@
     }
 
     NCSPost *post = [self.articles objectAtIndex:indexPath.row];
-    
-    [[cell.contentView viewWithTag:POINTS_TAG]removeFromSuperview];
-    NSMutableString *encodedString = [NSMutableString stringWithString: post.title];
-    [encodedString replaceOccurrencesOfString:@"&#039;" withString:@"’" options:NSCaseInsensitiveSearch range:(NSRange){0,[encodedString length]}];
-    cell.title.text = encodedString;
-    cell.comments.text = [NSString stringWithFormat:@"%@", post.comments];
-    if ([post.domain length] == 0) {
-        cell.details.text = post.submitter;
-    } else {
-        cell.details.text = [NSString stringWithFormat:@"%@ pts · %@",post.points , post.domain];
-    }
-    
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(15, 0, ([post.points floatValue]), 3)];
-    lineView.backgroundColor = [UIColor colorWithRed:1.0 green:0.4 blue:0.0 alpha:1.0];
-    
-    lineView.tag = POINTS_TAG;
-    [cell.contentView addSubview:lineView];
-    
+    [cell setPost:post];
     return cell;
 }
 

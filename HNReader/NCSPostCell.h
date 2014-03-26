@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NCSPost.h"
 
 @interface NCSPostCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UILabel *details;
 @property (weak, nonatomic) IBOutlet UILabel *comments;
+
+- (void)setPost:(NCSPost *)post;
 @end

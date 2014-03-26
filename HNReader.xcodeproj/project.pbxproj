@@ -26,6 +26,8 @@
 		7E970C4018DBE21E00517A1F /* NCSPostsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E970C3E18DBE21E00517A1F /* NCSPostsController.xib */; };
 		7E970C4E18DEB4A500517A1F /* NCSPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E970C4D18DEB4A500517A1F /* NCSPost.m */; };
 		7E970C5418DFC3D400517A1F /* comment_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E970C5318DFC3D400517A1F /* comment_bubble.png */; };
+		7E970C5818E000FA00517A1F /* NCSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E970C5618E000FA00517A1F /* NCSWebViewController.m */; };
+		7E970C5918E000FA00517A1F /* NCSWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E970C5718E000FA00517A1F /* NCSWebViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,9 @@
 		7E970C4C18DEB4A500517A1F /* NCSPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSPost.h; sourceTree = "<group>"; };
 		7E970C4D18DEB4A500517A1F /* NCSPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSPost.m; sourceTree = "<group>"; };
 		7E970C5318DFC3D400517A1F /* comment_bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment_bubble.png; sourceTree = "<group>"; };
+		7E970C5518E000FA00517A1F /* NCSWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSWebViewController.h; sourceTree = "<group>"; };
+		7E970C5618E000FA00517A1F /* NCSWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSWebViewController.m; sourceTree = "<group>"; };
+		7E970C5718E000FA00517A1F /* NCSWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NCSWebViewController.xib; sourceTree = "<group>"; };
 		B4DF7D3DFB484EBC9A5606E5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -141,6 +146,9 @@
 				7E970C3E18DBE21E00517A1F /* NCSPostsController.xib */,
 				7E970C4C18DEB4A500517A1F /* NCSPost.h */,
 				7E970C4D18DEB4A500517A1F /* NCSPost.m */,
+				7E970C5518E000FA00517A1F /* NCSWebViewController.h */,
+				7E970C5618E000FA00517A1F /* NCSWebViewController.m */,
+				7E970C5718E000FA00517A1F /* NCSWebViewController.xib */,
 			);
 			path = HNReader;
 			sourceTree = "<group>";
@@ -252,6 +260,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E970C5918E000FA00517A1F /* NCSWebViewController.xib in Resources */,
 				7E970C4018DBE21E00517A1F /* NCSPostsController.xib in Resources */,
 				7E970C5418DFC3D400517A1F /* comment_bubble.png in Resources */,
 				7E970C1018DBCF9300517A1F /* InfoPlist.strings in Resources */,
@@ -310,6 +319,7 @@
 			files = (
 				7E970C3F18DBE21E00517A1F /* NCSPostsController.m in Sources */,
 				7E970C3718DBE1CA00517A1F /* NCSPostCell.m in Sources */,
+				7E970C5818E000FA00517A1F /* NCSWebViewController.m in Sources */,
 				7E970C1218DBCF9300517A1F /* main.m in Sources */,
 				7E970C1618DBCF9300517A1F /* NCSAppDelegate.m in Sources */,
 				7E970C4E18DEB4A500517A1F /* NCSPost.m in Sources */,
