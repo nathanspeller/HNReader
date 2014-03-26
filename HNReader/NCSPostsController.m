@@ -11,6 +11,7 @@
 #import "NCSPostsController.h"
 #import "NCSPost.h"
 #import "NCSWebViewController.h"
+#import "MBProgressHUD.h"
 
 @interface NCSPostsController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -38,7 +39,36 @@
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.96 green:0.96 blue:0.94 alpha:1.0];
 //    [self.tableView setSeparatorColor:[UIColor colorWithRed:1.000 green:0.396 blue:0.000 alpha:0.500]];
     
-    NSArray *articlesArray = [self fetchData];
+    // show loading HUD
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        [self fetchData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.tableView reloadData];
+        });
+    });
+    
+    // pull-to-refresh
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:refreshControl];
+    
+    
+}
+
+- (void)refresh:(UIRefreshControl *)refreshControl {
+    [self fetchData];
+    [refreshControl endRefreshing];
+}
+
+- (void)fetchData {
+    NSURL *articlesURL = [NSURL URLWithString:@"http://hnapp.com/api/items/json/40f0eed66f239ed673554fb1e6b97315"];
+    NSData *jsonData = [NSData dataWithContentsOfURL:articlesURL];
+    NSError *error = nil;
+    NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+    
+    NSArray *articlesArray = [dataDictionary objectForKey:@"results"];
     
     self.articles = [NSMutableArray array];
     
@@ -48,16 +78,6 @@
     }
     
     [self.tableView reloadData];
-}
-
-- (NSArray *)fetchData {
-    NSURL *articlesURL = [NSURL URLWithString:@"http://hnapp.com/api/items/json/40f0eed66f239ed673554fb1e6b97315"];
-    NSData *jsonData = [NSData dataWithContentsOfURL:articlesURL];
-    NSError *error = nil;
-    NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-    
-    NSArray *articlesArray = [dataDictionary objectForKey:@"results"];
-    return articlesArray;
 }
 
 - (void)didReceiveMemoryWarning
