@@ -11,6 +11,7 @@
 #import "NCSPostsController.h"
 #import "NCSPost.h"
 #import "NCSWebViewController.h"
+#import "NCSCommentsViewController.h"
 #import "MBProgressHUD.h"
 
 @interface NCSPostsController ()
@@ -111,10 +112,9 @@
     UINavigationController *secondNavigationController = [[UINavigationController alloc] initWithRootViewController:readingView];
     secondNavigationController.tabBarItem.title = @"Reading";
     
-    //one
-    NCSWebViewController *webViewThree = [[NCSWebViewController alloc] init];
-    webViewThree.post = self.articles[indexPath.row];
-    UINavigationController *thirdNavigationController = [[UINavigationController alloc] initWithRootViewController:webViewThree];
+    //comments
+    NCSCommentsViewController *commentsView = [[NCSCommentsViewController alloc] init];
+    UINavigationController *thirdNavigationController = [[UINavigationController alloc] initWithRootViewController:commentsView];
     thirdNavigationController.tabBarItem.title = @"Comments";
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
