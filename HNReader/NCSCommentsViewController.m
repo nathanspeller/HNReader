@@ -8,6 +8,8 @@
 
 #import "NCSCommentsViewController.h"
 #import "NCSCommentCell.h"
+#import "NCSComment.h"
+#import "MBProgressHUD.h"
 
 @interface NCSCommentsViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -36,6 +38,33 @@
 //    self.guideCell = [resultCellNib instantiateWithOwner:self options:nil][0];
     [self.tableView registerNib:commentCellNib forCellReuseIdentifier:@"CommentCell"];
     // Do any additional setup after loading the view from its nib.
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        [self fetchData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.tableView reloadData];
+        });
+    });
+}
+
+- (void)fetchData {
+    NSURL *commentsURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://hn.algolia.com/api/v1/search?tags=comment,story_%@", self.post.itemid]];
+    NSData *jsonData = [NSData dataWithContentsOfURL:commentsURL];
+    NSError *error = nil;
+    NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+    
+    NSArray *commentsArray = [dataDictionary objectForKey:@"hits"];
+    
+    self.comments = [NSMutableArray array];
+    
+    for (NSDictionary *dict in commentsArray) {
+        NCSComment *comment = [[NCSComment alloc] initWithDictionary:dict];
+        [self.comments addObject:comment];
+    }
+    
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,12 +81,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 25;
     return self.comments.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {    
     NCSCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
+    NCSComment *comment = self.comments[indexPath.row];
+    cell.commentText.text = comment.author;
     return cell;
 }
 

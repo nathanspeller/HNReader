@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NCSPost.h"
 
 @interface NCSCommentsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-
+@property (nonatomic, strong) NCSPost *post;
 @end

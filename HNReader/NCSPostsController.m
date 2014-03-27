@@ -114,6 +114,7 @@
     
     //comments
     NCSCommentsViewController *commentsView = [[NCSCommentsViewController alloc] init];
+    commentsView.post = self.articles[indexPath.row];
     UINavigationController *thirdNavigationController = [[UINavigationController alloc] initWithRootViewController:commentsView];
     thirdNavigationController.tabBarItem.title = @"Comments";
     

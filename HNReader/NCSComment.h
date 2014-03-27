@@ -9,5 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface NCSComment : NSObject
+@property (nonatomic, strong) NSString *commentText;
+@property (nonatomic, strong) NSString *author;
 
+- (id) initWithDictionary:(NSDictionary *)dict;
 @end

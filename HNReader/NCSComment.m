@@ -10,4 +10,11 @@
 
 @implementation NCSComment
 
+- (id) initWithDictionary:(NSDictionary *)dict{
+    self = [super init];
+    self.commentText = dict[@"comment_text"];
+    self.author = dict[@"author"];
+    return self;
+}
+
 @end
