@@ -50,12 +50,12 @@
 }
 
 - (void)fetchData {
-    NSURL *commentsURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://hn.algolia.com/api/v1/search?tags=comment,story_%@", self.post.itemid]];
+    NSURL *commentsURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://node-hnapi.azurewebsites.net/item/%@", self.post.itemid]];
     NSData *jsonData = [NSData dataWithContentsOfURL:commentsURL];
     NSError *error = nil;
     NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
     
-    NSArray *commentsArray = [dataDictionary objectForKey:@"hits"];
+    NSArray *commentsArray = [dataDictionary objectForKey:@"comments"];
     
     self.comments = [NSMutableArray array];
     
@@ -87,12 +87,26 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {    
     NCSCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
     NCSComment *comment = self.comments[indexPath.row];
-    cell.commentText.text = comment.author;
+    cell.author.text = comment.author;
+    cell.commentText.text = comment.commentText;
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 100;
+    CGSize constrainedSize = CGSizeMake(290, 9999);
+    
+    NSDictionary *attributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                          [UIFont fontWithName:@"HelveticaNeue" size:12.0], NSFontAttributeName,
+                                          nil];
+    NCSComment *comment = self.comments[indexPath.row];
+    NSString *text = comment.commentText;
+    
+    
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:text attributes:attributesDictionary];
+    
+    CGRect requiredHeight = [string boundingRectWithSize:constrainedSize options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+    
+    return 56+requiredHeight.size.height;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

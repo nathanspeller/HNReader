@@ -12,8 +12,8 @@
 
 - (id) initWithDictionary:(NSDictionary *)dict{
     self = [super init];
-    self.commentText = dict[@"comment_text"];
-    self.author = dict[@"author"];
+    self.commentText = dict[@"content"];
+    self.author = dict[@"user"];
     return self;
 }
 

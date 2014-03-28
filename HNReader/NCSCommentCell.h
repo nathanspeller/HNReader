@@ -10,5 +10,5 @@
 
 @interface NCSCommentCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *commentText;
-
+@property (weak, nonatomic) IBOutlet UILabel *author;
 @end

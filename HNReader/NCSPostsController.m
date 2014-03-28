@@ -40,6 +40,9 @@
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.96 green:0.96 blue:0.94 alpha:1.0];
 //    [self.tableView setSeparatorColor:[UIColor colorWithRed:1.000 green:0.396 blue:0.000 alpha:0.500]];
     
+    UINib *postCellNib = [UINib nibWithNibName:@"NCSPostCell" bundle:nil];
+    [self.tableView registerNib:postCellNib forCellReuseIdentifier:@"PostCell"];
+    
     // show loading HUD
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
@@ -99,11 +102,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    UITabBarController *tabBarController = [self setupTabBarControllerWithIndexPath:indexPath];
+    [tabBarController setSelectedIndex:1];
+    [self.navigationController pushViewController:tabBarController animated:YES];
+}
+
+- (UITabBarController *)setupTabBarControllerWithIndexPath:(NSIndexPath *)indexPath{
     //one
     NCSWebViewController *webView = [[NCSWebViewController alloc] init];
     webView.post = self.articles[indexPath.row];
     UINavigationController *firstNavigationController = [[UINavigationController alloc] initWithRootViewController:webView];
     firstNavigationController.tabBarItem.title = @"Web";
+    firstNavigationController.tabBarItem.image = [UIImage imageNamed:@"browser"];
     
     //two
     NCSWebViewController *readingView = [[NCSWebViewController alloc] init];
@@ -111,28 +121,26 @@
     readingView.isReadable = YES;
     UINavigationController *secondNavigationController = [[UINavigationController alloc] initWithRootViewController:readingView];
     secondNavigationController.tabBarItem.title = @"Reading";
+    secondNavigationController.tabBarItem.image = [UIImage imageNamed:@"book-lines-2"];
     
     //comments
     NCSCommentsViewController *commentsView = [[NCSCommentsViewController alloc] init];
     commentsView.post = self.articles[indexPath.row];
     UINavigationController *thirdNavigationController = [[UINavigationController alloc] initWithRootViewController:commentsView];
     thirdNavigationController.tabBarItem.title = @"Comments";
+    thirdNavigationController.tabBarItem.image = [UIImage imageNamed:@"speech-bubble-left-2"];
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     tabBarController.viewControllers = @[firstNavigationController, secondNavigationController, thirdNavigationController];
-    [tabBarController setSelectedIndex:1];
-    [self.navigationController pushViewController:tabBarController animated:YES];
+    return tabBarController;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"PostCell";
+    NCSPostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
     
-    NCSPostCell *cell = (NCSPostCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil)
-    {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"NCSPostCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
-    }
+    UISwipeGestureRecognizer* sgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellSwiped:)];
+    [sgr setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [cell addGestureRecognizer:sgr];
 
     NCSPost *post = [self.articles objectAtIndex:indexPath.row];
     [cell setPost:post];
@@ -157,6 +165,15 @@
     return 56+requiredHeight.size.height;
 }
 
+- (void)cellSwiped:(UIGestureRecognizer *)gestureRecognizer {
+    if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        CGPoint location = [gestureRecognizer locationInView:self.tableView];
+        NSIndexPath *swipedIndexPath = [self.tableView indexPathForRowAtPoint:location];
+        UITabBarController *tabBarController = [self setupTabBarControllerWithIndexPath:swipedIndexPath];
+        [tabBarController setSelectedIndex:2];
+        [self.navigationController pushViewController:tabBarController animated:YES];
+    }
+}
 
 
 
