@@ -103,7 +103,7 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     UITabBarController *tabBarController = [self setupTabBarControllerWithIndexPath:indexPath];
-    [tabBarController setSelectedIndex:1];
+//    [tabBarController setSelectedIndex:1];
     [self.navigationController pushViewController:tabBarController animated:YES];
 }
 

@@ -12,7 +12,17 @@
 
 - (id) initWithDictionary:(NSDictionary *)dict{
     self = [super init];
-    self.commentText = dict[@"content"];
+    self.commentText = [dict[@"content"] substringFromIndex:3];
+    NSDictionary *stringReplacements = @{@"<p>": @"\n\n",
+                                         @"&gt;": @">",
+                                         @"<i>" : @"",
+                                         @"</i>" : @""
+                                         };
+    for(NSString *key in stringReplacements){
+        self.commentText = [self.commentText stringByReplacingOccurrencesOfString:key withString:[stringReplacements objectForKey:key]];
+    }
+    
+    
     self.author = dict[@"user"];
     return self;
 }
