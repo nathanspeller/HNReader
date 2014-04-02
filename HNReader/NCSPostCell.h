@@ -14,5 +14,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *details;
 @property (weak, nonatomic) IBOutlet UILabel *comments;
 
++ (CGFloat)heightForPost:(NCSPost *)post prototype:(NCSPostCell *)prototype;
+
 - (void)setPost:(NCSPost *)post;
+
 @end

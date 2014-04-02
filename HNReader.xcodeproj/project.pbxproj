@@ -152,10 +152,7 @@
 		7E970C0B18DBCF9300517A1F /* HNReader */ = {
 			isa = PBXGroup;
 			children = (
-				7E970CBC18E53D2800517A1F /* speech-bubble-left-2@2x.png */,
-				7E970CBA18E53D0500517A1F /* browser@2x.png */,
-				7E970CB818E53CF300517A1F /* book-lines-2@2x.png */,
-				7E970C5318DFC3D400517A1F /* comment_bubble.png */,
+				7E970CF418EBDA5400517A1F /* Images */,
 				7E970C1418DBCF9300517A1F /* NCSAppDelegate.h */,
 				7E970C1518DBCF9300517A1F /* NCSAppDelegate.m */,
 				7E970C1718DBCF9300517A1F /* Images.xcassets */,
@@ -226,6 +223,17 @@
 				7E970C6718E409A900517A1F /* NCSComment.m */,
 			);
 			name = Comment;
+			sourceTree = "<group>";
+		};
+		7E970CF418EBDA5400517A1F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				7E970CBC18E53D2800517A1F /* speech-bubble-left-2@2x.png */,
+				7E970CBA18E53D0500517A1F /* browser@2x.png */,
+				7E970CB818E53CF300517A1F /* book-lines-2@2x.png */,
+				7E970C5318DFC3D400517A1F /* comment_bubble.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -17,6 +17,7 @@
 @interface NCSPostsController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *articles;
+@property (nonatomic, strong) NCSPostCell *prototype;
 @end
 
 @implementation NCSPostsController
@@ -25,7 +26,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.articles = [NSMutableArray array];
     }
     return self;
 }
@@ -41,6 +42,7 @@
 //    [self.tableView setSeparatorColor:[UIColor colorWithRed:1.000 green:0.396 blue:0.000 alpha:0.500]];
     
     UINib *postCellNib = [UINib nibWithNibName:@"NCSPostCell" bundle:nil];
+    self.prototype = [postCellNib instantiateWithOwner:self options:nil][0];
     [self.tableView registerNib:postCellNib forCellReuseIdentifier:@"PostCell"];
     
     // show loading HUD
@@ -73,8 +75,6 @@
     NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
     
     NSArray *articlesArray = [dataDictionary objectForKey:@"results"];
-    
-    self.articles = [NSMutableArray array];
     
     for (NSDictionary *dict in articlesArray) {
         NCSPost *post = [[NCSPost alloc] initWithDictionary:dict];
@@ -148,21 +148,8 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    CGSize constrainedSize = CGSizeMake(290, 9999);
-
-    NSDictionary *attributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                          [UIFont fontWithName:@"HelveticaNeue" size:18.0], NSFontAttributeName,
-                                          nil];
     NCSPost *post = self.articles[indexPath.row];
-    NSString *text = post.title;
-    
-    
-    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:text attributes:attributesDictionary];
-    
-    CGRect requiredHeight = [string boundingRectWithSize:constrainedSize options:NSStringDrawingUsesLineFragmentOrigin context:nil];
-    
-    return 56+requiredHeight.size.height;
+    return [NCSPostCell heightForPost:post prototype:self.prototype];
 }
 
 - (void)cellSwiped:(UIGestureRecognizer *)gestureRecognizer {

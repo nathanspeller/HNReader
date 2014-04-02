@@ -36,10 +36,24 @@
         self.details.text = [NSString stringWithFormat:@"%@ pts · %@",post.points , post.domain];
     }
 
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(15, 0, ([post.points floatValue]), 3)];
-    lineView.backgroundColor = [UIColor colorWithRed:1.0 green:0.4 blue:0.0 alpha:1.0];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ([post.points floatValue]), [NCSPostCell heightForPost:post prototype:self])];
+    lineView.backgroundColor = [UIColor colorWithRed:0.95 green:0.94 blue:0.94 alpha:1.0];
     lineView.tag = POINTS_TAG;
-    [self.contentView addSubview:lineView];
+    [self.contentView insertSubview:lineView belowSubview:[self.contentView.subviews objectAtIndex:0]];
+}
+
++ (CGFloat)heightForPost:(NCSPost *)post prototype:(NCSPostCell *)prototype{
+    CGFloat nameWidth = prototype.title.frame.size.width;
+    UIFont *font = prototype.title.font;
+    CGSize constrainedSize = CGSizeMake(nameWidth, 9999);
+    NSDictionary *attributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                          font, NSFontAttributeName, nil];
+    
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:post.title attributes:attributesDictionary];
+    
+    CGRect requiredHeight = [string boundingRectWithSize:constrainedSize options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+    
+    return 50+requiredHeight.size.height;
 }
 
 @end
