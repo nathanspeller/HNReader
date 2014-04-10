@@ -35,11 +35,13 @@
     } else {
         self.details.text = [NSString stringWithFormat:@"%@ pts · %@",post.points , post.domain];
     }
-
+    
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ([post.points floatValue]), [NCSPostCell heightForPost:post prototype:self])];
-    lineView.backgroundColor = [UIColor colorWithRed:0.95 green:0.94 blue:0.94 alpha:1.0];
+    lineView.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.92 alpha:1.0];
     lineView.tag = POINTS_TAG;
     [self.contentView insertSubview:lineView belowSubview:[self.contentView.subviews objectAtIndex:0]];
+    
+
 }
 
 + (CGFloat)heightForPost:(NCSPost *)post prototype:(NCSPostCell *)prototype{

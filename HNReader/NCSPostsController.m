@@ -39,6 +39,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.96 green:0.96 blue:0.94 alpha:1.0];
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:1.000 green:0.396 blue:0.000 alpha:1.000];
 //    [self.tableView setSeparatorColor:[UIColor colorWithRed:1.000 green:0.396 blue:0.000 alpha:0.500]];
     
     UINib *postCellNib = [UINib nibWithNibName:@"NCSPostCell" bundle:nil];
@@ -102,9 +103,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    UITabBarController *tabBarController = [self setupTabBarControllerWithIndexPath:indexPath];
+//    UITabBarController *tabBarController = [self setupTabBarControllerWithIndexPath:indexPath];
 //    [tabBarController setSelectedIndex:1];
-    [self.navigationController pushViewController:tabBarController animated:YES];
+    
+    NCSWebViewController *webViewController = [[NCSWebViewController alloc] init];
+    webViewController.post = self.articles[indexPath.row];
+    
+    UIBarButtonItem *commentsButton = [[UIBarButtonItem alloc] initWithTitle:@"Comments" style:UIBarButtonItemStylePlain target:self action:@selector(showComments:)];
+    webViewController.navigationItem.rightBarButtonItem = commentsButton;
+    
+    [self.navigationController pushViewController:webViewController animated:YES];
 }
 
 - (UITabBarController *)setupTabBarControllerWithIndexPath:(NSIndexPath *)indexPath{
@@ -113,15 +121,18 @@
     webView.post = self.articles[indexPath.row];
     UINavigationController *firstNavigationController = [[UINavigationController alloc] initWithRootViewController:webView];
     firstNavigationController.tabBarItem.title = @"Web";
-    firstNavigationController.tabBarItem.image = [UIImage imageNamed:@"browser"];
+//    firstNavigationController.tabBarItem.image = [UIImage imageNamed:@"browser"];
     
-    //two
-    NCSWebViewController *readingView = [[NCSWebViewController alloc] init];
-    readingView.post = self.articles[indexPath.row];
-    readingView.isReadable = YES;
-    UINavigationController *secondNavigationController = [[UINavigationController alloc] initWithRootViewController:readingView];
-    secondNavigationController.tabBarItem.title = @"Reading";
-    secondNavigationController.tabBarItem.image = [UIImage imageNamed:@"book-lines-2"];
+    UIBarButtonItem *commentsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"comment_bubble.png"] style:UIBarButtonItemStylePlain target:self action:@selector(showComments:)];
+    webView.navigationItem.rightBarButtonItem = commentsButton;
+    
+//    //two
+//    NCSWebViewController *readingView = [[NCSWebViewController alloc] init];
+//    readingView.post = self.articles[indexPath.row];
+//    readingView.isReadable = YES;
+//    UINavigationController *secondNavigationController = [[UINavigationController alloc] initWithRootViewController:readingView];
+//    secondNavigationController.tabBarItem.title = @"Reading";
+//    secondNavigationController.tabBarItem.image = [UIImage imageNamed:@"book-lines-2"];
     
     //comments
     NCSCommentsViewController *commentsView = [[NCSCommentsViewController alloc] init];
@@ -131,8 +142,12 @@
     thirdNavigationController.tabBarItem.image = [UIImage imageNamed:@"speech-bubble-left-2"];
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    tabBarController.viewControllers = @[firstNavigationController, secondNavigationController, thirdNavigationController];
+    tabBarController.viewControllers = @[firstNavigationController, thirdNavigationController];
     return tabBarController;
+}
+
+- (void)showComments:(id)sender{
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
