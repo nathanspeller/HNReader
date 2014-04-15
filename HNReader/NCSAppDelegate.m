@@ -8,6 +8,7 @@
 
 #import "NCSAppDelegate.h"
 #import "NCSPostsController.h"
+#import "CRGradientNavigationBar.h"
 
 @implementation NCSAppDelegate
 
@@ -19,9 +20,21 @@
     [self.window makeKeyAndVisible];
     
     NCSPostsController *postsController = [[NCSPostsController alloc] init];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:postsController];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithNavigationBarClass:[CRGradientNavigationBar class] toolbarClass:nil];
+    
+    UIColor *firstColor = [UIColor colorWithRed:1.000 green:0.396 blue:0.000 alpha:1.0];
+    UIColor *secondColor = [UIColor colorWithRed:255.0f/255.0f green:90.0f/255.0f blue:58.0f/255.0f alpha:1.0f];
+    NSArray *colors = [NSArray arrayWithObjects:firstColor, secondColor, nil];
+    [[CRGradientNavigationBar appearance] setBarTintGradientColors:colors];
+    [[navigationController navigationBar] setTranslucent:NO];
+    
+    [navigationController setViewControllers:@[postsController]];
     
     self.window.rootViewController = navigationController;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UINavigationBar appearance] setTitleTextAttributes: @{
+                                                        NSForegroundColorAttributeName : [UIColor whiteColor]
+                                                        }];
     return YES;
 }
 

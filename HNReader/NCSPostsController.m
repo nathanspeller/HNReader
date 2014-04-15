@@ -38,9 +38,10 @@
     self.title = @"Hacker News";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.96 green:0.96 blue:0.94 alpha:1.0];
-    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:1.000 green:0.396 blue:0.000 alpha:1.000];
-//    [self.tableView setSeparatorColor:[UIColor colorWithRed:1.000 green:0.396 blue:0.000 alpha:0.500]];
+//    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:1.000 green:0.396 blue:0.000 alpha:1.0];
+    
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    [self.tableView setSeparatorColor:[UIColor colorWithRed:1.000 green:0.396 blue:0.000 alpha:0.4500]];
     
     UINib *postCellNib = [UINib nibWithNibName:@"NCSPostCell" bundle:nil];
     self.prototype = [postCellNib instantiateWithOwner:self options:nil][0];
@@ -126,13 +127,13 @@
     UIBarButtonItem *commentsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"comment_bubble.png"] style:UIBarButtonItemStylePlain target:self action:@selector(showComments:)];
     webView.navigationItem.rightBarButtonItem = commentsButton;
     
-//    //two
-//    NCSWebViewController *readingView = [[NCSWebViewController alloc] init];
-//    readingView.post = self.articles[indexPath.row];
-//    readingView.isReadable = YES;
-//    UINavigationController *secondNavigationController = [[UINavigationController alloc] initWithRootViewController:readingView];
-//    secondNavigationController.tabBarItem.title = @"Reading";
-//    secondNavigationController.tabBarItem.image = [UIImage imageNamed:@"book-lines-2"];
+    //two
+    NCSWebViewController *readingView = [[NCSWebViewController alloc] init];
+    readingView.post = self.articles[indexPath.row];
+    readingView.isReadable = YES;
+    UINavigationController *secondNavigationController = [[UINavigationController alloc] initWithRootViewController:readingView];
+    secondNavigationController.tabBarItem.title = @"Reading";
+    secondNavigationController.tabBarItem.image = [UIImage imageNamed:@"book-lines-2"];
     
     //comments
     NCSCommentsViewController *commentsView = [[NCSCommentsViewController alloc] init];
