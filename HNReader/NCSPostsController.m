@@ -34,13 +34,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
     self.title = @"Hacker News";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-//    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:1.000 green:0.396 blue:0.000 alpha:1.0];
-    
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+
     [self.tableView setSeparatorColor:[UIColor colorWithRed:1.000 green:0.396 blue:0.000 alpha:0.4500]];
     
     UINib *postCellNib = [UINib nibWithNibName:@"NCSPostCell" bundle:nil];
@@ -77,6 +75,8 @@
     NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
     
     NSArray *articlesArray = [dataDictionary objectForKey:@"results"];
+    
+    [self.articles removeAllObjects];
     
     for (NSDictionary *dict in articlesArray) {
         NCSPost *post = [[NCSPost alloc] initWithDictionary:dict];
@@ -116,37 +116,6 @@
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 
-- (UITabBarController *)setupTabBarControllerWithIndexPath:(NSIndexPath *)indexPath{
-    //one
-    NCSWebViewController *webView = [[NCSWebViewController alloc] init];
-    webView.post = self.articles[indexPath.row];
-    UINavigationController *firstNavigationController = [[UINavigationController alloc] initWithRootViewController:webView];
-    firstNavigationController.tabBarItem.title = @"Web";
-//    firstNavigationController.tabBarItem.image = [UIImage imageNamed:@"browser"];
-    
-    UIBarButtonItem *commentsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"comment_bubble.png"] style:UIBarButtonItemStylePlain target:self action:@selector(showComments:)];
-    webView.navigationItem.rightBarButtonItem = commentsButton;
-    
-    //two
-    NCSWebViewController *readingView = [[NCSWebViewController alloc] init];
-    readingView.post = self.articles[indexPath.row];
-    readingView.isReadable = YES;
-    UINavigationController *secondNavigationController = [[UINavigationController alloc] initWithRootViewController:readingView];
-    secondNavigationController.tabBarItem.title = @"Reading";
-    secondNavigationController.tabBarItem.image = [UIImage imageNamed:@"book-lines-2"];
-    
-    //comments
-    NCSCommentsViewController *commentsView = [[NCSCommentsViewController alloc] init];
-    commentsView.post = self.articles[indexPath.row];
-    UINavigationController *thirdNavigationController = [[UINavigationController alloc] initWithRootViewController:commentsView];
-    thirdNavigationController.tabBarItem.title = @"Comments";
-    thirdNavigationController.tabBarItem.image = [UIImage imageNamed:@"speech-bubble-left-2"];
-    
-    UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    tabBarController.viewControllers = @[firstNavigationController, thirdNavigationController];
-    return tabBarController;
-}
-
 - (void)showComments:(id)sender{
     
 }
@@ -154,9 +123,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NCSPostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
     
-    UISwipeGestureRecognizer* sgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellSwiped:)];
-    [sgr setDirection:UISwipeGestureRecognizerDirectionLeft];
-    [cell addGestureRecognizer:sgr];
+//    UISwipeGestureRecognizer* sgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellSwiped:)];
+//    [sgr setDirection:UISwipeGestureRecognizerDirectionLeft];
+//    [cell addGestureRecognizer:sgr];
 
     NCSPost *post = [self.articles objectAtIndex:indexPath.row];
     [cell setPost:post];
@@ -172,9 +141,6 @@
     if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
         CGPoint location = [gestureRecognizer locationInView:self.tableView];
         NSIndexPath *swipedIndexPath = [self.tableView indexPathForRowAtPoint:location];
-        UITabBarController *tabBarController = [self setupTabBarControllerWithIndexPath:swipedIndexPath];
-        [tabBarController setSelectedIndex:2];
-        [self.navigationController pushViewController:tabBarController animated:YES];
     }
 }
 

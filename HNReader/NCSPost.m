@@ -38,8 +38,4 @@
     return self;
 }
 
-+ (id) entryWithTitle:(NSString *)title{
-    return [[self alloc] initWithTitle:title];
-}
-
 @end
