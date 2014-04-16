@@ -39,7 +39,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 
-    [self.tableView setSeparatorColor:[UIColor colorWithRed:1.000 green:0.396 blue:0.000 alpha:0.4500]];
+    [self.tableView setSeparatorColor:[UIColor colorWithRed:1.000 green:0.396 blue:0.000 alpha:0.500]];
     
     UINib *postCellNib = [UINib nibWithNibName:@"NCSPostCell" bundle:nil];
     self.prototype = [postCellNib instantiateWithOwner:self options:nil][0];

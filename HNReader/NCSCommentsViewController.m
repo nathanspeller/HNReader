@@ -74,7 +74,6 @@
     for (NSDictionary *dict in commentsArray) {
         NCSComment *comment = [[NCSComment alloc] initWithDictionary:dict];
         [self.comments addObject:comment];
-        NSLog(@"new comment");
     }
 }
 
