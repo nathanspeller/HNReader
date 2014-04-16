@@ -103,23 +103,15 @@
     
     NCSWebViewController *webViewController = [[NCSWebViewController alloc] init];
     webViewController.post = self.articles[indexPath.row];
-    
-    UIBarButtonItem *commentsButton = [[UIBarButtonItem alloc] initWithTitle:@"Comments" style:UIBarButtonItemStylePlain target:self action:@selector(showComments:)];
-    webViewController.navigationItem.rightBarButtonItem = commentsButton;
-    
     [self.navigationController pushViewController:webViewController animated:YES];
-}
-
-- (void)showComments:(id)sender{
-    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NCSPostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
     
-//    UISwipeGestureRecognizer* sgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellSwiped:)];
-//    [sgr setDirection:UISwipeGestureRecognizerDirectionLeft];
-//    [cell addGestureRecognizer:sgr];
+    UISwipeGestureRecognizer* sgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellSwiped:)];
+    [sgr setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [cell addGestureRecognizer:sgr];
 
     NCSPost *post = [self.articles objectAtIndex:indexPath.row];
     [cell setPost:post];
@@ -135,6 +127,10 @@
     if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
         CGPoint location = [gestureRecognizer locationInView:self.tableView];
         NSIndexPath *swipedIndexPath = [self.tableView indexPathForRowAtPoint:location];
+        
+        NCSCommentsViewController *commentsViewController = [[NCSCommentsViewController alloc] init];
+        commentsViewController.post = [self.articles objectAtIndex:swipedIndexPath.row];
+        [self.navigationController pushViewController:commentsViewController animated:YES];
     }
 }
 

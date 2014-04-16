@@ -7,6 +7,7 @@
 //
 
 #import "NCSWebViewController.h"
+#import "NCSCommentsViewController.h"
 
 @interface NCSWebViewController ()
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
@@ -33,6 +34,15 @@
     NSURL *url = [[NSURL alloc] initWithString:urlString];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:requestObj];
+    
+    UIBarButtonItem *commentsButton = [[UIBarButtonItem alloc] initWithTitle:@"Comments" style:UIBarButtonItemStylePlain target:self action:@selector(showComments:)];
+    self.navigationItem.rightBarButtonItem = commentsButton;
+}
+
+- (void)showComments:(id)sender{
+    NCSCommentsViewController *commentsViewController = [[NCSCommentsViewController alloc] init];
+    commentsViewController.post = self.post;
+    [self.navigationController pushViewController:commentsViewController animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
