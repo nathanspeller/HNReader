@@ -59,8 +59,6 @@
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:refreshControl];
-    
-    
 }
 
 - (void)refresh:(UIRefreshControl *)refreshControl {
@@ -102,10 +100,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-//    UITabBarController *tabBarController = [self setupTabBarControllerWithIndexPath:indexPath];
-//    [tabBarController setSelectedIndex:1];
     
     NCSWebViewController *webViewController = [[NCSWebViewController alloc] init];
     webViewController.post = self.articles[indexPath.row];
