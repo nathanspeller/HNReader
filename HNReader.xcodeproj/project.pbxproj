@@ -28,8 +28,8 @@
 		7E970C5418DFC3D400517A1F /* comment_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E970C5318DFC3D400517A1F /* comment_bubble.png */; };
 		7E970C5818E000FA00517A1F /* NCSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E970C5618E000FA00517A1F /* NCSWebViewController.m */; };
 		7E970C5918E000FA00517A1F /* NCSWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E970C5718E000FA00517A1F /* NCSWebViewController.xib */; };
-		7E970C5D18E3FCB800517A1F /* NCSCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E970C5B18E3FCB800517A1F /* NCSCommentsViewController.m */; };
-		7E970C5E18E3FCB800517A1F /* NCSCommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E970C5C18E3FCB800517A1F /* NCSCommentsViewController.xib */; };
+		7E970C5D18E3FCB800517A1F /* NCSThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E970C5B18E3FCB800517A1F /* NCSThreadViewController.m */; };
+		7E970C5E18E3FCB800517A1F /* NCSThreadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E970C5C18E3FCB800517A1F /* NCSThreadViewController.xib */; };
 		7E970C6218E4070300517A1F /* NCSCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E970C6018E4070300517A1F /* NCSCommentCell.m */; };
 		7E970C6318E4070300517A1F /* NCSCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E970C6118E4070300517A1F /* NCSCommentCell.xib */; };
 		7E970C6818E409A900517A1F /* NCSComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E970C6718E409A900517A1F /* NCSComment.m */; };
@@ -78,9 +78,9 @@
 		7E970C5518E000FA00517A1F /* NCSWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSWebViewController.h; sourceTree = "<group>"; };
 		7E970C5618E000FA00517A1F /* NCSWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSWebViewController.m; sourceTree = "<group>"; };
 		7E970C5718E000FA00517A1F /* NCSWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NCSWebViewController.xib; sourceTree = "<group>"; };
-		7E970C5A18E3FCB800517A1F /* NCSCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSCommentsViewController.h; sourceTree = "<group>"; };
-		7E970C5B18E3FCB800517A1F /* NCSCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSCommentsViewController.m; sourceTree = "<group>"; };
-		7E970C5C18E3FCB800517A1F /* NCSCommentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NCSCommentsViewController.xib; sourceTree = "<group>"; };
+		7E970C5A18E3FCB800517A1F /* NCSThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSThreadViewController.h; sourceTree = "<group>"; };
+		7E970C5B18E3FCB800517A1F /* NCSThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSThreadViewController.m; sourceTree = "<group>"; };
+		7E970C5C18E3FCB800517A1F /* NCSThreadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NCSThreadViewController.xib; sourceTree = "<group>"; };
 		7E970C5F18E4070300517A1F /* NCSCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSCommentCell.h; sourceTree = "<group>"; };
 		7E970C6018E4070300517A1F /* NCSCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSCommentCell.m; sourceTree = "<group>"; };
 		7E970C6118E4070300517A1F /* NCSCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NCSCommentCell.xib; sourceTree = "<group>"; };
@@ -134,9 +134,9 @@
 				7E970C3C18DBE21E00517A1F /* NCSPostsController.h */,
 				7E970C3D18DBE21E00517A1F /* NCSPostsController.m */,
 				7E970C3E18DBE21E00517A1F /* NCSPostsController.xib */,
-				7E970C5A18E3FCB800517A1F /* NCSCommentsViewController.h */,
-				7E970C5B18E3FCB800517A1F /* NCSCommentsViewController.m */,
-				7E970C5C18E3FCB800517A1F /* NCSCommentsViewController.xib */,
+				7E970C5A18E3FCB800517A1F /* NCSThreadViewController.h */,
+				7E970C5B18E3FCB800517A1F /* NCSThreadViewController.m */,
+				7E970C5C18E3FCB800517A1F /* NCSThreadViewController.xib */,
 				7E970C5518E000FA00517A1F /* NCSWebViewController.h */,
 				7E970C5618E000FA00517A1F /* NCSWebViewController.m */,
 				7E970C5718E000FA00517A1F /* NCSWebViewController.xib */,
@@ -328,7 +328,7 @@
 				7E970CBB18E53D0500517A1F /* browser@2x.png in Resources */,
 				7E970C6318E4070300517A1F /* NCSCommentCell.xib in Resources */,
 				7E970C5418DFC3D400517A1F /* comment_bubble.png in Resources */,
-				7E970C5E18E3FCB800517A1F /* NCSCommentsViewController.xib in Resources */,
+				7E970C5E18E3FCB800517A1F /* NCSThreadViewController.xib in Resources */,
 				7E970CB918E53CF300517A1F /* book-lines-2@2x.png in Resources */,
 				7E970C1018DBCF9300517A1F /* InfoPlist.strings in Resources */,
 				7E970C1818DBCF9300517A1F /* Images.xcassets in Resources */,
@@ -392,7 +392,7 @@
 				7E970C6818E409A900517A1F /* NCSComment.m in Sources */,
 				7E970C1618DBCF9300517A1F /* NCSAppDelegate.m in Sources */,
 				7E970C4E18DEB4A500517A1F /* NCSPost.m in Sources */,
-				7E970C5D18E3FCB800517A1F /* NCSCommentsViewController.m in Sources */,
+				7E970C5D18E3FCB800517A1F /* NCSThreadViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

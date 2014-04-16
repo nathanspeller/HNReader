@@ -6,17 +6,17 @@
 //  Copyright (c) 2014 Nathan Speller. All rights reserved.
 //
 
-#import "NCSCommentsViewController.h"
+#import "NCSThreadViewController.h"
 #import "NCSCommentCell.h"
 #import "NCSComment.h"
 #import "MBProgressHUD.h"
 
-@interface NCSCommentsViewController ()
+@interface NCSThreadViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *comments;
 @end
 
-@implementation NCSCommentsViewController
+@implementation NCSThreadViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
