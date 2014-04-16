@@ -22,7 +22,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.comments = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -32,7 +32,6 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.comments = [[NSMutableArray alloc] init];
     
     UINib *commentCellNib = [UINib nibWithNibName:@"NCSCommentCell" bundle:nil];
 //    self.guideCell = [resultCellNib instantiateWithOwner:self options:nil][0];

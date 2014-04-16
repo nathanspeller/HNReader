@@ -11,7 +11,7 @@
 #import "NCSPostsController.h"
 #import "NCSPost.h"
 #import "NCSWebViewController.h"
-#import "NCSThreadViewController.h"
+#import "NCSCommentsViewController.h"
 #import "MBProgressHUD.h"
 
 @interface NCSPostsController ()
@@ -128,7 +128,7 @@
         CGPoint location = [gestureRecognizer locationInView:self.tableView];
         NSIndexPath *swipedIndexPath = [self.tableView indexPathForRowAtPoint:location];
         
-        NCSThreadViewController *commentsViewController = [[NCSThreadViewController alloc] init];
+        NCSCommentsViewController *commentsViewController = [[NCSCommentsViewController alloc] init];
         commentsViewController.post = [self.articles objectAtIndex:swipedIndexPath.row];
         [self.navigationController pushViewController:commentsViewController animated:YES];
     }
