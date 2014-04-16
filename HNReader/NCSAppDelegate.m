@@ -20,7 +20,15 @@
     [self.window makeKeyAndVisible];
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithNavigationBarClass:[CRGradientNavigationBar class] toolbarClass:nil];
-    // style navigation bar
+    NCSPostsController *postsController = [[NCSPostsController alloc] init];
+    [navigationController setViewControllers:@[postsController]];
+    [self styleNavigationController:navigationController];
+    
+    self.window.rootViewController = navigationController;
+    return YES;
+}
+
+- (void)styleNavigationController:(UINavigationController *)navigationController{
     UIColor *topColor = [UIColor colorWithRed:1.000 green:0.396 blue:0.000 alpha:1.0];
     UIColor *bottomColor = [UIColor colorWithRed:255.0f/255.0f green:90.0f/255.0f blue:58.0f/255.0f alpha:1.0f];
     NSArray *colors = [NSArray arrayWithObjects:topColor, bottomColor, nil];
@@ -30,12 +38,6 @@
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UINavigationBar appearance] setTitleTextAttributes: @{ NSForegroundColorAttributeName : [UIColor whiteColor] }];
-    
-    NCSPostsController *postsController = [[NCSPostsController alloc] init];
-    [navigationController setViewControllers:@[postsController]];
-    
-    self.window.rootViewController = navigationController;
-    return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

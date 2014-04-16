@@ -117,6 +117,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E56A2C318FE257900FC10DE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7E970CBC18E53D2800517A1F /* speech-bubble-left-2@2x.png */,
+				7E970CBA18E53D0500517A1F /* browser@2x.png */,
+				7E970CB818E53CF300517A1F /* book-lines-2@2x.png */,
+				7E970C5318DFC3D400517A1F /* comment_bubble.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		7E56A2C418FE25A900FC10DE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7E970C3C18DBE21E00517A1F /* NCSPostsController.h */,
+				7E970C3D18DBE21E00517A1F /* NCSPostsController.m */,
+				7E970C3E18DBE21E00517A1F /* NCSPostsController.xib */,
+				7E970C5A18E3FCB800517A1F /* NCSCommentsViewController.h */,
+				7E970C5B18E3FCB800517A1F /* NCSCommentsViewController.m */,
+				7E970C5C18E3FCB800517A1F /* NCSCommentsViewController.xib */,
+				7E970C5518E000FA00517A1F /* NCSWebViewController.h */,
+				7E970C5618E000FA00517A1F /* NCSWebViewController.m */,
+				7E970C5718E000FA00517A1F /* NCSWebViewController.xib */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		7E56A2C518FE25C300FC10DE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7E970C4C18DEB4A500517A1F /* NCSPost.h */,
+				7E970C4D18DEB4A500517A1F /* NCSPost.m */,
+				7E970C6618E409A900517A1F /* NCSComment.h */,
+				7E970C6718E409A900517A1F /* NCSComment.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		7E56A2C618FE25F300FC10DE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7E970C3418DBE1CA00517A1F /* NCSPostCell.h */,
+				7E970C3518DBE1CA00517A1F /* NCSPostCell.m */,
+				7E970C3618DBE1CA00517A1F /* NCSPostCell.xib */,
+				7E970C5F18E4070300517A1F /* NCSCommentCell.h */,
+				7E970C6018E4070300517A1F /* NCSCommentCell.m */,
+				7E970C6118E4070300517A1F /* NCSCommentCell.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		7E970BF918DBCF9300517A1F = {
 			isa = PBXGroup;
 			children = (
@@ -152,16 +203,14 @@
 		7E970C0B18DBCF9300517A1F /* HNReader */ = {
 			isa = PBXGroup;
 			children = (
-				7E970CF418EBDA5400517A1F /* Images */,
 				7E970C1418DBCF9300517A1F /* NCSAppDelegate.h */,
 				7E970C1518DBCF9300517A1F /* NCSAppDelegate.m */,
+				7E56A2C518FE25C300FC10DE /* Models */,
+				7E56A2C418FE25A900FC10DE /* Controllers */,
+				7E56A2C618FE25F300FC10DE /* Views */,
+				7E56A2C318FE257900FC10DE /* Resources */,
 				7E970C1718DBCF9300517A1F /* Images.xcassets */,
 				7E970C0C18DBCF9300517A1F /* Supporting Files */,
-				7E970C6418E4096B00517A1F /* Post */,
-				7E970C5518E000FA00517A1F /* NCSWebViewController.h */,
-				7E970C5618E000FA00517A1F /* NCSWebViewController.m */,
-				7E970C5718E000FA00517A1F /* NCSWebViewController.xib */,
-				7E970C6518E4097400517A1F /* Comment */,
 			);
 			path = HNReader;
 			sourceTree = "<group>";
@@ -193,47 +242,6 @@
 				7E970C2718DBCF9300517A1F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		7E970C6418E4096B00517A1F /* Post */ = {
-			isa = PBXGroup;
-			children = (
-				7E970C3418DBE1CA00517A1F /* NCSPostCell.h */,
-				7E970C3518DBE1CA00517A1F /* NCSPostCell.m */,
-				7E970C3618DBE1CA00517A1F /* NCSPostCell.xib */,
-				7E970C3C18DBE21E00517A1F /* NCSPostsController.h */,
-				7E970C3D18DBE21E00517A1F /* NCSPostsController.m */,
-				7E970C3E18DBE21E00517A1F /* NCSPostsController.xib */,
-				7E970C4C18DEB4A500517A1F /* NCSPost.h */,
-				7E970C4D18DEB4A500517A1F /* NCSPost.m */,
-			);
-			name = Post;
-			sourceTree = "<group>";
-		};
-		7E970C6518E4097400517A1F /* Comment */ = {
-			isa = PBXGroup;
-			children = (
-				7E970C5A18E3FCB800517A1F /* NCSCommentsViewController.h */,
-				7E970C5B18E3FCB800517A1F /* NCSCommentsViewController.m */,
-				7E970C5C18E3FCB800517A1F /* NCSCommentsViewController.xib */,
-				7E970C5F18E4070300517A1F /* NCSCommentCell.h */,
-				7E970C6018E4070300517A1F /* NCSCommentCell.m */,
-				7E970C6118E4070300517A1F /* NCSCommentCell.xib */,
-				7E970C6618E409A900517A1F /* NCSComment.h */,
-				7E970C6718E409A900517A1F /* NCSComment.m */,
-			);
-			name = Comment;
-			sourceTree = "<group>";
-		};
-		7E970CF418EBDA5400517A1F /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				7E970CBC18E53D2800517A1F /* speech-bubble-left-2@2x.png */,
-				7E970CBA18E53D0500517A1F /* browser@2x.png */,
-				7E970CB818E53CF300517A1F /* book-lines-2@2x.png */,
-				7E970C5318DFC3D400517A1F /* comment_bubble.png */,
-			);
-			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
