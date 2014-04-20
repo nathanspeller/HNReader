@@ -26,8 +26,15 @@
     CGFloat nameWidth = prototype.commentText.frame.size.width;
     UIFont *font = prototype.commentText.font;
     CGSize constrainedSize = CGSizeMake(nameWidth, 9999);
+    
+    NSMutableParagraphStyle *style  = [[NSMutableParagraphStyle alloc] init];
+    style.minimumLineHeight = 17.f;
+    style.maximumLineHeight = 17.f;
+    
     NSDictionary *attributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                          font, NSFontAttributeName, nil];
+                                          font, NSFontAttributeName,
+                                          style, NSParagraphStyleAttributeName, nil];
+    
     
     NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:comment.commentText attributes:attributesDictionary];
     

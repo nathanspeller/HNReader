@@ -14,7 +14,7 @@
 @interface NCSThreadViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *comments;
-@property (nonatomic, strong) NCSComment *prototype;
+@property (nonatomic, strong) NCSCommentCell *prototype;
 @end
 
 @implementation NCSThreadViewController
@@ -94,9 +94,9 @@
     NSMutableParagraphStyle *style  = [[NSMutableParagraphStyle alloc] init];
     style.minimumLineHeight = 17.f;
     style.maximumLineHeight = 17.f;
-    NSDictionary *attributtes = @{NSParagraphStyleAttributeName : style,};
+    NSDictionary *attributes = @{NSParagraphStyleAttributeName : style,};
     cell.commentText.attributedText = [[NSAttributedString alloc] initWithString:comment.commentText
-                                                                attributes:attributtes];
+                                                                attributes:attributes];
     [cell.commentText sizeToFit];
 
     

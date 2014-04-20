@@ -28,9 +28,9 @@
     NSMutableParagraphStyle *style  = [[NSMutableParagraphStyle alloc] init];
     style.minimumLineHeight = 22.f;
     style.maximumLineHeight = 22.f;
-    NSDictionary *attributtes = @{NSParagraphStyleAttributeName : style,};
+    NSDictionary *attributes = @{NSParagraphStyleAttributeName : style,};
     self.title.attributedText = [[NSAttributedString alloc] initWithString:post.title
-                                                             attributes:attributtes];
+                                                             attributes:attributes];
     [self.title sizeToFit];
     
     self.comments.text = [NSString stringWithFormat:@"%@", post.comments];
@@ -69,17 +69,20 @@
     CGFloat nameWidth = prototype.title.frame.size.width;
     UIFont *font = prototype.title.font;
     CGSize constrainedSize = CGSizeMake(nameWidth, 9999);
+    
+    NSMutableParagraphStyle *style  = [[NSMutableParagraphStyle alloc] init];
+    style.minimumLineHeight = 22.f;
+    style.maximumLineHeight = 22.f;
+    
     NSDictionary *attributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                          font, NSFontAttributeName, nil];
+                                          font, NSFontAttributeName,
+                                          style, NSParagraphStyleAttributeName, nil];
     
-    NSMutableString *encodedString = [NSMutableString stringWithString:post.title];
-    [encodedString replaceOccurrencesOfString:@"&#039;" withString:@"’" options:NSCaseInsensitiveSearch range:(NSRange){0,[encodedString length]}];
-    
-    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:encodedString attributes:attributesDictionary];
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:post.title attributes:attributesDictionary];
     
     CGRect requiredHeight = [string boundingRectWithSize:constrainedSize options:NSStringDrawingUsesLineFragmentOrigin context:nil];
     
-    return 50+(requiredHeight.size.height*1.05);
+    return 50+(requiredHeight.size.height);
 }
 
 @end

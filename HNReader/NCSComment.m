@@ -13,7 +13,7 @@
 
 - (id) initWithDictionary:(NSDictionary *)dict{
     self = [super init];
-    self.commentText = [dict[@"content"] substringFromIndex:3];
+    self.commentText = dict[@"content"];
     self.commentText = [self.commentText stringByDecodingHTMLEntities];
     
     NSDictionary *stringReplacements = @{@"<p>": @"\n\n",
@@ -24,6 +24,8 @@
         self.commentText = [self.commentText stringByReplacingOccurrencesOfString:key withString:[stringReplacements objectForKey:key]];
     }
     
+    //remove trailing new lines
+    self.commentText = [self.commentText stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     
     self.author = dict[@"user"];
     return self;
