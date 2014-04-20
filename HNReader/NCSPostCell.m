@@ -24,19 +24,15 @@
 }
 
 - (void)setPost:(NCSPost *)post {
-    NSMutableString *encodedString = [NSMutableString stringWithString: post.title];
-    [encodedString replaceOccurrencesOfString:@"&#039;" withString:@"’" options:NSCaseInsensitiveSearch range:(NSRange){0,[encodedString length]}];
-    
     self.title.numberOfLines = 0;
     NSMutableParagraphStyle *style  = [[NSMutableParagraphStyle alloc] init];
     style.minimumLineHeight = 22.f;
     style.maximumLineHeight = 22.f;
     NSDictionary *attributtes = @{NSParagraphStyleAttributeName : style,};
-    self.title.attributedText = [[NSAttributedString alloc] initWithString:encodedString
+    self.title.attributedText = [[NSAttributedString alloc] initWithString:post.title
                                                              attributes:attributtes];
     [self.title sizeToFit];
     
-//    self.title.text = encodedString;
     self.comments.text = [NSString stringWithFormat:@"%@", post.comments];
     if ([post.domain length] == 0) {
         self.details.text = post.submitter;

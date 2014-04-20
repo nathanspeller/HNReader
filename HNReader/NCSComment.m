@@ -7,14 +7,16 @@
 //
 
 #import "NCSComment.h"
+#import "NSString+HTML.h"
 
 @implementation NCSComment
 
 - (id) initWithDictionary:(NSDictionary *)dict{
     self = [super init];
     self.commentText = [dict[@"content"] substringFromIndex:3];
+    self.commentText = [self.commentText stringByDecodingHTMLEntities];
+    
     NSDictionary *stringReplacements = @{@"<p>": @"\n\n",
-                                         @"&gt;": @">",
                                          @"<i>" : @"",
                                          @"</i>" : @""
                                          };

@@ -7,6 +7,7 @@
 //
 
 #import "NCSPost.h"
+#import "NSString+HTML.h"
 
 @implementation NCSPost
 
@@ -28,6 +29,7 @@
 - (id) initWithDictionary:(NSDictionary *)dict{
     self = [super init];
     self.title     = dict[@"title"];
+    self.title     = [self.title stringByDecodingHTMLEntities];
     self.date      = dict[@"date"];
     self.itemid    = dict[@"itemid"];
     self.submitter = dict[@"submitter"];
