@@ -7,7 +7,7 @@
 //
 
 #import "NCSWebViewController.h"
-#import "NCSCommentsViewController.h"
+#import "NCSThreadViewController.h"
 
 @interface NCSWebViewController ()
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
@@ -40,7 +40,7 @@
 }
 
 - (void)showComments:(id)sender{
-    NCSCommentsViewController *commentsViewController = [[NCSCommentsViewController alloc] init];
+    NCSThreadViewController *commentsViewController = [[NCSThreadViewController alloc] init];
     commentsViewController.post = self.post;
     [self.navigationController pushViewController:commentsViewController animated:YES];
 }

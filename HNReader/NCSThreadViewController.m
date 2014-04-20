@@ -56,15 +56,20 @@
     NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
     
     NSArray *commentsArray = [dataDictionary objectForKey:@"comments"];
-    
-    self.comments = [NSMutableArray array];
-    
-    for (NSDictionary *dict in commentsArray) {
-        NCSComment *comment = [[NCSComment alloc] initWithDictionary:dict];
-        [self.comments addObject:comment];
-    }
-    
+    [self parseComments:commentsArray depth:0];
     [self.tableView reloadData];
+}
+
+- (void)parseComments:(NSArray *)array depth:(CGFloat)depth{
+    for (NSDictionary *dict in array) {
+        NCSComment *comment = [[NCSComment alloc] initWithDictionary:dict];
+        comment.depth = depth;
+        [self.comments addObject:comment];
+        NSArray *nestedComments = [dict objectForKey:@"comments"];
+        if (nestedComments.count > 0){
+            [self parseComments:nestedComments depth:depth+1];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -92,11 +97,10 @@
     
     cell.commentText.numberOfLines = 0;
     NSMutableParagraphStyle *style  = [[NSMutableParagraphStyle alloc] init];
-    style.minimumLineHeight = 17.f;
-    style.maximumLineHeight = 17.f;
+    style.minimumLineHeight = 19.f;
+    style.maximumLineHeight = 19.f;
     NSDictionary *attributes = @{NSParagraphStyleAttributeName : style,};
-    cell.commentText.attributedText = [[NSAttributedString alloc] initWithString:comment.commentText
-                                                                attributes:attributes];
+    cell.commentText.attributedText = [[NSAttributedString alloc] initWithString:comment.commentText attributes:attributes];
     [cell.commentText sizeToFit];
 
     

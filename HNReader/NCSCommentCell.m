@@ -28,8 +28,8 @@
     CGSize constrainedSize = CGSizeMake(nameWidth, 9999);
     
     NSMutableParagraphStyle *style  = [[NSMutableParagraphStyle alloc] init];
-    style.minimumLineHeight = 17.f;
-    style.maximumLineHeight = 17.f;
+    style.minimumLineHeight = 19.f;
+    style.maximumLineHeight = 19.f;
     
     NSDictionary *attributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                                           font, NSFontAttributeName,
@@ -40,7 +40,7 @@
     
     CGRect requiredHeight = [string boundingRectWithSize:constrainedSize options:NSStringDrawingUsesLineFragmentOrigin context:nil];
     
-    return 50+(requiredHeight.size.height);
+    return 45+(requiredHeight.size.height);
 }
 
 - (void)setComment:(NCSComment *)comment{

@@ -11,6 +11,7 @@
 @interface NCSComment : NSObject
 @property (nonatomic, strong) NSString *commentText;
 @property (nonatomic, strong) NSString *author;
+@property (nonatomic, assign) CGFloat depth;
 
 - (id) initWithDictionary:(NSDictionary *)dict;
 @end
