@@ -17,7 +17,7 @@
                         <rect key="frame" x="15" y="13" width="290" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                        <color key="textColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="234 pts by pg 11 hrs ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAG-i3-1fZ">
@@ -30,7 +30,7 @@
                         <color key="textColor" red="0.48627451059999999" green="0.48627451059999999" blue="0.44705882670000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pC8-yq-sTW">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="755" text="3" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pC8-yq-sTW">
                         <rect key="frame" x="279" y="36" width="8" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
@@ -50,6 +50,7 @@
                     </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="pC8-yq-sTW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YAG-i3-1fZ" secondAttribute="trailing" constant="4" id="0IA-sa-2Jn"/>
                     <constraint firstItem="Vjg-Op-ygB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="1C7-ZL-rMJ"/>
                     <constraint firstItem="V4q-G2-XB5" firstAttribute="leading" secondItem="pC8-yq-sTW" secondAttribute="trailing" constant="6" id="CHO-8o-YW9"/>
                     <constraint firstAttribute="trailing" secondItem="V4q-G2-XB5" secondAttribute="trailing" constant="15" id="CYp-ZL-wPG"/>

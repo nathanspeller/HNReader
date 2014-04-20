@@ -26,7 +26,17 @@
 - (void)setPost:(NCSPost *)post {
     NSMutableString *encodedString = [NSMutableString stringWithString: post.title];
     [encodedString replaceOccurrencesOfString:@"&#039;" withString:@"’" options:NSCaseInsensitiveSearch range:(NSRange){0,[encodedString length]}];
-    self.title.text = encodedString;
+    
+    self.title.numberOfLines = 0;
+    NSMutableParagraphStyle *style  = [[NSMutableParagraphStyle alloc] init];
+    style.minimumLineHeight = 22.f;
+    style.maximumLineHeight = 22.f;
+    NSDictionary *attributtes = @{NSParagraphStyleAttributeName : style,};
+    self.title.attributedText = [[NSAttributedString alloc] initWithString:encodedString
+                                                             attributes:attributtes];
+    [self.title sizeToFit];
+    
+//    self.title.text = encodedString;
     self.comments.text = [NSString stringWithFormat:@"%@", post.comments];
     if ([post.domain length] == 0) {
         self.details.text = post.submitter;
@@ -45,15 +55,15 @@
     
     // draw darker background for posts with more than 320 points
     if ([post.points doubleValue] > 320) {
-        UIView *bigLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ([post.points floatValue]/10.0f), [NCSPostCell heightForPost:post prototype:self])];
-        bigLineView.backgroundColor = [UIColor colorWithRed:1.0 green:0.396 blue:0.0 alpha:0.12];
+        UIView *bigLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, (([post.points floatValue]-320)/1.0f), [NCSPostCell heightForPost:post prototype:self])];
+        bigLineView.backgroundColor = [UIColor colorWithRed:1.0 green:0.396 blue:0.0 alpha:0.10];
         bigLineView.tag = BIG_POINTS_TAG;
         [self.contentView insertSubview:bigLineView belowSubview:[self.contentView.subviews objectAtIndex:0]];
     }
     
     //draw background bar for post points
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ([post.points floatValue]), [NCSPostCell heightForPost:post prototype:self])];
-    lineView.backgroundColor = [UIColor colorWithRed:1.0 green:0.396 blue:0.0 alpha:0.12];
+    lineView.backgroundColor = [UIColor colorWithRed:1.0 green:0.396 blue:0.0 alpha:0.10];
     lineView.tag = POINTS_TAG;
     [self.contentView insertSubview:lineView belowSubview:[self.contentView.subviews objectAtIndex:0]];
 }
@@ -66,11 +76,14 @@
     NSDictionary *attributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                                           font, NSFontAttributeName, nil];
     
-    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:post.title attributes:attributesDictionary];
+    NSMutableString *encodedString = [NSMutableString stringWithString:post.title];
+    [encodedString replaceOccurrencesOfString:@"&#039;" withString:@"’" options:NSCaseInsensitiveSearch range:(NSRange){0,[encodedString length]}];
+    
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:encodedString attributes:attributesDictionary];
     
     CGRect requiredHeight = [string boundingRectWithSize:constrainedSize options:NSStringDrawingUsesLineFragmentOrigin context:nil];
     
-    return 50+requiredHeight.size.height;
+    return 50+(requiredHeight.size.height*1.05);
 }
 
 @end

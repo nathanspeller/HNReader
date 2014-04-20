@@ -88,6 +88,17 @@
     NCSComment *comment = self.comments[indexPath.row];
     cell.author.text = comment.author;
     cell.commentText.text = comment.commentText;
+    
+    cell.commentText.numberOfLines = 0;
+    NSMutableParagraphStyle *style  = [[NSMutableParagraphStyle alloc] init];
+    style.minimumLineHeight = 17.f;
+    style.maximumLineHeight = 17.f;
+    NSDictionary *attributtes = @{NSParagraphStyleAttributeName : style,};
+    cell.commentText.attributedText = [[NSAttributedString alloc] initWithString:comment.commentText
+                                                                attributes:attributtes];
+    [cell.commentText sizeToFit];
+
+    
     return cell;
 }
 
