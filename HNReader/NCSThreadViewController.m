@@ -14,6 +14,7 @@
 @interface NCSThreadViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *comments;
+@property (nonatomic, strong) NCSComment *prototype;
 @end
 
 @implementation NCSThreadViewController
@@ -34,7 +35,7 @@
     self.tableView.dataSource = self;
     
     UINib *commentCellNib = [UINib nibWithNibName:@"NCSCommentCell" bundle:nil];
-//    self.guideCell = [resultCellNib instantiateWithOwner:self options:nil][0];
+    self.prototype = [commentCellNib instantiateWithOwner:self options:nil][0];
     [self.tableView registerNib:commentCellNib forCellReuseIdentifier:@"CommentCell"];
     // Do any additional setup after loading the view from its nib.
     
@@ -103,20 +104,8 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CGSize constrainedSize = CGSizeMake(290, 9999);
-    
-    NSDictionary *attributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                          [UIFont fontWithName:@"HelveticaNeue" size:12.0], NSFontAttributeName,
-                                          nil];
     NCSComment *comment = self.comments[indexPath.row];
-    NSString *text = comment.commentText;
-    
-    
-    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:text attributes:attributesDictionary];
-    
-    CGRect requiredHeight = [string boundingRectWithSize:constrainedSize options:NSStringDrawingUsesLineFragmentOrigin context:nil];
-    
-    return 56+requiredHeight.size.height;
+    return [NCSCommentCell heightForComment:comment prototype:self.prototype];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
