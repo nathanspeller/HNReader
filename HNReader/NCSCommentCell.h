@@ -12,6 +12,7 @@
 @interface NCSCommentCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *commentText;
 @property (weak, nonatomic) IBOutlet UILabel *author;
+@property (nonatomic, strong) NCSComment *comment;
 
 + (CGFloat)heightForComment:(NCSComment *)comment prototype:(NCSCommentCell *)prototype;
 

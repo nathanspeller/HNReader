@@ -44,6 +44,16 @@
 }
 
 - (void)setComment:(NCSComment *)comment{
+    _comment = comment;
+    self.author.text = comment.author;
+    self.commentText.text = comment.commentText;
     
+    self.commentText.numberOfLines = 0;
+    NSMutableParagraphStyle *style  = [[NSMutableParagraphStyle alloc] init];
+    style.minimumLineHeight = 19.f;
+    style.maximumLineHeight = 19.f;
+    NSDictionary *attributes = @{NSParagraphStyleAttributeName : style,};
+    self.commentText.attributedText = [[NSAttributedString alloc] initWithString:comment.commentText attributes:attributes];
+    [self.commentText sizeToFit];
 }
 @end

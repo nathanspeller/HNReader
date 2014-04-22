@@ -92,17 +92,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {    
     NCSCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
     NCSComment *comment = self.comments[indexPath.row];
-    cell.author.text = comment.author;
-    cell.commentText.text = comment.commentText;
-    
-    cell.commentText.numberOfLines = 0;
-    NSMutableParagraphStyle *style  = [[NSMutableParagraphStyle alloc] init];
-    style.minimumLineHeight = 19.f;
-    style.maximumLineHeight = 19.f;
-    NSDictionary *attributes = @{NSParagraphStyleAttributeName : style,};
-    cell.commentText.attributedText = [[NSAttributedString alloc] initWithString:comment.commentText attributes:attributes];
-    [cell.commentText sizeToFit];
-
+    [cell setComment:comment];
     
     return cell;
 }
