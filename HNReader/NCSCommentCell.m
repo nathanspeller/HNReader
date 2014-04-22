@@ -65,7 +65,7 @@
     [self.contentView addConstraint:commentConstraint];
     [self.contentView addConstraint:authorConstraint];
     
-    for (int i=1; i < 10; i++) {
+    for (int i=1; i < 25; i++) {
         [[self.contentView viewWithTag:i] removeFromSuperview];
     }
     
