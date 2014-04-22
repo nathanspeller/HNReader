@@ -45,8 +45,29 @@
 
 - (void)setComment:(NCSComment *)comment{
     _comment = comment;
-    self.author.text = comment.author;
-    self.commentText.text = comment.commentText;
+    self.author.text = self.comment.author;
+    self.commentText.text = self.comment.commentText;
+    CGFloat commentOffset = (self.comment.depth+1)*15.0;
+    if (self.comment.depth > 0){
+        self.backgroundColor =[UIColor colorWithRed:0.1 green:0.0 blue:0.0 alpha:0.05];
+    } else {
+        self.backgroundColor = [UIColor whiteColor];
+    }
+    
+    for(NSLayoutConstraint *constraint in self.contentView.constraints){
+        if (constraint.firstAttribute == NSLayoutAttributeLeft){
+            [self.contentView removeConstraint:constraint];
+        }
+    }
+    
+    NSLayoutConstraint *authorConstraint = [NSLayoutConstraint constraintWithItem:self.author
+                                                                        attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeLeft multiplier:1.0f constant:commentOffset];
+    
+    NSLayoutConstraint *commentConstraint = [NSLayoutConstraint constraintWithItem:self.commentText
+                                                                        attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeLeft multiplier:1.0f constant:commentOffset];
+
+    [self.contentView addConstraint:commentConstraint];
+    [self.contentView addConstraint:authorConstraint];
     
     self.commentText.numberOfLines = 0;
     NSMutableParagraphStyle *style  = [[NSMutableParagraphStyle alloc] init];
