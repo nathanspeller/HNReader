@@ -46,8 +46,8 @@
 
 
 - (void)drawBackgroundPoints:(NCSPost *)post{
-    [[self.contentView viewWithTag:POINTS_TAG]removeFromSuperview];
-    [[self.contentView viewWithTag:BIG_POINTS_TAG]removeFromSuperview];
+    [[self.contentView viewWithTag:POINTS_TAG] removeFromSuperview];
+    [[self.contentView viewWithTag:BIG_POINTS_TAG] removeFromSuperview];
     
     // draw darker background for posts with more than 320 points
     if ([post.points doubleValue] > 320) {

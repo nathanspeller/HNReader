@@ -14,26 +14,32 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment Text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="tW0-aY-Jxu">
-                        <rect key="frame" x="15" y="31" width="290" height="17"/>
+                        <rect key="frame" x="15" y="33" width="290" height="51"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBW-O4-WXo">
-                        <rect key="frame" x="15" y="11" width="290" height="17"/>
+                        <rect key="frame" x="15" y="13" width="290" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="aHV-dB-3JQ"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="tW0-aY-Jxu" firstAttribute="top" secondItem="iBW-O4-WXo" secondAttribute="bottom" constant="3" id="1bt-tJ-vbV"/>
                     <constraint firstItem="tW0-aY-Jxu" firstAttribute="top" secondItem="iBW-O4-WXo" secondAttribute="bottom" constant="3" id="3RC-c2-fZQ"/>
+                    <constraint firstItem="tW0-aY-Jxu" firstAttribute="top" secondItem="iBW-O4-WXo" secondAttribute="bottom" constant="3" id="7Ru-lu-GRP"/>
                     <constraint firstAttribute="trailing" secondItem="iBW-O4-WXo" secondAttribute="trailing" constant="15" id="DMa-L4-g5r"/>
                     <constraint firstItem="tW0-aY-Jxu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" placeholder="YES" id="Rto-8n-p9z"/>
                     <constraint firstItem="iBW-O4-WXo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" placeholder="YES" id="Xl2-dn-IGF"/>
-                    <constraint firstItem="iBW-O4-WXo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="dnO-ZL-8iV"/>
+                    <constraint firstItem="iBW-O4-WXo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="dnO-ZL-8iV"/>
+                    <constraint firstAttribute="bottom" secondItem="tW0-aY-Jxu" secondAttribute="bottom" constant="15" id="gIL-r0-ukO"/>
                     <constraint firstAttribute="trailing" secondItem="tW0-aY-Jxu" secondAttribute="trailing" constant="15" id="pPp-9S-Rv4"/>
                 </constraints>
             </tableViewCellContentView>
