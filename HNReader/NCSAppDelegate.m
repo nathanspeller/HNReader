@@ -19,6 +19,8 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    
     UINavigationController *navigationController = [[UINavigationController alloc] initWithNavigationBarClass:[CRGradientNavigationBar class] toolbarClass:nil];
     NCSPostsController *postsController = [[NCSPostsController alloc] init];
     [navigationController setViewControllers:@[postsController]];

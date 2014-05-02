@@ -13,6 +13,8 @@
 
 @implementation NCSPostCell
 
+static CGFloat lineHeight = 22.f;
+
 - (void)awakeFromNib
 {
     // Initialization code
@@ -26,18 +28,19 @@
 - (void)setPost:(NCSPost *)post {
     self.title.numberOfLines = 0;
     NSMutableParagraphStyle *style  = [[NSMutableParagraphStyle alloc] init];
-    style.minimumLineHeight = 22.f;
-    style.maximumLineHeight = 22.f;
+    style.minimumLineHeight = lineHeight;
+    style.maximumLineHeight = lineHeight;
     NSDictionary *attributes = @{NSParagraphStyleAttributeName : style,};
     self.title.attributedText = [[NSAttributedString alloc] initWithString:post.title
                                                              attributes:attributes];
     [self.title sizeToFit];
+    self.topDetails.text = ([post.domain length] == 0) ? @"news.ycombinator.com": post.domain;
     
     self.comments.text = [NSString stringWithFormat:@"%@", post.comments];
     if ([post.domain length] == 0) {
         self.details.text = post.submitter;
     } else {
-        self.details.text = [NSString stringWithFormat:@"%@ pts · %@",post.points , post.domain];
+        self.details.text = [NSString stringWithFormat:@"%@ pts by %@",post.points , post.submitter];
     }
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -51,14 +54,14 @@
     
     // draw darker background for posts with more than 320 points
     if ([post.points doubleValue] > 320) {
-        UIView *bigLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, (([post.points floatValue]-320)/1.0f), [NCSPostCell heightForPost:post prototype:self])];
+        UIView *bigLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, (([post.points floatValue]-320)/1.0f), 8)];
         bigLineView.backgroundColor = [UIColor colorWithRed:1.0 green:0.396 blue:0.0 alpha:0.10];
         bigLineView.tag = BIG_POINTS_TAG;
         [self.contentView insertSubview:bigLineView belowSubview:[self.contentView.subviews objectAtIndex:0]];
     }
     
     //draw background bar for post points
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ([post.points floatValue]), [NCSPostCell heightForPost:post prototype:self])];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ([post.points floatValue]), 8)];
     lineView.backgroundColor = [UIColor colorWithRed:1.0 green:0.396 blue:0.0 alpha:0.10];
     lineView.tag = POINTS_TAG;
     [self.contentView insertSubview:lineView belowSubview:[self.contentView.subviews objectAtIndex:0]];
@@ -71,8 +74,8 @@
     CGSize constrainedSize = CGSizeMake(nameWidth, 9999);
     
     NSMutableParagraphStyle *style  = [[NSMutableParagraphStyle alloc] init];
-    style.minimumLineHeight = 22.f;
-    style.maximumLineHeight = 22.f;
+    style.minimumLineHeight = lineHeight;
+    style.maximumLineHeight = lineHeight;
     
     NSDictionary *attributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                                           font, NSFontAttributeName,
@@ -82,7 +85,7 @@
     
     CGRect requiredHeight = [string boundingRectWithSize:constrainedSize options:NSStringDrawingUsesLineFragmentOrigin context:nil];
     
-    return 50+(requiredHeight.size.height);
+    return 76+(requiredHeight.size.height);
 }
 
 @end

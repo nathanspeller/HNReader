@@ -1,71 +1,85 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="83" id="KGk-i7-Jjw" customClass="NCSPostCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="83"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="116" id="KGk-i7-Jjw" customClass="NCSPostCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="116"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="115"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="La Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="Vjg-Op-ygB">
-                        <rect key="frame" x="15" y="13" width="290" height="21"/>
+                        <rect key="frame" x="15" y="36" width="290" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="234 pts by pg 11 hrs ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAG-i3-1fZ">
-                        <rect key="frame" x="15" y="36" width="157" height="17"/>
+                        <rect key="frame" x="15" y="61" width="168" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="17" id="mCv-tf-KHC"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="168" id="BU9-1u-9WX"/>
+                            <constraint firstAttribute="height" constant="18" id="fGq-Wp-n0M"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                        <color key="textColor" red="0.48627451059999999" green="0.48627451059999999" blue="0.44705882670000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                        <color key="textColor" red="0.5013809974747474" green="0.5013809974747474" blue="0.5013809974747474" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="blog.google.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uod-cK-8vf">
+                        <rect key="frame" x="15" y="16" width="290" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="54R-Vz-Fn7"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                        <color key="textColor" red="0.88650173611111116" green="0.27443430117083661" blue="0.099706293252873418" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="755" text="3" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pC8-yq-sTW">
-                        <rect key="frame" x="279" y="36" width="8" height="18"/>
+                        <rect key="frame" x="278" y="61" width="9" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="18" id="fum-OI-duU"/>
+                            <constraint firstAttribute="height" constant="18" id="nvt-B6-ryN"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                        <color key="textColor" red="0.48627451059999999" green="0.48627451059999999" blue="0.44705882670000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                        <color key="textColor" red="0.50138099749999998" green="0.50138099749999998" blue="0.50138099749999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comment_bubble.png" translatesAutoresizingMaskIntoConstraints="NO" id="V4q-G2-XB5">
-                        <rect key="frame" x="293" y="40" width="12" height="12"/>
+                        <rect key="frame" x="293" y="65" width="12" height="12"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="12" id="LG4-ZF-BWg"/>
-                            <constraint firstAttribute="height" constant="12" id="mCm-Mb-yGQ"/>
+                            <constraint firstAttribute="width" constant="12" id="VMz-Sb-ZW6"/>
+                            <constraint firstAttribute="height" constant="12" id="ndH-41-X1d"/>
                         </constraints>
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="pC8-yq-sTW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YAG-i3-1fZ" secondAttribute="trailing" constant="4" id="0IA-sa-2Jn"/>
-                    <constraint firstItem="Vjg-Op-ygB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="1C7-ZL-rMJ"/>
-                    <constraint firstItem="V4q-G2-XB5" firstAttribute="leading" secondItem="pC8-yq-sTW" secondAttribute="trailing" constant="6" id="CHO-8o-YW9"/>
-                    <constraint firstAttribute="trailing" secondItem="V4q-G2-XB5" secondAttribute="trailing" constant="15" id="CYp-ZL-wPG"/>
-                    <constraint firstItem="pC8-yq-sTW" firstAttribute="top" secondItem="Vjg-Op-ygB" secondAttribute="bottom" constant="2" id="FXU-Sz-42T"/>
-                    <constraint firstItem="YAG-i3-1fZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="GvC-5O-r2Z"/>
-                    <constraint firstItem="YAG-i3-1fZ" firstAttribute="top" secondItem="Vjg-Op-ygB" secondAttribute="bottom" constant="2" id="I9H-Uw-auq"/>
-                    <constraint firstItem="V4q-G2-XB5" firstAttribute="top" secondItem="Vjg-Op-ygB" secondAttribute="bottom" constant="6" id="dxW-Zf-HoO"/>
-                    <constraint firstAttribute="trailing" secondItem="Vjg-Op-ygB" secondAttribute="trailing" constant="15" id="kWm-Xw-gBT"/>
-                    <constraint firstItem="Vjg-Op-ygB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="owY-xD-W6r"/>
+                    <constraint firstItem="uod-cK-8vf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="1MV-D6-p3b"/>
+                    <constraint firstItem="V4q-G2-XB5" firstAttribute="top" secondItem="Vjg-Op-ygB" secondAttribute="bottom" constant="6" id="2eK-vi-dvN"/>
+                    <constraint firstItem="pC8-yq-sTW" firstAttribute="top" secondItem="Vjg-Op-ygB" secondAttribute="bottom" constant="2" id="FTE-ra-cwK"/>
+                    <constraint firstItem="Vjg-Op-ygB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="XNF-R4-tU2"/>
+                    <constraint firstItem="V4q-G2-XB5" firstAttribute="leading" secondItem="pC8-yq-sTW" secondAttribute="trailing" constant="6" id="aur-aI-a9E"/>
+                    <constraint firstAttribute="trailing" secondItem="uod-cK-8vf" secondAttribute="trailing" constant="15" id="juL-we-rox"/>
+                    <constraint firstItem="uod-cK-8vf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="mWd-7p-U5W"/>
+                    <constraint firstAttribute="trailing" secondItem="V4q-G2-XB5" secondAttribute="trailing" constant="15" id="mnV-i8-yel"/>
+                    <constraint firstItem="YAG-i3-1fZ" firstAttribute="top" secondItem="Vjg-Op-ygB" secondAttribute="bottom" constant="2" id="nhD-GJ-1g4"/>
+                    <constraint firstAttribute="trailing" secondItem="Vjg-Op-ygB" secondAttribute="trailing" constant="15" id="oHW-RS-KN1"/>
+                    <constraint firstItem="YAG-i3-1fZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="pyi-XK-p6M"/>
+                    <constraint firstItem="Vjg-Op-ygB" firstAttribute="top" secondItem="uod-cK-8vf" secondAttribute="bottom" constant="2" id="tt0-Db-lsS"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="comments" destination="pC8-yq-sTW" id="nc9-wx-0If"/>
                 <outlet property="details" destination="YAG-i3-1fZ" id="4tb-Kz-tKU"/>
                 <outlet property="title" destination="Vjg-Op-ygB" id="UhC-Ha-OeO"/>
+                <outlet property="topDetails" destination="uod-cK-8vf" id="d41-Xx-rxf"/>
             </connections>
         </tableViewCell>
     </objects>

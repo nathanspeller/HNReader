@@ -11,6 +11,8 @@
 
 @interface NCSPostCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *title;
+@property (weak, nonatomic) IBOutlet UILabel *topDetails;
+
 @property (weak, nonatomic) IBOutlet UILabel *details;
 @property (weak, nonatomic) IBOutlet UILabel *comments;
 

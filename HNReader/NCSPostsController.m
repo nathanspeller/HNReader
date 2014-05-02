@@ -38,6 +38,7 @@
     self.title = @"Hacker News";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.navigationController.navigationBarHidden = YES;
 
     [self.tableView setSeparatorColor:[UIColor colorWithRed:1.000 green:0.396 blue:0.000 alpha:0.500]];
     
