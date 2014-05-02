@@ -25,11 +25,19 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    
     NSString *urlString = self.isReadable ? [NSString stringWithFormat:@"http://readability.com/api/content/v1/parser?url=%@&token=638795f11f38dc60749a6a43975996d296823e6b", self.post.url] : self.post.url;
     NSURL *url = [[NSURL alloc] initWithString:urlString];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];

@@ -75,6 +75,7 @@
                     <constraint firstItem="Vjg-Op-ygB" firstAttribute="top" secondItem="uod-cK-8vf" secondAttribute="bottom" constant="2" id="tt0-Db-lsS"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="comments" destination="pC8-yq-sTW" id="nc9-wx-0If"/>
                 <outlet property="details" destination="YAG-i3-1fZ" id="4tb-Kz-tKU"/>

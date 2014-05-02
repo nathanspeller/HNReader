@@ -34,8 +34,6 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    self.navigationController.navigationBarHidden = NO;
-    
     UINib *commentCellNib = [UINib nibWithNibName:@"NCSCommentCell" bundle:nil];
     self.prototype = [commentCellNib instantiateWithOwner:self options:nil][0];
     [self.tableView registerNib:commentCellNib forCellReuseIdentifier:@"CommentCell"];
@@ -106,6 +104,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (IBAction)onBackButton:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

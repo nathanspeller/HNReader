@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *articles;
 @property (nonatomic, strong) NCSPostCell *prototype;
+@property (weak, nonatomic) IBOutlet UIView *headerView;
+@property (weak, nonatomic) IBOutlet UILabel *listTitle;
 @end
 
 @implementation NCSPostsController
@@ -38,7 +40,6 @@
     self.title = @"Hacker News";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.navigationController.navigationBarHidden = YES;
 
     [self.tableView setSeparatorColor:[UIColor colorWithRed:1.000 green:0.396 blue:0.000 alpha:0.500]];
     
@@ -101,7 +102,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     NCSWebViewController *webViewController = [[NCSWebViewController alloc] init];
     webViewController.post = self.articles[indexPath.row];
     [self.navigationController pushViewController:webViewController animated:YES];
@@ -122,6 +122,14 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NCSPost *post = self.articles[indexPath.row];
     return [NCSPostCell heightForPost:post prototype:self.prototype];
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    //move title paralax
+    CGRect newFrame = CGRectMake(0,-0.5*self.tableView.contentOffset.y-20, 320, 130);
+    self.headerView.alpha = 1-self.tableView.contentOffset.y/120;
+    self.headerView.frame = newFrame;
 }
 
 - (void)cellSwiped:(UIGestureRecognizer *)gestureRecognizer {

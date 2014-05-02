@@ -22,9 +22,10 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithNavigationBarClass:[CRGradientNavigationBar class] toolbarClass:nil];
+    navigationController.navigationBarHidden = YES;
     NCSPostsController *postsController = [[NCSPostsController alloc] init];
     [navigationController setViewControllers:@[postsController]];
-    [self styleNavigationController:navigationController];
+//    [self styleNavigationController:navigationController];
     
     self.window.rootViewController = navigationController;
     return YES;

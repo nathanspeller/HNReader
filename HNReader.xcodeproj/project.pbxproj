@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		69FFC56804A14B598EA6180A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4DF7D3DFB484EBC9A5606E5 /* libPods.a */; };
+		7E2A766C191354FC000E3834 /* hamburger.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E2A766B191354FC000E3834 /* hamburger.png */; };
+		7E2A766E191360B2000E3834 /* back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E2A766D191360B2000E3834 /* back_btn@2x.png */; };
 		7E56A2CF18FE6A5B00FC10DE /* NCSCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E56A2CD18FE6A5B00FC10DE /* NCSCommentsViewController.m */; };
 		7E56A2D018FE6A5B00FC10DE /* NCSCommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E56A2CE18FE6A5B00FC10DE /* NCSCommentsViewController.xib */; };
 		7E970C0618DBCF9300517A1F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E970C0518DBCF9300517A1F /* Foundation.framework */; };
@@ -54,6 +56,8 @@
 
 /* Begin PBXFileReference section */
 		10EB7B7ACF9E46E7B259E748 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		7E2A766B191354FC000E3834 /* hamburger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamburger.png; sourceTree = "<group>"; };
+		7E2A766D191360B2000E3834 /* back_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_btn@2x.png"; sourceTree = "<group>"; };
 		7E56A2CC18FE6A5B00FC10DE /* NCSCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSCommentsViewController.h; sourceTree = "<group>"; };
 		7E56A2CD18FE6A5B00FC10DE /* NCSCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSCommentsViewController.m; sourceTree = "<group>"; };
 		7E56A2CE18FE6A5B00FC10DE /* NCSCommentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NCSCommentsViewController.xib; sourceTree = "<group>"; };
@@ -131,6 +135,8 @@
 		7E56A2C318FE257900FC10DE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7E2A766D191360B2000E3834 /* back_btn@2x.png */,
+				7E2A766B191354FC000E3834 /* hamburger.png */,
 				7E970CBC18E53D2800517A1F /* speech-bubble-left-2@2x.png */,
 				7E970CBA18E53D0500517A1F /* browser@2x.png */,
 				7E970CB818E53CF300517A1F /* book-lines-2@2x.png */,
@@ -342,11 +348,13 @@
 			files = (
 				7E970CBD18E53D2800517A1F /* speech-bubble-left-2@2x.png in Resources */,
 				7E970C5918E000FA00517A1F /* NCSWebViewController.xib in Resources */,
+				7E2A766C191354FC000E3834 /* hamburger.png in Resources */,
 				7E970C4018DBE21E00517A1F /* NCSPostsController.xib in Resources */,
 				7E970CBB18E53D0500517A1F /* browser@2x.png in Resources */,
 				7E970C6318E4070300517A1F /* NCSCommentCell.xib in Resources */,
 				7E970C5418DFC3D400517A1F /* comment_bubble.png in Resources */,
 				7E970C5E18E3FCB800517A1F /* NCSThreadViewController.xib in Resources */,
+				7E2A766E191360B2000E3834 /* back_btn@2x.png in Resources */,
 				7E56A2D018FE6A5B00FC10DE /* NCSCommentsViewController.xib in Resources */,
 				7E970CB918E53CF300517A1F /* book-lines-2@2x.png in Resources */,
 				7E970C1018DBCF9300517A1F /* InfoPlist.strings in Resources */,
