@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "NCSPost.h"
+#import "NCSComment.h"
 
 @interface NCSThreadViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) NCSPost *post;
+
+- (void)expandResponsesForComment:(NCSComment *)comment;
 @end

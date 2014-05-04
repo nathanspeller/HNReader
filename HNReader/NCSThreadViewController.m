@@ -56,20 +56,24 @@
     NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
     
     NSArray *commentsArray = [dataDictionary objectForKey:@"comments"];
-    [self parseComments:commentsArray depth:0];
+    self.comments = [self parseComments:commentsArray depth:0];
     [self.tableView reloadData];
 }
 
-- (void)parseComments:(NSArray *)array depth:(CGFloat)depth{
+- (NSMutableArray *)parseComments:(NSArray *)array depth:(CGFloat)depth{
+    NSMutableArray *comments = [NSMutableArray array];
+    
     for (NSDictionary *dict in array) {
         NCSComment *comment = [[NCSComment alloc] initWithDictionary:dict];
         comment.depth = depth;
-        [self.comments addObject:comment];
+        [comments addObject:comment];
         NSArray *nestedComments = [dict objectForKey:@"comments"];
         if (nestedComments.count > 0){
-            [self parseComments:nestedComments depth:depth+1];
+            comment.replies = [self parseComments:nestedComments depth:depth+1];
         }
     }
+    
+    return comments;
 }
 
 - (void)didReceiveMemoryWarning
@@ -93,7 +97,14 @@
     NCSCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
     NCSComment *comment = self.comments[indexPath.row];
     [cell setComment:comment];
-    
+    [cell refreshUI];
+    cell.repliesButton.tag = indexPath.row;
+    [cell.repliesButton addTarget:self action:@selector(expandResponsesForComment:) forControlEvents:UIControlEventTouchUpInside];
+    if (comment.depth > 0) {
+        [cell setBackgroundColor:[UIColor colorWithRed:0.945 green:0.937 blue:0.937 alpha:1.000]];
+    } else {
+        [cell setBackgroundColor:[UIColor whiteColor]];
+    }
     return cell;
 }
 
@@ -104,6 +115,30 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)expandResponsesForComment:(UIButton *)button{
+    if (button.tag == self.comments.count-1 || ((NCSComment *)self.comments[button.tag+1]).depth <= ((NCSComment *)self.comments[button.tag]).depth) {
+        NCSComment *comment = self.comments[button.tag];
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(button.tag+1, comment.replies.count)];
+        [self.comments insertObjects:comment.replies atIndexes:indexSet];
+        [self.tableView reloadData];
+    } else {
+        NCSComment *comment = self.comments[button.tag];
+        int repliesCount = 0;
+        int i = button.tag+1;
+        while (i < self.comments.count) {
+            if (((NCSComment *)self.comments[i]).depth <= comment.depth) {
+                break;
+            }
+            repliesCount += 1;
+            i += 1;
+        }
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(button.tag+1, repliesCount)];
+        [self.comments removeObjectsAtIndexes:indexSet];
+        [self.tableView reloadData];
+    }
+    
 }
 
 - (IBAction)onBackButton:(id)sender {

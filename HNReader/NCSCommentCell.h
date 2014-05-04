@@ -13,8 +13,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *commentText;
 @property (weak, nonatomic) IBOutlet UILabel *author;
 @property (nonatomic, strong) NCSComment *comment;
+@property (weak, nonatomic) IBOutlet UIButton *repliesButton;
 
 + (CGFloat)heightForComment:(NCSComment *)comment prototype:(NCSCommentCell *)prototype;
 
-- (void)setComment:(NCSComment *)comment;
+- (void)refreshUI;
 @end

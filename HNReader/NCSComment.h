@@ -12,6 +12,7 @@
 @property (nonatomic, strong) NSString *commentText;
 @property (nonatomic, strong) NSString *author;
 @property (nonatomic, assign) CGFloat depth;
+@property (nonatomic, strong) NSMutableArray *replies;
 
 - (id) initWithDictionary:(NSDictionary *)dict;
 @end

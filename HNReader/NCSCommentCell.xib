@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="100" id="KGk-i7-Jjw" customClass="NCSCommentCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="97" id="KGk-i7-Jjw" customClass="NCSCommentCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="97"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="96"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment Text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="290" translatesAutoresizingMaskIntoConstraints="NO" id="tW0-aY-Jxu">
-                        <rect key="frame" x="15" y="33" width="290" height="51"/>
+                        <rect key="frame" x="15" y="35" width="290" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBW-O4-WXo">
-                        <rect key="frame" x="15" y="13" width="290" height="17"/>
+                        <rect key="frame" x="15" y="15" width="46" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="aHV-dB-3JQ"/>
@@ -30,22 +30,49 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3h ago" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPS-Fa-wIu">
+                        <rect key="frame" x="261" y="15" width="44" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="SAg-px-SWi"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F2C-1Y-BBq">
+                        <rect key="frame" x="0.0" y="57" width="200" height="34"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="NEU-rt-zkX"/>
+                            <constraint firstAttribute="height" constant="34" id="QOQ-So-cg6"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="1024 responses">
+                            <color key="titleColor" red="0.98823535439999999" green="0.392156899" blue="0.12549020350000001" alpha="1" colorSpace="deviceRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="tW0-aY-Jxu" firstAttribute="top" secondItem="iBW-O4-WXo" secondAttribute="bottom" constant="3" id="1bt-tJ-vbV"/>
                     <constraint firstItem="tW0-aY-Jxu" firstAttribute="top" secondItem="iBW-O4-WXo" secondAttribute="bottom" constant="3" id="3RC-c2-fZQ"/>
                     <constraint firstItem="tW0-aY-Jxu" firstAttribute="top" secondItem="iBW-O4-WXo" secondAttribute="bottom" constant="3" id="7Ru-lu-GRP"/>
-                    <constraint firstAttribute="trailing" secondItem="iBW-O4-WXo" secondAttribute="trailing" constant="15" id="DMa-L4-g5r"/>
-                    <constraint firstItem="tW0-aY-Jxu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" placeholder="YES" id="Rto-8n-p9z"/>
-                    <constraint firstItem="iBW-O4-WXo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" placeholder="YES" id="Xl2-dn-IGF"/>
-                    <constraint firstItem="iBW-O4-WXo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="dnO-ZL-8iV"/>
-                    <constraint firstAttribute="bottom" secondItem="tW0-aY-Jxu" secondAttribute="bottom" constant="15" id="gIL-r0-ukO"/>
+                    <constraint firstItem="F2C-1Y-BBq" firstAttribute="top" secondItem="tW0-aY-Jxu" secondAttribute="bottom" constant="5" id="AgY-yd-uOE"/>
+                    <constraint firstAttribute="trailing" secondItem="GPS-Fa-wIu" secondAttribute="trailing" constant="15" id="FRY-B5-20N"/>
+                    <constraint firstItem="tW0-aY-Jxu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Rto-8n-p9z"/>
+                    <constraint firstItem="iBW-O4-WXo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Xl2-dn-IGF"/>
+                    <constraint firstItem="iBW-O4-WXo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="dnO-ZL-8iV"/>
+                    <constraint firstItem="F2C-1Y-BBq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="eMv-aZ-Hr2"/>
+                    <constraint firstItem="GPS-Fa-wIu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="nhu-kb-Ffw"/>
                     <constraint firstAttribute="trailing" secondItem="tW0-aY-Jxu" secondAttribute="trailing" constant="15" id="pPp-9S-Rv4"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="author" destination="iBW-O4-WXo" id="gx8-g4-Ysb"/>
                 <outlet property="commentText" destination="tW0-aY-Jxu" id="rZ6-jb-6fo"/>
+                <outlet property="repliesButton" destination="F2C-1Y-BBq" id="xc5-PH-7ld"/>
             </connections>
         </tableViewCell>
     </objects>
