@@ -10,11 +10,13 @@
 #import "NCSCommentCell.h"
 #import "NCSComment.h"
 #import "MBProgressHUD.h"
+#import "NCSPostCell.h"
 
 @interface NCSThreadViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *comments;
 @property (nonatomic, strong) NCSCommentCell *prototype;
+@property (nonatomic, strong) NCSPostCell *postPrototype;
 @end
 
 @implementation NCSThreadViewController
@@ -38,6 +40,10 @@
     self.prototype = [commentCellNib instantiateWithOwner:self options:nil][0];
     [self.tableView registerNib:commentCellNib forCellReuseIdentifier:@"CommentCell"];
     // Do any additional setup after loading the view from its nib.
+    
+    UINib *postCellNib = [UINib nibWithNibName:@"NCSPostCell" bundle:nil];
+    self.postPrototype = [postCellNib instantiateWithOwner:self options:nil][0];
+    [self.tableView registerNib:postCellNib forCellReuseIdentifier:@"PostCell"];
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
@@ -115,6 +121,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    NCSPostCell *postCell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
+    [postCell setPost:self.post];
+    return postCell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return [NCSPostCell heightForPost:self.post prototype:self.postPrototype];
 }
 
 - (void)expandResponsesForComment:(UIButton *)button{
