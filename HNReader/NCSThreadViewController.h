@@ -12,6 +12,7 @@
 
 @interface NCSThreadViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) NCSPost *post;
+@property (nonatomic, strong) NSMutableArray *comments;
 
 - (void)expandResponsesForComment:(NCSComment *)comment;
 @end

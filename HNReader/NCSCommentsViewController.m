@@ -31,34 +31,39 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self fetchData];
-    
-    NSUInteger numberPages = self.comments.count;
-    
-    // view controllers are created lazily
-    // in the meantime, load the array with placeholders which will be replaced on demand
-    NSMutableArray *controllers = [[NSMutableArray alloc] init];
-    for (NSUInteger i = 0; i < numberPages; i++)
-    {
-		[controllers addObject:[NSNull null]];
-    }
-    self.viewControllers = controllers;
-    
-    // a page is the width of the scroll view
-    self.scrollView.pagingEnabled = YES;
-    self.scrollView.contentSize =
-    CGSizeMake(CGRectGetWidth(self.scrollView.frame) * numberPages, CGRectGetHeight(self.scrollView.frame));
-    self.scrollView.showsHorizontalScrollIndicator = NO;
-    self.scrollView.showsVerticalScrollIndicator = NO;
-    self.scrollView.scrollsToTop = NO;
-    self.scrollView.delegate = self;
-    
-    // pages are created on demand
-    // load the visible page
-    // load the page on either side to avoid flashes when the user starts scrolling
-    //
-    [self loadScrollViewWithPage:0];
-    [self loadScrollViewWithPage:1];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        [self fetchData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            NSUInteger numberPages = self.comments.count;
+            
+            // view controllers are created lazily
+            // in the meantime, load the array with placeholders which will be replaced on demand
+            NSMutableArray *controllers = [[NSMutableArray alloc] init];
+            for (NSUInteger i = 0; i < numberPages; i++)
+            {
+                [controllers addObject:[NSNull null]];
+            }
+            self.viewControllers = controllers;
+            
+            // a page is the width of the scroll view
+            self.scrollView.pagingEnabled = YES;
+            self.scrollView.contentSize =
+            CGSizeMake(CGRectGetWidth(self.scrollView.frame) * numberPages, CGRectGetHeight(self.scrollView.frame));
+            self.scrollView.showsHorizontalScrollIndicator = NO;
+            self.scrollView.showsVerticalScrollIndicator = NO;
+            self.scrollView.scrollsToTop = NO;
+            self.scrollView.delegate = self;
+            
+            // pages are created on demand
+            // load the visible page
+            // load the page on either side to avoid flashes when the user starts scrolling
+            //
+            [self loadScrollViewWithPage:0];
+            [self loadScrollViewWithPage:1];
+        });
+    });
 }
 
 - (void)fetchData {
@@ -69,12 +74,23 @@
     
     NSArray *commentsArray = [dataDictionary objectForKey:@"comments"];
     
-    self.comments = [NSMutableArray array];
+    self.comments = [self parseComments:commentsArray depth:0];
+}
+
+- (NSMutableArray *)parseComments:(NSArray *)array depth:(CGFloat)depth{
+    NSMutableArray *comments = [NSMutableArray array];
     
-    for (NSDictionary *dict in commentsArray) {
+    for (NSDictionary *dict in array) {
         NCSComment *comment = [[NCSComment alloc] initWithDictionary:dict];
-        [self.comments addObject:comment];
+        comment.depth = depth;
+        [comments addObject:comment];
+        NSArray *nestedComments = [dict objectForKey:@"comments"];
+        if (nestedComments.count > 0){
+            comment.replies = [self parseComments:nestedComments depth:depth+1];
+        }
     }
+    
+    return comments;
 }
 
 - (void)loadScrollViewWithPage:(NSUInteger)page
@@ -88,6 +104,9 @@
     {
         controller = [[NCSThreadViewController alloc] init];
         controller.post = self.post;
+        NSMutableArray *pagesComments = [NSMutableArray array];
+        [pagesComments addObject:self.comments[page]];
+        controller.comments = pagesComments;
         [self.viewControllers replaceObjectAtIndex:page withObject:controller];
     }
     
@@ -146,6 +165,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)onBackButton:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

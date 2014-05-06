@@ -14,7 +14,7 @@
 
 @interface NCSThreadViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *comments;
+//@property (nonatomic, strong) NSMutableArray *comments;
 @property (nonatomic, strong) NCSCommentCell *prototype;
 @property (nonatomic, strong) NCSPostCell *postPrototype;
 @end
@@ -44,42 +44,6 @@
     UINib *postCellNib = [UINib nibWithNibName:@"NCSPostCell" bundle:nil];
     self.postPrototype = [postCellNib instantiateWithOwner:self options:nil][0];
     [self.tableView registerNib:postCellNib forCellReuseIdentifier:@"PostCell"];
-    
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        [self fetchData];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self.tableView reloadData];
-        });
-    });
-}
-
-- (void)fetchData {
-    NSURL *commentsURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://node-hnapi.azurewebsites.net/item/%@", self.post.itemid]];
-    NSData *jsonData = [NSData dataWithContentsOfURL:commentsURL];
-    NSError *error = nil;
-    NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-    
-    NSArray *commentsArray = [dataDictionary objectForKey:@"comments"];
-    self.comments = [self parseComments:commentsArray depth:0];
-    [self.tableView reloadData];
-}
-
-- (NSMutableArray *)parseComments:(NSArray *)array depth:(CGFloat)depth{
-    NSMutableArray *comments = [NSMutableArray array];
-    
-    for (NSDictionary *dict in array) {
-        NCSComment *comment = [[NCSComment alloc] initWithDictionary:dict];
-        comment.depth = depth;
-        [comments addObject:comment];
-        NSArray *nestedComments = [dict objectForKey:@"comments"];
-        if (nestedComments.count > 0){
-            comment.replies = [self parseComments:nestedComments depth:depth+1];
-        }
-    }
-    
-    return comments;
 }
 
 - (void)didReceiveMemoryWarning
@@ -125,6 +89,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     NCSPostCell *postCell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
+    [postCell setBackgroundColor:[UIColor whiteColor]];
     [postCell setPost:self.post];
     return postCell;
 }
@@ -154,12 +119,6 @@
         [self.comments removeObjectsAtIndexes:indexSet];
         [self.tableView reloadData];
     }
-    
 }
-
-- (IBAction)onBackButton:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 
 @end
