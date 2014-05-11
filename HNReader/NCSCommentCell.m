@@ -16,6 +16,7 @@
 - (void)awakeFromNib
 {
     // Initialization code
+    self.childViews = [NSMutableArray array];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -65,6 +66,30 @@
     NSDictionary *attributes = @{NSParagraphStyleAttributeName : style,};
     self.commentText.attributedText = [[NSAttributedString alloc] initWithString:self.comment.commentText attributes:attributes];
     [self.commentText sizeToFit];
+}
+
+- (void)updateFrame:(CGRect)frame
+{
+    [self setFrame:frame];
+    [self updateChildFrames];
+    [self updateParentFrames];
+}
+
+- (void)updateParentFrames
+{
+    CGFloat parentHeight = self.parentView.frame.size.height;
+    [self.parentView setFrame:CGRectMake(self.parentView.frame.origin.x, self.frame.origin.y-parentHeight, self.parentView.frame.size.width, parentHeight)];
+    [self.parentView updateParentFrames];
+}
+
+- (void)updateChildFrames
+{
+    //update all children's positions
+    for (NCSCommentCell *childView in self.childViews) {
+        CGRect childFrame = CGRectMake(childView.frame.origin.x, self.frame.origin.y + self.frame.size.height, childView.frame.size.width, childView.frame.size.height);
+        [childView setFrame:childFrame];
+        [childView updateChildFrames];
+    }
 }
 
 @end
