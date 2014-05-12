@@ -16,9 +16,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *repliesButton;
 @property (nonatomic, strong) NCSCommentCell *parentView;
 @property (nonatomic, strong) NSMutableArray *childViews;
+@property (nonatomic, strong) NCSCommentCell *leftSibling;
+@property (nonatomic, strong) NCSCommentCell *rightSibling;
 
 + (CGFloat)heightForComment:(NCSComment *)comment prototype:(NCSCommentCell *)prototype;
 
 - (void)refreshUI;
-- (void)updateFrame:(CGRect)frame;
+- (void)scrollFrame:(CGRect)frame;
+- (void)slideFrame:(CGRect)frame;
 @end

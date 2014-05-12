@@ -33,7 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self.view setClipsToBounds:YES];
     // Do any additional setup after loading the view from its nib.
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
@@ -47,39 +47,45 @@
                                                                options:nil];
             self.prototype = [nibContents objectAtIndex:0];
             
-            for (NCSComment *comment in self.comments) {
-                BOOL visible = comment == self.comments[0];
-                [self drawComment:comment visible:visible offset:0 parent:nil];
-            }
+            [self drawComments:self.comments visible:YES offset:0 parent:nil];
             [self.view bringSubviewToFront:self.backButton];
         });
     });
 }
 
-- (void)drawComment:(NCSComment *)comment visible:(BOOL)visible offset:(CGFloat)offset parent:(NCSCommentCell *)parent
-{
-    //make some views
-    NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:@"NCSCommentCell"
-                                                         owner:self
-                                                       options:nil];
-    NCSCommentCell *commentView = [nibContents objectAtIndex:0];
-    CGFloat x = visible ? 0 : 320;
-    CGFloat y = offset;
-    CGFloat height = [NCSCommentCell heightForComment:comment prototype:self.prototype];
-    commentView.frame = CGRectMake(x,y,320, height);
-    commentView.comment = comment;
-    commentView.parentView = parent;
-    [commentView refreshUI];
-    [self.view addSubview:commentView];
-    [parent.childViews addObject:commentView];
-    
-    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onCommentPan:)];
-    [commentView addGestureRecognizer:panGestureRecognizer];
-    
-    //draw the subcomments
-    for (NCSComment *c in comment.replies) {
-        BOOL visibleReply = c == comment.replies[0];
-        [self drawComment:c visible:(visible && visibleReply) offset:height+offset parent:commentView];
+- (void)drawComments:(NSMutableArray *)array visible:(BOOL)visible offset:(CGFloat)offset parent:(NCSCommentCell *)parent{
+    NSMutableArray *views = [NSMutableArray array];
+    for (NCSComment *comment in array) {
+        //make some views
+        BOOL visibleReply = visible && (comment == array[0]);
+        NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:@"NCSCommentCell"
+                                                             owner:self
+                                                           options:nil];
+        NCSCommentCell *commentView = [nibContents objectAtIndex:0];
+        CGFloat x = visibleReply ? 0 : 320;
+        CGFloat y = offset;
+        CGFloat height = [NCSCommentCell heightForComment:comment prototype:self.prototype];
+        commentView.frame = CGRectMake(x,y,320, height);
+        commentView.comment = comment;
+        commentView.parentView = parent;
+        [commentView refreshUI];
+        [self.view addSubview:commentView];
+        [parent.childViews addObject:commentView];
+        [views addObject:commentView];
+        
+        UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onCommentPan:)];
+        [commentView addGestureRecognizer:panGestureRecognizer];
+        
+        [self drawComments:comment.replies visible:visibleReply offset:height+offset parent:commentView];
+    }
+    for (int i=0; i<views.count; i++) {
+        NCSCommentCell *commentView = views[i];
+        if (commentView != views[0]) {
+            commentView.leftSibling = views[i-1];
+        }
+        if (commentView != views[views.count-1]){
+            commentView.rightSibling = views[i+1];
+        }
     }
 }
 
@@ -133,22 +139,30 @@
         if (panGestureRecognizer.state == UIGestureRecognizerStateChanged) {
             CGRect frame = view.frame;
             frame.origin.y = self.viewStartingPoint.y + (point.y - self.panStartingPoint.y);
-            [view updateFrame:frame];
+            [view scrollFrame:frame];
             
         } else if (panGestureRecognizer.state == UIGestureRecognizerStateEnded) {
 
         }
-    } else {
+    } else { // horizontal pan only
         if (panGestureRecognizer.state == UIGestureRecognizerStateChanged) {
             CGRect frame = view.frame;
             frame.origin.x = self.viewStartingPoint.x + (point.x - self.panStartingPoint.x);
-            [view setFrame:frame];
+            if ((view.leftSibling == nil && frame.origin.x > 0) || (view.rightSibling == nil && frame.origin.x < 0)) {
+                frame.origin.x /= 3.0;
+            }
+            [view slideFrame:frame];
         } else if (panGestureRecognizer.state == UIGestureRecognizerStateEnded) {
-            [UIView animateWithDuration:0.3 animations:^{
-                // Set the end state
+            [UIView animateWithDuration:0.2 animations:^{
                 CGRect frame = view.frame;
-                frame.origin.x = 0;
-                [view setFrame:frame];
+                if (velocity.x > 0 && frame.origin.x > 0 && view.leftSibling != nil) {
+                    frame.origin.x = 320;
+                } else if (velocity.x < 0 && frame.origin.x < 0 && view.rightSibling != nil) {
+                    frame.origin.x = -320;
+                } else {
+                    frame.origin.x = 0;
+                }
+                [view slideFrame:frame];
             }];
         }
     }
