@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (nonatomic, assign) CGPoint panStartingPoint;
 @property (nonatomic, assign) CGPoint viewStartingPoint;
+@property (nonatomic, assign) BOOL isVerticalPan;
 @end
 
 @implementation NCSSwipeViewController
@@ -122,20 +123,34 @@
 - (void)onCommentPan:(UIPanGestureRecognizer *)panGestureRecognizer{
     CGPoint point = [panGestureRecognizer locationInView:self.view];
     CGPoint velocity = [panGestureRecognizer velocityInView:self.view];
-    NCSCommentCell *commentView = (NCSCommentCell *)panGestureRecognizer.view;
+    NCSCommentCell *view = (NCSCommentCell *)panGestureRecognizer.view;
     
     if (panGestureRecognizer.state == UIGestureRecognizerStateBegan) {
         self.panStartingPoint = point;
         self.viewStartingPoint = panGestureRecognizer.view.frame.origin;
-    } else if (panGestureRecognizer.state == UIGestureRecognizerStateChanged) {
-        CGRect frame = panGestureRecognizer.view.frame;
-        frame.origin.y = self.viewStartingPoint.y + (point.y - self.panStartingPoint.y);
-        [(NCSCommentCell *)panGestureRecognizer.view updateFrame:frame];
-        
-        NSLog(@"Gesture changed: %@", NSStringFromCGPoint(point));
+        self.isVerticalPan = fabs(velocity.y) > fabs(velocity.x);
+    } else if (self.isVerticalPan) {
+        if (panGestureRecognizer.state == UIGestureRecognizerStateChanged) {
+            CGRect frame = view.frame;
+            frame.origin.y = self.viewStartingPoint.y + (point.y - self.panStartingPoint.y);
+            [view updateFrame:frame];
+            
+        } else if (panGestureRecognizer.state == UIGestureRecognizerStateEnded) {
 
-    } else if (panGestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        NSLog(@"Gesture ended: %@", NSStringFromCGPoint(point));
+        }
+    } else {
+        if (panGestureRecognizer.state == UIGestureRecognizerStateChanged) {
+            CGRect frame = view.frame;
+            frame.origin.x = self.viewStartingPoint.x + (point.x - self.panStartingPoint.x);
+            [view setFrame:frame];
+        } else if (panGestureRecognizer.state == UIGestureRecognizerStateEnded) {
+            [UIView animateWithDuration:0.3 animations:^{
+                // Set the end state
+                CGRect frame = view.frame;
+                frame.origin.x = 0;
+                [view setFrame:frame];
+            }];
+        }
     }
 }
 
