@@ -114,6 +114,8 @@
     leftFrame.origin.x = frame.origin.x - 320;
     if (frame.origin.y <= 0) {
         leftFrame.origin.y = 0;
+    } else {
+        leftFrame.origin.y = self.frame.origin.y;
     }
     [self.leftSibling scrollFrame:leftFrame];
     
@@ -129,6 +131,8 @@
     rightFrame.origin.x = frame.origin.x + 320;
     if (frame.origin.y <= 0) {
         rightFrame.origin.y = 0;
+    } else {
+        rightFrame.origin.y = self.frame.origin.y;
     }
     [self.rightSibling scrollFrame:rightFrame];
     
