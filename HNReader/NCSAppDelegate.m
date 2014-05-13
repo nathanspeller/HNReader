@@ -19,7 +19,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+//    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
     NCSMenuViewController *menuViewController = [[NCSMenuViewController alloc] init];
     self.window.rootViewController = menuViewController;
