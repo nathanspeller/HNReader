@@ -38,6 +38,8 @@
 		7E970CB918E53CF300517A1F /* book-lines-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E970CB818E53CF300517A1F /* book-lines-2@2x.png */; };
 		7E970CBB18E53D0500517A1F /* browser@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E970CBA18E53D0500517A1F /* browser@2x.png */; };
 		7E970CBD18E53D2800517A1F /* speech-bubble-left-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E970CBC18E53D2800517A1F /* speech-bubble-left-2@2x.png */; };
+		7E97F6AC1922C2DF009ED5D3 /* NCSMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E97F6AA1922C2DF009ED5D3 /* NCSMenuViewController.m */; };
+		7E97F6AD1922C2DF009ED5D3 /* NCSMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E97F6AB1922C2DF009ED5D3 /* NCSMenuViewController.xib */; };
 		7E9B207F19037293008C3E01 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9B207E19037293008C3E01 /* NSString+HTML.m */; };
 		7E9B208219037321008C3E01 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9B208119037321008C3E01 /* GTMNSString+HTML.m */; };
 /* End PBXBuildFile section */
@@ -95,6 +97,9 @@
 		7E970CB818E53CF300517A1F /* book-lines-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "book-lines-2@2x.png"; sourceTree = "<group>"; };
 		7E970CBA18E53D0500517A1F /* browser@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "browser@2x.png"; sourceTree = "<group>"; };
 		7E970CBC18E53D2800517A1F /* speech-bubble-left-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "speech-bubble-left-2@2x.png"; sourceTree = "<group>"; };
+		7E97F6A91922C2DF009ED5D3 /* NCSMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSMenuViewController.h; sourceTree = "<group>"; };
+		7E97F6AA1922C2DF009ED5D3 /* NCSMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSMenuViewController.m; sourceTree = "<group>"; };
+		7E97F6AB1922C2DF009ED5D3 /* NCSMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NCSMenuViewController.xib; sourceTree = "<group>"; };
 		7E9B207D19037293008C3E01 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
 		7E9B207E19037293008C3E01 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		7E9B208019037321008C3E01 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
@@ -152,6 +157,9 @@
 				7E970C5518E000FA00517A1F /* NCSWebViewController.h */,
 				7E970C5618E000FA00517A1F /* NCSWebViewController.m */,
 				7E970C5718E000FA00517A1F /* NCSWebViewController.xib */,
+				7E97F6A91922C2DF009ED5D3 /* NCSMenuViewController.h */,
+				7E97F6AA1922C2DF009ED5D3 /* NCSMenuViewController.m */,
+				7E97F6AB1922C2DF009ED5D3 /* NCSMenuViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -340,6 +348,7 @@
 			files = (
 				7E970CBD18E53D2800517A1F /* speech-bubble-left-2@2x.png in Resources */,
 				7E970C5918E000FA00517A1F /* NCSWebViewController.xib in Resources */,
+				7E97F6AD1922C2DF009ED5D3 /* NCSMenuViewController.xib in Resources */,
 				7E2A766C191354FC000E3834 /* hamburger.png in Resources */,
 				7E970C4018DBE21E00517A1F /* NCSPostsController.xib in Resources */,
 				7E970CBB18E53D0500517A1F /* browser@2x.png in Resources */,
@@ -404,6 +413,7 @@
 			files = (
 				7E970C3F18DBE21E00517A1F /* NCSPostsController.m in Sources */,
 				7E9B208219037321008C3E01 /* GTMNSString+HTML.m in Sources */,
+				7E97F6AC1922C2DF009ED5D3 /* NCSMenuViewController.m in Sources */,
 				7E970C3718DBE1CA00517A1F /* NCSPostCell.m in Sources */,
 				7E970C6218E4070300517A1F /* NCSCommentCell.m in Sources */,
 				7E9B207F19037293008C3E01 /* NSString+HTML.m in Sources */,

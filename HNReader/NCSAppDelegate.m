@@ -8,7 +8,7 @@
 
 #import "NCSAppDelegate.h"
 #import "NCSPostsController.h"
-#import "CRGradientNavigationBar.h"
+#import "NCSMenuViewController.h"
 
 @implementation NCSAppDelegate
 
@@ -21,27 +21,11 @@
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithNavigationBarClass:[CRGradientNavigationBar class] toolbarClass:nil];
-    navigationController.navigationBarHidden = YES;
-    NCSPostsController *postsController = [[NCSPostsController alloc] init];
-    [navigationController setViewControllers:@[postsController]];
-//    [self styleNavigationController:navigationController];
-    
-    self.window.rootViewController = navigationController;
+    NCSMenuViewController *menuViewController = [[NCSMenuViewController alloc] init];
+    self.window.rootViewController = menuViewController;
     return YES;
 }
 
-- (void)styleNavigationController:(UINavigationController *)navigationController{
-    UIColor *topColor = [UIColor colorWithRed:1.000 green:0.396 blue:0.000 alpha:1.0];
-    UIColor *bottomColor = [UIColor colorWithRed:255.0f/255.0f green:90.0f/255.0f blue:58.0f/255.0f alpha:1.0f];
-    NSArray *colors = [NSArray arrayWithObjects:topColor, bottomColor, nil];
-    [[CRGradientNavigationBar appearance] setBarTintGradientColors:colors];
-    [[navigationController navigationBar] setTranslucent:NO];
-    navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    [[UINavigationBar appearance] setTitleTextAttributes: @{ NSForegroundColorAttributeName : [UIColor whiteColor] }];
-}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

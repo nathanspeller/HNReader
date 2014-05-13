@@ -142,6 +142,9 @@
         [self.navigationController pushViewController:commentsViewController animated:YES];
     }
 }
+- (IBAction)onMenuButton:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"toggleMenu" object:nil];
+}
 
 
 
