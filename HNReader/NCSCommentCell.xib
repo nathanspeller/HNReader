@@ -54,24 +54,13 @@
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="opV-g0-PmR">
-                        <rect key="frame" x="0.0" y="115" width="320" height="1"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="1" id="j0Z-2V-beF"/>
-                        </constraints>
-                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="tW0-aY-Jxu" firstAttribute="top" secondItem="iBW-O4-WXo" secondAttribute="bottom" constant="3" id="1bt-tJ-vbV"/>
                     <constraint firstItem="tW0-aY-Jxu" firstAttribute="top" secondItem="iBW-O4-WXo" secondAttribute="bottom" constant="3" id="3RC-c2-fZQ"/>
                     <constraint firstItem="tW0-aY-Jxu" firstAttribute="top" secondItem="iBW-O4-WXo" secondAttribute="bottom" constant="3" id="7Ru-lu-GRP"/>
-                    <constraint firstItem="opV-g0-PmR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="7XW-6z-jDx"/>
                     <constraint firstItem="F2C-1Y-BBq" firstAttribute="top" secondItem="tW0-aY-Jxu" secondAttribute="bottom" constant="5" id="AgY-yd-uOE"/>
-                    <constraint firstAttribute="trailing" secondItem="opV-g0-PmR" secondAttribute="trailing" id="D2g-Rc-7Dy"/>
                     <constraint firstAttribute="trailing" secondItem="GPS-Fa-wIu" secondAttribute="trailing" constant="15" id="FRY-B5-20N"/>
-                    <constraint firstAttribute="bottom" secondItem="opV-g0-PmR" secondAttribute="bottom" id="GbT-Vx-rl6"/>
                     <constraint firstItem="tW0-aY-Jxu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Rto-8n-p9z"/>
                     <constraint firstItem="iBW-O4-WXo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Xl2-dn-IGF"/>
                     <constraint firstItem="iBW-O4-WXo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="dnO-ZL-8iV"/>

@@ -10,8 +10,6 @@
 		69FFC56804A14B598EA6180A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4DF7D3DFB484EBC9A5606E5 /* libPods.a */; };
 		7E2A766C191354FC000E3834 /* hamburger.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E2A766B191354FC000E3834 /* hamburger.png */; };
 		7E2A766E191360B2000E3834 /* back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E2A766D191360B2000E3834 /* back_btn@2x.png */; };
-		7E56A2CF18FE6A5B00FC10DE /* NCSCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E56A2CD18FE6A5B00FC10DE /* NCSCommentsViewController.m */; };
-		7E56A2D018FE6A5B00FC10DE /* NCSCommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E56A2CE18FE6A5B00FC10DE /* NCSCommentsViewController.xib */; };
 		7E970C0618DBCF9300517A1F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E970C0518DBCF9300517A1F /* Foundation.framework */; };
 		7E970C0818DBCF9300517A1F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E970C0718DBCF9300517A1F /* CoreGraphics.framework */; };
 		7E970C0A18DBCF9300517A1F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E970C0918DBCF9300517A1F /* UIKit.framework */; };
@@ -40,8 +38,6 @@
 		7E970CB918E53CF300517A1F /* book-lines-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E970CB818E53CF300517A1F /* book-lines-2@2x.png */; };
 		7E970CBB18E53D0500517A1F /* browser@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E970CBA18E53D0500517A1F /* browser@2x.png */; };
 		7E970CBD18E53D2800517A1F /* speech-bubble-left-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E970CBC18E53D2800517A1F /* speech-bubble-left-2@2x.png */; };
-		7E97F6A2191E0EF8009ED5D3 /* NCSSwipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E97F6A0191E0EF8009ED5D3 /* NCSSwipeViewController.m */; };
-		7E97F6A3191E0EF8009ED5D3 /* NCSSwipeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E97F6A1191E0EF8009ED5D3 /* NCSSwipeViewController.xib */; };
 		7E9B207F19037293008C3E01 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9B207E19037293008C3E01 /* NSString+HTML.m */; };
 		7E9B208219037321008C3E01 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9B208119037321008C3E01 /* GTMNSString+HTML.m */; };
 /* End PBXBuildFile section */
@@ -60,9 +56,6 @@
 		10EB7B7ACF9E46E7B259E748 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		7E2A766B191354FC000E3834 /* hamburger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamburger.png; sourceTree = "<group>"; };
 		7E2A766D191360B2000E3834 /* back_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_btn@2x.png"; sourceTree = "<group>"; };
-		7E56A2CC18FE6A5B00FC10DE /* NCSCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSCommentsViewController.h; sourceTree = "<group>"; };
-		7E56A2CD18FE6A5B00FC10DE /* NCSCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSCommentsViewController.m; sourceTree = "<group>"; };
-		7E56A2CE18FE6A5B00FC10DE /* NCSCommentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NCSCommentsViewController.xib; sourceTree = "<group>"; };
 		7E970C0218DBCF9300517A1F /* HNReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HNReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E970C0518DBCF9300517A1F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7E970C0718DBCF9300517A1F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -102,9 +95,6 @@
 		7E970CB818E53CF300517A1F /* book-lines-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "book-lines-2@2x.png"; sourceTree = "<group>"; };
 		7E970CBA18E53D0500517A1F /* browser@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "browser@2x.png"; sourceTree = "<group>"; };
 		7E970CBC18E53D2800517A1F /* speech-bubble-left-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "speech-bubble-left-2@2x.png"; sourceTree = "<group>"; };
-		7E97F69F191E0EF8009ED5D3 /* NCSSwipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSSwipeViewController.h; sourceTree = "<group>"; };
-		7E97F6A0191E0EF8009ED5D3 /* NCSSwipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSSwipeViewController.m; sourceTree = "<group>"; };
-		7E97F6A1191E0EF8009ED5D3 /* NCSSwipeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NCSSwipeViewController.xib; sourceTree = "<group>"; };
 		7E9B207D19037293008C3E01 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
 		7E9B207E19037293008C3E01 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		7E9B208019037321008C3E01 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
@@ -159,15 +149,9 @@
 				7E970C5A18E3FCB800517A1F /* NCSThreadViewController.h */,
 				7E970C5B18E3FCB800517A1F /* NCSThreadViewController.m */,
 				7E970C5C18E3FCB800517A1F /* NCSThreadViewController.xib */,
-				7E56A2CC18FE6A5B00FC10DE /* NCSCommentsViewController.h */,
-				7E56A2CD18FE6A5B00FC10DE /* NCSCommentsViewController.m */,
-				7E56A2CE18FE6A5B00FC10DE /* NCSCommentsViewController.xib */,
 				7E970C5518E000FA00517A1F /* NCSWebViewController.h */,
 				7E970C5618E000FA00517A1F /* NCSWebViewController.m */,
 				7E970C5718E000FA00517A1F /* NCSWebViewController.xib */,
-				7E97F69F191E0EF8009ED5D3 /* NCSSwipeViewController.h */,
-				7E97F6A0191E0EF8009ED5D3 /* NCSSwipeViewController.m */,
-				7E97F6A1191E0EF8009ED5D3 /* NCSSwipeViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -359,12 +343,10 @@
 				7E2A766C191354FC000E3834 /* hamburger.png in Resources */,
 				7E970C4018DBE21E00517A1F /* NCSPostsController.xib in Resources */,
 				7E970CBB18E53D0500517A1F /* browser@2x.png in Resources */,
-				7E97F6A3191E0EF8009ED5D3 /* NCSSwipeViewController.xib in Resources */,
 				7E970C6318E4070300517A1F /* NCSCommentCell.xib in Resources */,
 				7E970C5418DFC3D400517A1F /* comment_bubble.png in Resources */,
 				7E970C5E18E3FCB800517A1F /* NCSThreadViewController.xib in Resources */,
 				7E2A766E191360B2000E3834 /* back_btn@2x.png in Resources */,
-				7E56A2D018FE6A5B00FC10DE /* NCSCommentsViewController.xib in Resources */,
 				7E970CB918E53CF300517A1F /* book-lines-2@2x.png in Resources */,
 				7E970C1018DBCF9300517A1F /* InfoPlist.strings in Resources */,
 				7E970C1818DBCF9300517A1F /* Images.xcassets in Resources */,
@@ -431,8 +413,6 @@
 				7E970C1618DBCF9300517A1F /* NCSAppDelegate.m in Sources */,
 				7E970C4E18DEB4A500517A1F /* NCSPost.m in Sources */,
 				7E970C5D18E3FCB800517A1F /* NCSThreadViewController.m in Sources */,
-				7E97F6A2191E0EF8009ED5D3 /* NCSSwipeViewController.m in Sources */,
-				7E56A2CF18FE6A5B00FC10DE /* NCSCommentsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
