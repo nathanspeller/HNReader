@@ -104,7 +104,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NCSWebViewController *webViewController = [[NCSWebViewController alloc] init];
     webViewController.post = self.articles[indexPath.row];
-    [self.navigationController pushViewController:webViewController animated:YES];
+    [self.view.window.rootViewController presentViewController:webViewController animated:YES completion:nil];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -11,6 +11,7 @@
 
 @interface NCSWebViewController ()
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 
 @end
 
@@ -25,16 +26,6 @@
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [[self navigationController] setNavigationBarHidden:NO animated:YES];
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    [[self navigationController] setNavigationBarHidden:YES animated:YES];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -44,13 +35,25 @@
     [self.webView loadRequest:requestObj];
     
     UIBarButtonItem *commentsButton = [[UIBarButtonItem alloc] initWithTitle:@"Comments" style:UIBarButtonItemStylePlain target:self action:@selector(showComments:)];
-    self.navigationItem.rightBarButtonItem = commentsButton;
+    
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(onBackButton:)];
+    
+    UINavigationItem *item = [[UINavigationItem alloc] init];
+//    item.rightBarButtonItem = commentsButton;
+    item.leftBarButtonItem = backButton;
+    
+    [self.navigationBar pushNavigationItem:item animated:YES];
 }
 
 - (void)showComments:(id)sender{
     NCSThreadViewController *commentsViewController = [[NCSThreadViewController alloc] init];
     commentsViewController.post = self.post;
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     [self.navigationController pushViewController:commentsViewController animated:YES];
+}
+
+- (void)onBackButton:(id)sender{
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning

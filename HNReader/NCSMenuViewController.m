@@ -52,7 +52,6 @@ static float openMenuPosition = 268; //open menu x position
 
 - (void)toggleMenu
 {
-    NSLog(@"TOGGLE");
     float xPos = (self.container.frame.origin.x == 0) ? openMenuPosition : 0;
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         self.container.frame = CGRectMake( xPos, 0, self.container.frame.size.width, self.container.frame.size.height);
