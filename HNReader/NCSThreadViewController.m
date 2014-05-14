@@ -17,6 +17,8 @@
 //@property (nonatomic, strong) NSMutableArray *comments;
 @property (nonatomic, strong) NCSCommentCell *prototype;
 @property (nonatomic, strong) NCSPostCell *postPrototype;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (nonatomic, assign) CGFloat dragPoint;
 @end
 
 @implementation NCSThreadViewController
@@ -156,8 +158,34 @@
         [self.comments removeObjectsAtIndexes:indexSet];
         [self.tableView reloadData];
     }
-    
 }
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    self.dragPoint = scrollView.contentOffset.y;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    
+    if (scrollView.contentOffset.y < 100) {
+        [UIView animateWithDuration:0.2 animations:^{
+            self.backButton.alpha = 1.0;
+        }];
+    } else {
+    if (scrollView.contentOffset.y >= self.dragPoint) {
+        [UIView animateWithDuration:0.2 animations:^{
+            self.backButton.alpha = 0.0;
+        }];
+    } else {
+        [UIView animateWithDuration:0.2 animations:^{
+            self.backButton.alpha = 1.0;
+        }];
+    }
+    }
+}
+
+
 - (IBAction)onBackButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
