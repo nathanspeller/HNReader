@@ -169,9 +169,9 @@
 {
     
     if (scrollView.contentOffset.y < 100) {
-        [UIView animateWithDuration:0.2 animations:^{
+        [UIView animateWithDuration:0.2 delay:0.2 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             self.backButton.alpha = 1.0;
-        }];
+        } completion:nil];
     } else {
     if (scrollView.contentOffset.y >= self.dragPoint) {
         [UIView animateWithDuration:0.2 animations:^{
