@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NCSThreadViewController">
             <connections>
-                <outlet property="tableView" destination="gao-ky-qKX" id="s7A-jJ-TOZ"/>
+                <outlet property="tableView" destination="Wtv-qL-YAO" id="71t-BW-cog"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,14 +15,13 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="gao-ky-qKX">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Wtv-qL-YAO">
+                    <rect key="frame" x="0.0" y="22" width="320" height="546"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                    <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dCf-Vq-N6M">
-                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                    <rect key="frame" x="0.0" y="22" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                     <state key="normal" image="back_btn.png">
@@ -32,13 +31,21 @@
                         <action selector="onBackButton:" destination="-1" eventType="touchUpInside" id="sqP-ja-XeT"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="left-corner.png" translatesAutoresizingMaskIntoConstraints="NO" id="33j-m0-KGb">
+                    <rect key="frame" x="0.0" y="22" width="4" height="4"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="right-corner.png" translatesAutoresizingMaskIntoConstraints="NO" id="0Sr-Mf-kFq">
+                    <rect key="frame" x="316" y="22" width="4" height="4"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="gao-ky-qKX" secondAttribute="trailing" id="Fam-Vy-VNG"/>
-                <constraint firstItem="gao-ky-qKX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Vwy-Yu-ucH"/>
-                <constraint firstAttribute="bottom" secondItem="gao-ky-qKX" secondAttribute="bottom" id="fqH-bP-Ifg"/>
-                <constraint firstItem="gao-ky-qKX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="qCJ-Fd-Q6w"/>
+                <constraint firstItem="Wtv-qL-YAO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="22" id="VYs-XY-QsF"/>
+                <constraint firstAttribute="trailing" secondItem="Wtv-qL-YAO" secondAttribute="trailing" id="qXD-g4-sZC"/>
+                <constraint firstItem="Wtv-qL-YAO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rtN-8p-afo"/>
+                <constraint firstAttribute="bottom" secondItem="Wtv-qL-YAO" secondAttribute="bottom" id="yGF-6C-OgQ"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -46,5 +53,7 @@
     </objects>
     <resources>
         <image name="back_btn.png" width="40" height="40"/>
+        <image name="left-corner.png" width="8" height="8"/>
+        <image name="right-corner.png" width="8" height="8"/>
     </resources>
 </document>

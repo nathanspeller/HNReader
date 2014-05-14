@@ -17,12 +17,12 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K4i-qU-dPg">
-                    <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                    <rect key="frame" x="0.0" y="66" width="320" height="502"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </webView>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oCL-d3-3O8">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="wJo-lh-rm3"/>
@@ -32,14 +32,14 @@
                     </items>
                 </navigationBar>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="K4i-qU-dPg" secondAttribute="bottom" id="9F5-1B-ngy"/>
                 <constraint firstItem="K4i-qU-dPg" firstAttribute="top" secondItem="oCL-d3-3O8" secondAttribute="bottom" id="IaO-Zo-PuP"/>
                 <constraint firstAttribute="trailing" secondItem="K4i-qU-dPg" secondAttribute="trailing" id="Zjb-T3-qGW"/>
                 <constraint firstItem="K4i-qU-dPg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="aaw-dE-xUu"/>
                 <constraint firstAttribute="trailing" secondItem="oCL-d3-3O8" secondAttribute="trailing" id="cag-q8-xWO"/>
-                <constraint firstItem="oCL-d3-3O8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="mBQ-uF-Dxk"/>
+                <constraint firstItem="oCL-d3-3O8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="22" id="mBQ-uF-Dxk"/>
                 <constraint firstItem="oCL-d3-3O8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="tdp-Ss-NMh"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

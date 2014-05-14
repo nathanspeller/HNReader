@@ -35,6 +35,7 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.contentInset = UIEdgeInsetsMake(-20, 0, -20, 0);;
     
     UINib *commentCellNib = [UINib nibWithNibName:@"NCSCommentCell" bundle:nil];
     self.prototype = [commentCellNib instantiateWithOwner:self options:nil][0];
@@ -126,6 +127,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     NCSPostCell *postCell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
     [postCell setPost:self.post];
+    [postCell setBackgroundColor: [UIColor whiteColor]];
     return postCell;
 }
 
