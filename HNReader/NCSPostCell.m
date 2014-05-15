@@ -13,7 +13,7 @@
 
 @implementation NCSPostCell
 
-static CGFloat lineHeight = 22.f;
+static CGFloat lineHeight = 24.f;
 
 - (void)awakeFromNib
 {

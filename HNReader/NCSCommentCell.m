@@ -32,8 +32,8 @@
     CGSize constrainedSize = CGSizeMake(nameWidth, 9999);
     
     NSMutableParagraphStyle *style  = [[NSMutableParagraphStyle alloc] init];
-    style.minimumLineHeight = 19.f;
-    style.maximumLineHeight = 19.f;
+    style.minimumLineHeight = 20.f;
+    style.maximumLineHeight = 20.f;
     
     NSDictionary *attributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                                           font, NSFontAttributeName,
