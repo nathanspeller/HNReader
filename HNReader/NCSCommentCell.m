@@ -13,6 +13,8 @@
 
 @implementation NCSCommentCell
 
+static CGFloat lineHeight = 20.f;
+
 - (void)awakeFromNib
 {
     // Initialization code
@@ -32,8 +34,8 @@
     CGSize constrainedSize = CGSizeMake(nameWidth, 9999);
     
     NSMutableParagraphStyle *style  = [[NSMutableParagraphStyle alloc] init];
-    style.minimumLineHeight = 20.f;
-    style.maximumLineHeight = 20.f;
+    style.minimumLineHeight = lineHeight;
+    style.maximumLineHeight = lineHeight;
     
     NSDictionary *attributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                                           font, NSFontAttributeName,
@@ -61,8 +63,8 @@
     
     self.commentText.numberOfLines = 0;
     NSMutableParagraphStyle *style  = [[NSMutableParagraphStyle alloc] init];
-    style.minimumLineHeight = 19.f;
-    style.maximumLineHeight = 19.f;
+    style.minimumLineHeight = lineHeight;
+    style.maximumLineHeight = lineHeight;
     NSDictionary *attributes = @{NSParagraphStyleAttributeName : style,};
     self.commentText.attributedText = [[NSAttributedString alloc] initWithString:self.comment.commentText attributes:attributes];
     [self.commentText sizeToFit];
