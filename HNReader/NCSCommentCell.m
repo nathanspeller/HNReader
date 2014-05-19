@@ -68,8 +68,13 @@ static CGFloat lineHeight = 20.f;
     NSString *string = self.comment.commentText;
     [self.commentText setText:string afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString){
         
-        self.commentText.enabledTextCheckingTypes = NSTextCheckingTypeLink;
+        self.commentText.enabledTextCheckingTypes = NSTextCheckingTypeLink;        
+        NSArray *keys = [[NSArray alloc] initWithObjects:(id)kCTForegroundColorAttributeName,(id)kCTUnderlineStyleAttributeName
+                         , nil];
+        NSArray *objects = [[NSArray alloc] initWithObjects:[UIColor colorWithRed:0.887 green:0.274 blue:0.100 alpha:1.000],[NSNumber numberWithInt:kCTUnderlineStyleNone], nil];
+        NSDictionary *linkAttributes = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
         
+        self.commentText.linkAttributes = linkAttributes;
         return mutableAttributedString;
     }];
 
