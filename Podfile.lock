@@ -20,15 +20,18 @@ PODS:
     - AFNetworking/NSURLSession
   - CRGradientNavigationBar (0.3.2)
   - MBProgressHUD (0.8)
+  - TTTAttributedLabel (1.10.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - CRGradientNavigationBar
   - MBProgressHUD (~> 0.8)
+  - TTTAttributedLabel
 
 SPEC CHECKSUMS:
   AFNetworking: 0121f4b69be3fa58d1ab317866e036e12ac9651d
   CRGradientNavigationBar: dc3ffb640685b43c27f096e7d466e80f9fa887fe
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
+  TTTAttributedLabel: 2de7914255419b3e2b50be36b79a2a82fe6c7488
 
 COCOAPODS: 0.32.1

@@ -24,6 +24,21 @@
         self.commentText = [self.commentText stringByReplacingOccurrencesOfString:key withString:[stringReplacements objectForKey:key]];
     }
     
+    NSString *searchedString = self.commentText;
+    NSRange   searchedRange = NSMakeRange(0, [searchedString length]);
+    NSString *pattern = @"<a href=\"(.+?)\".*?</a>";
+    NSError  *error = nil;
+    
+    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern: pattern options:0 error:&error];
+    NSArray* matches = [regex matchesInString:searchedString options:0 range: searchedRange];
+    for (NSTextCheckingResult* match in matches) {
+        NSString* matchText = [searchedString substringWithRange:[match range]];
+        NSLog(@"match: %@", matchText);
+        NSRange group1 = [match rangeAtIndex:1];
+        NSLog(@"group1: %@", [searchedString substringWithRange:group1]);
+        self.commentText = [regex stringByReplacingMatchesInString:self.commentText options:0 range:NSMakeRange(0, [self.commentText length]) withTemplate:@"$1"];
+    }
+    
     //remove trailing new lines
     self.commentText = [self.commentText stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     

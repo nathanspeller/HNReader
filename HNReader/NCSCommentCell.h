@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "NCSComment.h"
+#import "TTTAttributedLabel.h"
 
-@interface NCSCommentCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *commentText;
+@interface NCSCommentCell : UITableViewCell <TTTAttributedLabel, TTTAttributedLabelDelegate>
+@property (weak, nonatomic) IBOutlet TTTAttributedLabel *commentText;
 @property (weak, nonatomic) IBOutlet UILabel *author;
 @property (nonatomic, strong) NCSComment *comment;
 @property (weak, nonatomic) IBOutlet UIButton *repliesButton;
