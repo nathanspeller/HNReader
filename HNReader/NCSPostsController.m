@@ -13,6 +13,7 @@
 #import "NCSWebViewController.h"
 #import "NCSThreadViewController.h"
 #import "MBProgressHUD.h"
+#import "NCSClient.h"
 
 @interface NCSPostsController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -69,20 +70,7 @@
 }
 
 - (void)fetchData {
-    NSURL *articlesURL = [NSURL URLWithString:@"http://hnapp.com/api/items/json/40f0eed66f239ed673554fb1e6b97315"];
-    NSData *jsonData = [NSData dataWithContentsOfURL:articlesURL];
-    NSError *error = nil;
-    NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-    
-    NSArray *articlesArray = [dataDictionary objectForKey:@"results"];
-    
-    [self.articles removeAllObjects];
-    
-    for (NSDictionary *dict in articlesArray) {
-        NCSPost *post = [[NCSPost alloc] initWithDictionary:dict];
-        [self.articles addObject:post];
-    }
-    
+    self.articles = [[NCSClient instance] getPosts];
     [self.tableView reloadData];
 }
 

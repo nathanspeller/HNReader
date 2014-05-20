@@ -42,6 +42,7 @@
 		7E97F6AD1922C2DF009ED5D3 /* NCSMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E97F6AB1922C2DF009ED5D3 /* NCSMenuViewController.xib */; };
 		7E97F6B419232259009ED5D3 /* right-corner.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E97F6B219232259009ED5D3 /* right-corner.png */; };
 		7E97F6B519232259009ED5D3 /* left-corner.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E97F6B319232259009ED5D3 /* left-corner.png */; };
+		7E97F6BF192B0591009ED5D3 /* NCSClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E97F6BE192B0591009ED5D3 /* NCSClient.m */; };
 		7E9B207F19037293008C3E01 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9B207E19037293008C3E01 /* NSString+HTML.m */; };
 		7E9B208219037321008C3E01 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9B208119037321008C3E01 /* GTMNSString+HTML.m */; };
 /* End PBXBuildFile section */
@@ -104,6 +105,8 @@
 		7E97F6AB1922C2DF009ED5D3 /* NCSMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NCSMenuViewController.xib; sourceTree = "<group>"; };
 		7E97F6B219232259009ED5D3 /* right-corner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right-corner.png"; sourceTree = "<group>"; };
 		7E97F6B319232259009ED5D3 /* left-corner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left-corner.png"; sourceTree = "<group>"; };
+		7E97F6BD192B0591009ED5D3 /* NCSClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSClient.h; sourceTree = "<group>"; };
+		7E97F6BE192B0591009ED5D3 /* NCSClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSClient.m; sourceTree = "<group>"; };
 		7E9B207D19037293008C3E01 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
 		7E9B207E19037293008C3E01 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		7E9B208019037321008C3E01 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
@@ -177,6 +180,8 @@
 				7E970C4D18DEB4A500517A1F /* NCSPost.m */,
 				7E970C6618E409A900517A1F /* NCSComment.h */,
 				7E970C6718E409A900517A1F /* NCSComment.m */,
+				7E97F6BD192B0591009ED5D3 /* NCSClient.h */,
+				7E97F6BE192B0591009ED5D3 /* NCSClient.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -423,6 +428,7 @@
 				7E9B208219037321008C3E01 /* GTMNSString+HTML.m in Sources */,
 				7E97F6AC1922C2DF009ED5D3 /* NCSMenuViewController.m in Sources */,
 				7E970C3718DBE1CA00517A1F /* NCSPostCell.m in Sources */,
+				7E97F6BF192B0591009ED5D3 /* NCSClient.m in Sources */,
 				7E970C6218E4070300517A1F /* NCSCommentCell.m in Sources */,
 				7E9B207F19037293008C3E01 /* NSString+HTML.m in Sources */,
 				7E970C5818E000FA00517A1F /* NCSWebViewController.m in Sources */,
