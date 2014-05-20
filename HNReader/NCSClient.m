@@ -24,7 +24,22 @@
     return instance;
 }
 
-
+- (NSMutableArray *)getFrontPage
+{
+    NSMutableArray *articles = [NSMutableArray array];
+    NSURL *articlesURL = [NSURL URLWithString:@"http://api.ihackernews.com/page"];
+    NSData *jsonData = [NSData dataWithContentsOfURL:articlesURL];
+    NSError *error = nil;
+    NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+    
+    NSArray *articlesArray = [dataDictionary objectForKey:@"items"];
+    
+    for (NSDictionary *dict in articlesArray) {
+        NCSPost *post = [[NCSPost alloc] initWithiHNDictionary:dict];
+        [articles addObject:post];
+    }
+    return articles;
+}
 
 - (NSMutableArray *)getPosts
 {

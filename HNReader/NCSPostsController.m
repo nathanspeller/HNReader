@@ -8,6 +8,7 @@
 
 #import "NCSPostsController.h"
 #import "NCSPostCell.h"
+#import "NCSFrontPagePostCell.h"
 #import "NCSPostsController.h"
 #import "NCSPost.h"
 #import "NCSWebViewController.h"
@@ -44,7 +45,7 @@
 
     [self.tableView setSeparatorColor:[UIColor colorWithRed:1.000 green:0.396 blue:0.000 alpha:0.500]];
     
-    UINib *postCellNib = [UINib nibWithNibName:@"NCSPostCell" bundle:nil];
+    UINib *postCellNib = [UINib nibWithNibName:@"NCSFrontPagePostCell" bundle:nil];
     self.prototype = [postCellNib instantiateWithOwner:self options:nil][0];
     [self.tableView registerNib:postCellNib forCellReuseIdentifier:@"PostCell"];
     
@@ -70,7 +71,7 @@
 }
 
 - (void)fetchData {
-    self.articles = [[NCSClient instance] getPosts];
+    self.articles = [[NCSClient instance] getFrontPage];
     [self.tableView reloadData];
 }
 
@@ -96,7 +97,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NCSPostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
+    NCSFrontPagePostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
     
     UISwipeGestureRecognizer* sgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellSwiped:)];
     [sgr setDirection:UISwipeGestureRecognizerDirectionLeft];
@@ -104,6 +105,7 @@
 
     NCSPost *post = [self.articles objectAtIndex:indexPath.row];
     [cell setPost:post];
+    cell.rank.text = [NSString stringWithFormat:@"%d", indexPath.row+1];
     return cell;
 }
 

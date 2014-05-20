@@ -26,6 +26,21 @@
     return self;
 }
 
+// iHackerNews
+- (id) initWithiHNDictionary:(NSDictionary *)dict{
+    self = [super init];
+    self.title     = dict[@"title"];
+    self.title     = [self.title stringByDecodingHTMLEntities];
+    self.date      = nil;
+    self.itemid    = dict[@"id"];
+    self.submitter = dict[@"postedBy"];
+    self.domain    = @"http://www.google.com";
+    self.points    = dict[@"points"];
+    self.comments  = dict[@"commentCount"];
+    self.url       = dict[@"url"];
+    return self;
+}
+
 - (id) initWithDictionary:(NSDictionary *)dict{
     self = [super init];
     self.title     = dict[@"title"];
