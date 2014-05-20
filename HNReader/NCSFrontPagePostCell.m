@@ -51,22 +51,22 @@ static CGFloat lineHeight = 24.f;
 }
 
 - (void)drawBackgroundPoints:(NCSPost *)post{
-    [[self.contentView viewWithTag:POINTS_TAG] removeFromSuperview];
-    [[self.contentView viewWithTag:BIG_POINTS_TAG] removeFromSuperview];
-    
-    // draw darker background for posts with more than 320 points
-    if ([post.points doubleValue] > 320) {
-        UIView *bigLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, (([post.points floatValue]-320)/1.0f), 8)];
-        bigLineView.backgroundColor = [UIColor colorWithRed:1.0 green:0.396 blue:0.0 alpha:0.10];
-        bigLineView.tag = BIG_POINTS_TAG;
-        [self.contentView insertSubview:bigLineView belowSubview:[self.contentView.subviews objectAtIndex:0]];
-    }
-    
-    //draw background bar for post points
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ([post.points floatValue]), 8)];
-    lineView.backgroundColor = [UIColor colorWithRed:1.0 green:0.396 blue:0.0 alpha:0.10];
-    lineView.tag = POINTS_TAG;
-    [self.contentView insertSubview:lineView belowSubview:[self.contentView.subviews objectAtIndex:0]];
+//    [[self.contentView viewWithTag:POINTS_TAG] removeFromSuperview];
+//    [[self.contentView viewWithTag:BIG_POINTS_TAG] removeFromSuperview];
+//    
+//    // draw darker background for posts with more than 320 points
+//    if ([post.points doubleValue] > 320) {
+//        UIView *bigLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, (([post.points floatValue]-320)/1.0f), 8)];
+//        bigLineView.backgroundColor = [UIColor colorWithRed:1.0 green:0.396 blue:0.0 alpha:0.10];
+//        bigLineView.tag = BIG_POINTS_TAG;
+//        [self.contentView insertSubview:bigLineView belowSubview:[self.contentView.subviews objectAtIndex:0]];
+//    }
+//    
+//    //draw background bar for post points
+//    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ([post.points floatValue]), 8)];
+//    lineView.backgroundColor = [UIColor colorWithRed:1.0 green:0.396 blue:0.0 alpha:0.10];
+//    lineView.tag = POINTS_TAG;
+//    [self.contentView insertSubview:lineView belowSubview:[self.contentView.subviews objectAtIndex:0]];
 }
 
 

@@ -32,11 +32,12 @@
     NSError *error = nil;
     NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
     
-    NSArray *articlesArray = [dataDictionary objectForKey:@"items"];
-    
-    for (NSDictionary *dict in articlesArray) {
-        NCSPost *post = [[NCSPost alloc] initWithiHNDictionary:dict];
-        [articles addObject:post];
+    if ([dataDictionary objectForKey:@"items"]) {
+        NSArray *articlesArray = [dataDictionary objectForKey:@"items"];
+        for (NSDictionary *dict in articlesArray) {
+            NCSPost *post = [[NCSPost alloc] initWithiHNDictionary:dict];
+            [articles addObject:post];
+        }
     }
     return articles;
 }

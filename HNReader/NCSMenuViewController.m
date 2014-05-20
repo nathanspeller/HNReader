@@ -58,4 +58,12 @@ static float openMenuPosition = 268; //open menu x position
     } completion:nil];
 }
 
+- (IBAction)setFrontPage:(id)sender {
+    
+}
+
+- (IBAction)setTopFifty:(id)sender {
+    
+}
+
 @end
