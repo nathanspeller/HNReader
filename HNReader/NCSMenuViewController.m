@@ -59,11 +59,17 @@ static float openMenuPosition = 268; //open menu x position
 }
 
 - (IBAction)setFrontPage:(id)sender {
-    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@"frontPage" forKey:@"feedSource"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updatedFeedSource" object:self];
+    [self toggleMenu];
 }
 
 - (IBAction)setTopFifty:(id)sender {
-    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@"karma" forKey:@"feedSource"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updatedFeedSource" object:self];
+    [self toggleMenu];
 }
 
 @end

@@ -44,19 +44,24 @@
 
 - (NSMutableArray *)getPosts
 {
-    NSMutableArray *articles = [NSMutableArray array];
-    NSURL *articlesURL = [NSURL URLWithString:@"http://hnapp.com/api/items/json/40f0eed66f239ed673554fb1e6b97315"];
-    NSData *jsonData = [NSData dataWithContentsOfURL:articlesURL];
-    NSError *error = nil;
-    NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-    
-    NSArray *articlesArray = [dataDictionary objectForKey:@"results"];
-    
-    for (NSDictionary *dict in articlesArray) {
-        NCSPost *post = [[NCSPost alloc] initWithDictionary:dict];
-        [articles addObject:post];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([[defaults objectForKey:@"feedSource"]  isEqual: @"karma"]) {
+        NSMutableArray *articles = [NSMutableArray array];
+        NSURL *articlesURL = [NSURL URLWithString:@"http://hnapp.com/api/items/json/40f0eed66f239ed673554fb1e6b97315"];
+        NSData *jsonData = [NSData dataWithContentsOfURL:articlesURL];
+        NSError *error = nil;
+        NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+        
+        NSArray *articlesArray = [dataDictionary objectForKey:@"results"];
+        
+        for (NSDictionary *dict in articlesArray) {
+            NCSPost *post = [[NCSPost alloc] initWithDictionary:dict];
+            [articles addObject:post];
+        }
+        return articles;
+    } else {
+        return [self getFrontPage];
     }
-    return articles;
 }
 
 - (NSMutableArray *)getCommentsForPost:(NCSPost *)post

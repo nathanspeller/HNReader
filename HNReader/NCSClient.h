@@ -12,7 +12,6 @@
 @interface NCSClient : NSObject
 
 + (NCSClient *)instance;
-- (NSMutableArray *)getFrontPage;
 - (NSMutableArray *)getPosts;
 - (NSMutableArray *)getCommentsForPost:(NCSPost *)post;
 

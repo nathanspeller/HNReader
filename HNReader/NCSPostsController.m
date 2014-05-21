@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *articles;
 @property (nonatomic, strong) NCSPostCell *prototype;
+@property (nonatomic, strong) NCSPostCell *frontPagePrototype;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UILabel *listTitle;
 @end
@@ -42,12 +43,21 @@
     self.title = @"Hacker News";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(fetchData)
+                                                 name:@"updatedFeedSource"
+                                               object:nil];
 
     [self.tableView setSeparatorColor:[UIColor colorWithRed:1.000 green:0.396 blue:0.000 alpha:0.500]];
     
-    UINib *postCellNib = [UINib nibWithNibName:@"NCSFrontPagePostCell" bundle:nil];
-    self.prototype = [postCellNib instantiateWithOwner:self options:nil][0];
+    UINib *postCellNib = [UINib nibWithNibName:@"NCSPostCell" bundle:nil];
     [self.tableView registerNib:postCellNib forCellReuseIdentifier:@"PostCell"];
+    self.prototype = [postCellNib instantiateWithOwner:self options:nil][0];
+    
+    UINib *frontPagePostCellNib = [UINib nibWithNibName:@"NCSFrontPagePostCell" bundle:nil];
+    [self.tableView registerNib:frontPagePostCellNib forCellReuseIdentifier:@"FrontPagePostCell"];
+    self.prototype = [postCellNib instantiateWithOwner:self options:nil][0];
     
     // show loading HUD
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -71,7 +81,7 @@
 }
 
 - (void)fetchData {
-    self.articles = [[NCSClient instance] getFrontPage];
+    self.articles = [[NCSClient instance] getPosts];
     [self.tableView reloadData];
 }
 
@@ -97,16 +107,30 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NCSFrontPagePostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
-    
-    UISwipeGestureRecognizer* sgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellSwiped:)];
-    [sgr setDirection:UISwipeGestureRecognizerDirectionLeft];
-    [cell addGestureRecognizer:sgr];
-
-    NCSPost *post = [self.articles objectAtIndex:indexPath.row];
-    [cell setPost:post];
-    cell.rank.text = [NSString stringWithFormat:@"%d", indexPath.row+1];
-    return cell;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([[defaults objectForKey:@"feedSource"]  isEqual: @"karma"]) {
+        NCSPostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
+        
+        UISwipeGestureRecognizer* sgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellSwiped:)];
+        [sgr setDirection:UISwipeGestureRecognizerDirectionLeft];
+        [cell addGestureRecognizer:sgr];
+        
+        NCSPost *post = [self.articles objectAtIndex:indexPath.row];
+        [cell setPost:post];
+        //        cell.rank.text = [NSString stringWithFormat:@"%d", indexPath.row+1];
+        return cell;
+    } else {
+        NCSFrontPagePostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FrontPagePostCell"];
+        
+        UISwipeGestureRecognizer* sgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellSwiped:)];
+        [sgr setDirection:UISwipeGestureRecognizerDirectionLeft];
+        [cell addGestureRecognizer:sgr];
+        
+        NCSPost *post = [self.articles objectAtIndex:indexPath.row];
+        [cell setPost:post];
+        cell.rank.text = [NSString stringWithFormat:@"%d", indexPath.row+1];
+        return cell;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

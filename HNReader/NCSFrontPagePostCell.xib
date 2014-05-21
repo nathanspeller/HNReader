@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="101" id="KGk-i7-Jjw" customClass="NCSFrontPagePostCell">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FrontPagePostCell" rowHeight="101" id="KGk-i7-Jjw" customClass="NCSFrontPagePostCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="101"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -70,7 +70,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comment_bubble.png" translatesAutoresizingMaskIntoConstraints="NO" id="CgA-TI-NLN">
-                        <rect key="frame" x="293" y="65" width="12" height="12"/>
+                        <rect key="frame" x="293" y="67" width="12" height="12"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="12" id="GKr-IK-CGq"/>
@@ -84,7 +84,7 @@
                     <constraint firstItem="CgA-TI-NLN" firstAttribute="leading" secondItem="gg2-fS-VgH" secondAttribute="trailing" constant="6" id="Dul-hi-716"/>
                     <constraint firstItem="gg2-fS-VgH" firstAttribute="top" secondItem="aTZ-tr-Qez" secondAttribute="bottom" constant="4" id="JgD-TO-jt9"/>
                     <constraint firstItem="hEk-Lx-EGA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="SbY-fY-Pih"/>
-                    <constraint firstItem="CgA-TI-NLN" firstAttribute="top" secondItem="aTZ-tr-Qez" secondAttribute="bottom" constant="6" id="T0f-NA-nbC"/>
+                    <constraint firstItem="CgA-TI-NLN" firstAttribute="top" secondItem="aTZ-tr-Qez" secondAttribute="bottom" constant="8" id="T0f-NA-nbC"/>
                     <constraint firstItem="aTZ-tr-Qez" firstAttribute="top" secondItem="hEk-Lx-EGA" secondAttribute="bottom" constant="2" id="T7U-6f-Buh"/>
                     <constraint firstAttribute="trailing" secondItem="CgA-TI-NLN" secondAttribute="trailing" constant="15" id="c29-Fk-Jgr"/>
                     <constraint firstItem="dsD-FG-MF3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="eGS-gg-5hF"/>
