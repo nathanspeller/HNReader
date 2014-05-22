@@ -61,8 +61,8 @@ static CGFloat lineHeight = 24.f;
     }
     
     //draw background bar for post points
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ([post.points floatValue]), 8)];
-    lineView.backgroundColor = [UIColor colorWithRed:1.0 green:0.396 blue:0.0 alpha:0.10];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ([post.points floatValue]), [NCSPostCell heightForPost:post prototype:self])];
+    lineView.backgroundColor = [UIColor colorWithRed:1.0 green:0.396 blue:0.0 alpha:0.06];
     lineView.tag = POINTS_TAG;
     [self.contentView insertSubview:lineView belowSubview:[self.contentView.subviews objectAtIndex:0]];
 }

@@ -13,12 +13,13 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="La Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="261" translatesAutoresizingMaskIntoConstraints="NO" id="aTZ-tr-Qez">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="La Title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="261" translatesAutoresizingMaskIntoConstraints="NO" id="aTZ-tr-Qez">
                         <rect key="frame" x="44" y="36" width="261" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <size key="shadowOffset" width="0.0" height="0.0"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="Q3b-I9-gFX">
                         <rect key="frame" x="10" y="13" width="25" height="25"/>
@@ -43,6 +44,7 @@
                         <rect key="frame" x="44" y="63" width="168" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="168" id="eLQ-tS-y40"/>
                             <constraint firstAttribute="height" constant="18" id="qVQ-mp-Har"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
@@ -54,6 +56,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="0Ek-Q4-QVB"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="9" id="Cos-Ye-Pny"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                         <color key="textColor" red="0.50138099749999998" green="0.50138099749999998" blue="0.50138099749999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -86,6 +89,7 @@
                     <constraint firstItem="hEk-Lx-EGA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="SbY-fY-Pih"/>
                     <constraint firstItem="CgA-TI-NLN" firstAttribute="top" secondItem="aTZ-tr-Qez" secondAttribute="bottom" constant="8" id="T0f-NA-nbC"/>
                     <constraint firstItem="aTZ-tr-Qez" firstAttribute="top" secondItem="hEk-Lx-EGA" secondAttribute="bottom" constant="2" id="T7U-6f-Buh"/>
+                    <constraint firstItem="VL1-bl-t6T" firstAttribute="top" secondItem="aTZ-tr-Qez" secondAttribute="bottom" constant="4" id="TcW-KY-heZ"/>
                     <constraint firstAttribute="trailing" secondItem="CgA-TI-NLN" secondAttribute="trailing" constant="15" id="c29-Fk-Jgr"/>
                     <constraint firstItem="dsD-FG-MF3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="eGS-gg-5hF"/>
                     <constraint firstItem="aTZ-tr-Qez" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="44" id="f2G-0T-ai1"/>
@@ -93,7 +97,6 @@
                     <constraint firstItem="hEk-Lx-EGA" firstAttribute="leading" secondItem="Q3b-I9-gFX" secondAttribute="trailing" constant="9" id="kLE-TP-HmO"/>
                     <constraint firstAttribute="trailing" secondItem="hEk-Lx-EGA" secondAttribute="trailing" constant="15" id="qD3-h0-uWk"/>
                     <constraint firstItem="Q3b-I9-gFX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="r7K-Zv-zRj"/>
-                    <constraint firstItem="VL1-bl-t6T" firstAttribute="top" secondItem="aTZ-tr-Qez" secondAttribute="bottom" constant="4" id="u7b-WT-btv"/>
                     <constraint firstItem="VL1-bl-t6T" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="44" id="vgb-kC-J41"/>
                 </constraints>
             </tableViewCellContentView>

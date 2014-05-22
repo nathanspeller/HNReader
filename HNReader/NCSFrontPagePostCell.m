@@ -36,7 +36,7 @@ static CGFloat lineHeight = 24.f;
     NSDictionary *attributes = @{NSParagraphStyleAttributeName : style,};
     self.title.attributedText = [[NSAttributedString alloc] initWithString:post.title
                                                                 attributes:attributes];
-    [self.title sizeToFit];
+//    [self.title sizeToFit];
     self.topDetails.text = ([post.domain length] == 0) ? @"news.ycombinator.com": post.domain;
     
     self.comments.text = [NSString stringWithFormat:@"%@", post.comments];

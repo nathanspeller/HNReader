@@ -29,15 +29,15 @@
 // iHackerNews
 - (id) initWithiHNDictionary:(NSDictionary *)dict{
     self = [super init];
-    self.title     = dict[@"title"];
+    self.title     = dict[@"title"][@"text"];
     self.title     = [self.title stringByDecodingHTMLEntities];
     self.date      = nil;
-    self.itemid    = dict[@"id"];
-    self.submitter = dict[@"postedBy"];
-    self.domain    = @"http://www.google.com";
-    self.points    = dict[@"points"];
-    self.comments  = dict[@"commentCount"];
-    self.url       = dict[@"url"];
+    self.itemid    = dict[@"title"][@"href"];
+    self.submitter = dict[@"submitter"];
+    self.domain    = [dict[@"domain"] substringWithRange:NSMakeRange(1, [dict[@"domain"] length]-2)];
+    self.points    = dict[@"property5"];
+    self.comments  = [[NSNumber alloc] initWithInt:10];
+    self.url       = dict[@"title"][@"href"];
     return self;
 }
 
