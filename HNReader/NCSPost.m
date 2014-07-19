@@ -26,6 +26,20 @@
     return self;
 }
 
+// Heroku
+- (id) initWithHerokuDictionary:(NSDictionary *)dict{
+    self = [super init];
+    self.title     = dict[@"title"];
+    self.date      = dict[@"date"];
+    self.itemid    = dict[@"item_id"];
+    self.submitter = dict[@"submitter"];
+    self.domain    = dict[@"domain"];
+    self.points    = dict[@"points"];
+    self.comments  = dict[@"comment_count"];
+    self.url       = dict[@"post_url"];
+    return self;
+}
+
 // iHackerNews
 - (id) initWithiHNDictionary:(NSDictionary *)dict{
     self = [super init];
@@ -34,7 +48,8 @@
     self.date      = nil;
     self.itemid    = dict[@"title"][@"href"];
     self.submitter = dict[@"submitter"];
-    self.domain    = [dict[@"domain"] substringWithRange:NSMakeRange(1, [dict[@"domain"] length]-2)];
+//    self.domain    = [dict[@"domain"] substringWithRange:NSMakeRange(1, [dict[@"domain"] length]-2)];
+    self.domain = dict[@"domain"];
     self.points    = dict[@"property5"];
     self.comments  = [[NSNumber alloc] initWithInt:10];
     self.url       = dict[@"title"][@"href"];

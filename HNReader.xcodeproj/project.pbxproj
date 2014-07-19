@@ -165,18 +165,18 @@
 		7E56A2C418FE25A900FC10DE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7E970C3C18DBE21E00517A1F /* NCSPostsController.h */,
-				7E970C3D18DBE21E00517A1F /* NCSPostsController.m */,
-				7E970C3E18DBE21E00517A1F /* NCSPostsController.xib */,
-				7E970C5A18E3FCB800517A1F /* NCSThreadViewController.h */,
-				7E970C5B18E3FCB800517A1F /* NCSThreadViewController.m */,
-				7E970C5C18E3FCB800517A1F /* NCSThreadViewController.xib */,
-				7E970C5518E000FA00517A1F /* NCSWebViewController.h */,
-				7E970C5618E000FA00517A1F /* NCSWebViewController.m */,
-				7E970C5718E000FA00517A1F /* NCSWebViewController.xib */,
 				7E97F6A91922C2DF009ED5D3 /* NCSMenuViewController.h */,
 				7E97F6AA1922C2DF009ED5D3 /* NCSMenuViewController.m */,
 				7E97F6AB1922C2DF009ED5D3 /* NCSMenuViewController.xib */,
+				7E970C3C18DBE21E00517A1F /* NCSPostsController.h */,
+				7E970C3D18DBE21E00517A1F /* NCSPostsController.m */,
+				7E970C3E18DBE21E00517A1F /* NCSPostsController.xib */,
+				7E970C5518E000FA00517A1F /* NCSWebViewController.h */,
+				7E970C5618E000FA00517A1F /* NCSWebViewController.m */,
+				7E970C5718E000FA00517A1F /* NCSWebViewController.xib */,
+				7E970C5A18E3FCB800517A1F /* NCSThreadViewController.h */,
+				7E970C5B18E3FCB800517A1F /* NCSThreadViewController.m */,
+				7E970C5C18E3FCB800517A1F /* NCSThreadViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -198,12 +198,12 @@
 				7E970C3418DBE1CA00517A1F /* NCSPostCell.h */,
 				7E970C3518DBE1CA00517A1F /* NCSPostCell.m */,
 				7E970C3618DBE1CA00517A1F /* NCSPostCell.xib */,
-				7E970C5F18E4070300517A1F /* NCSCommentCell.h */,
-				7E970C6018E4070300517A1F /* NCSCommentCell.m */,
-				7E970C6118E4070300517A1F /* NCSCommentCell.xib */,
 				7E97F6C1192B14D9009ED5D3 /* NCSFrontPagePostCell.h */,
 				7E97F6C2192B14D9009ED5D3 /* NCSFrontPagePostCell.m */,
 				7E97F6C3192B14D9009ED5D3 /* NCSFrontPagePostCell.xib */,
+				7E970C5F18E4070300517A1F /* NCSCommentCell.h */,
+				7E970C6018E4070300517A1F /* NCSCommentCell.m */,
+				7E970C6118E4070300517A1F /* NCSCommentCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface NCSPostsController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-
+- (id)initWithFeedSource:(NSString *)feedSource;
 @end

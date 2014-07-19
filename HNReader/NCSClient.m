@@ -24,46 +24,21 @@
     return instance;
 }
 
-- (NSMutableArray *)getFrontPage
+- (NSMutableArray *)getPosts
 {
     NSMutableArray *articles = [NSMutableArray array];
-    NSURL *articlesURL = [NSURL URLWithString:@"http://www.kimonolabs.com/api/1u2zd0fo?apikey=c8226c88934ab8a39699584b8dd86325"];
+    NSURL *articlesURL = [NSURL URLWithString:@"http://hackernewsfeed.herokuapp.com/posts.json"];
     NSData *jsonData = [NSData dataWithContentsOfURL:articlesURL];
     NSError *error = nil;
-    NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+    NSArray *articlesArray = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
     
-    NSLog(@"FREQUENCY %@", dataDictionary[@"frequency"]);
-    
-    if (dataDictionary[@"results"][@"collection1"]) {
-        NSArray *articlesArray = dataDictionary[@"results"][@"collection1"];
+    if (articlesArray) {
         for (NSDictionary *dict in articlesArray) {
-            NCSPost *post = [[NCSPost alloc] initWithiHNDictionary:dict];
+            NCSPost *post = [[NCSPost alloc] initWithHerokuDictionary:dict];
             [articles addObject:post];
         }
     }
     return articles;
-}
-
-- (NSMutableArray *)getPosts
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if ([[defaults objectForKey:@"feedSource"]  isEqual: @"karma"]) {
-        NSMutableArray *articles = [NSMutableArray array];
-        NSURL *articlesURL = [NSURL URLWithString:@"http://hnapp.com/api/items/json/40f0eed66f239ed673554fb1e6b97315"];
-        NSData *jsonData = [NSData dataWithContentsOfURL:articlesURL];
-        NSError *error = nil;
-        NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-        
-        NSArray *articlesArray = [dataDictionary objectForKey:@"results"];
-        
-        for (NSDictionary *dict in articlesArray) {
-            NCSPost *post = [[NCSPost alloc] initWithDictionary:dict];
-            [articles addObject:post];
-        }
-        return articles;
-    } else {
-        return [self getFrontPage];
-    }
 }
 
 - (NSMutableArray *)getCommentsForPost:(NCSPost *)post

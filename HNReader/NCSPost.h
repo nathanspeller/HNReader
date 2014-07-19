@@ -20,6 +20,7 @@
 
 // Designated Initializer
 - (id) initWithTitle:(NSString *)title;
+- (id) initWithHerokuDictionary:(NSDictionary *)dict;
 - (id) initWithiHNDictionary:(NSDictionary *)dict;
 - (id) initWithDictionary:(NSDictionary *)dict;
 @end

@@ -11,7 +11,8 @@
 
 @interface NCSMenuViewController ()
 @property (nonatomic, strong) UIView *container;
-@property (nonatomic, strong) UINavigationController *navigationController;
+@property (nonatomic, strong) UINavigationController *frontPageNavigationController;
+@property (nonatomic, strong) UINavigationController *karmaNavigationController;
 @end
 
 @implementation NCSMenuViewController
@@ -23,11 +24,15 @@ static float openMenuPosition = 268; //open menu x position
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.navigationController = [[UINavigationController alloc] init];
-        self.navigationController.navigationBarHidden = YES;
-        NCSPostsController *postsController = [[NCSPostsController alloc] init];
-        [self.navigationController setViewControllers:@[postsController]];
+        self.frontPageNavigationController = [[UINavigationController alloc] init];
+        self.frontPageNavigationController.navigationBarHidden = YES;
+        NCSPostsController *frontPageController = [[NCSPostsController alloc] initWithFeedSource:@"frontPage"];
+        [self.frontPageNavigationController setViewControllers:@[frontPageController]];
         
+        self.karmaNavigationController = [[UINavigationController alloc] init];
+        self.karmaNavigationController.navigationBarHidden = YES;
+        NCSPostsController *karmaController = [[NCSPostsController alloc] initWithFeedSource:@"karma"];
+        [self.karmaNavigationController setViewControllers:@[karmaController]];
     }
     return self;
 }
@@ -39,7 +44,7 @@ static float openMenuPosition = 268; //open menu x position
     self.container = [[UIView alloc] initWithFrame:self.view.frame];
     
     [self.view addSubview:self.container];
-    [self.container addSubview:self.navigationController.view];
+    [self.container addSubview:self.karmaNavigationController.view];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleMenu) name:@"toggleMenu" object:nil];
 }
@@ -59,16 +64,14 @@ static float openMenuPosition = 268; //open menu x position
 }
 
 - (IBAction)setFrontPage:(id)sender {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:@"frontPage" forKey:@"feedSource"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"updatedFeedSource" object:self];
+    [self.container addSubview:self.frontPageNavigationController.view];
+    NSLog(@"%lu", (unsigned long)[self.container.subviews count]);
     [self toggleMenu];
 }
 
 - (IBAction)setTopFifty:(id)sender {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:@"karma" forKey:@"feedSource"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"updatedFeedSource" object:self];
+    [self.container addSubview:self.karmaNavigationController.view];
+    NSLog(@"%lu", (unsigned long)[self.container.subviews count]);
     [self toggleMenu];
 }
 

@@ -20,9 +20,10 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *articles;
 @property (nonatomic, strong) NCSPostCell *prototype;
-@property (nonatomic, strong) NCSPostCell *frontPagePrototype;
+@property (nonatomic, strong) NCSFrontPagePostCell *frontPagePrototype;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UILabel *listTitle;
+@property (nonatomic, strong) NSString *feedSource;
 @end
 
 @implementation NCSPostsController
@@ -32,6 +33,15 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.articles = [NSMutableArray array];
+    }
+    return self;
+}
+
+- (id)initWithFeedSource:(NSString *)feedSource
+{
+    self = [super init];
+    if (self) {
+        self.feedSource = feedSource;
     }
     return self;
 }
@@ -57,7 +67,7 @@
     
     UINib *frontPagePostCellNib = [UINib nibWithNibName:@"NCSFrontPagePostCell" bundle:nil];
     [self.tableView registerNib:frontPagePostCellNib forCellReuseIdentifier:@"FrontPagePostCell"];
-    self.prototype = [postCellNib instantiateWithOwner:self options:nil][0];
+    self.frontPagePrototype = [frontPagePostCellNib instantiateWithOwner:self options:nil][0];
     
     // show loading HUD
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -68,6 +78,10 @@
             [self.tableView reloadData];
         });
     });
+    
+    if ([self.feedSource isEqualToString:@"karma"]) {
+        [self.tableView setSeparatorInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+    }
     
     // pull-to-refresh
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
@@ -107,8 +121,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if ([[defaults objectForKey:@"feedSource"]  isEqual: @"karma"]) {
+    if ([self.feedSource  isEqual: @"karma"]) {
         NCSPostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
         
         UISwipeGestureRecognizer* sgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellSwiped:)];
@@ -135,7 +148,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NCSPost *post = self.articles[indexPath.row];
-    return [NCSPostCell heightForPost:post prototype:self.prototype];
+    if ([self.feedSource isEqualToString:@"karma"]) {
+        return [NCSPostCell heightForPost:post prototype:self.prototype];
+    } else {
+        return [NCSFrontPagePostCell heightForPost:post prototype:self.frontPagePrototype];
+    }
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
