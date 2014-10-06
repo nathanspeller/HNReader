@@ -84,4 +84,89 @@ static CGFloat lineHeight = 20.f;
     }
 }
 
+- (void)scrollFrame:(CGRect)frame
+{
+    [self setFrame:frame];
+    [self scrollChildFrames];
+    [self scrollParentFrames];
+}
+
+- (void)scrollParentFrames
+{
+    CGFloat parentHeight = self.parentView.frame.size.height;
+    [self.parentView setFrame:CGRectMake(self.parentView.frame.origin.x, self.frame.origin.y-parentHeight, self.parentView.frame.size.width, parentHeight)];
+    [self.parentView scrollParentFrames];
+}
+
+- (void)scrollChildFrames
+{
+    //update all children's positions
+    for (NCSCommentCell *childView in self.childViews) {
+        CGRect childFrame = CGRectMake(childView.frame.origin.x, self.frame.origin.y + self.frame.size.height, childView.frame.size.width, childView.frame.size.height);
+        [childView setFrame:childFrame];
+        [childView scrollChildFrames];
+    }
+}
+
+- (void)slideFrame:(CGRect)frame
+{
+    NSMutableArray *centerChildren = [self visibleChildren];
+    NSMutableArray *leftChildren = [self.leftSibling visibleChildren];
+    NSMutableArray *rightChildren = [self.rightSibling visibleChildren];
+    
+    [self setFrame:frame];
+    for (NCSCommentCell *commentView in centerChildren) {
+        CGRect commentFrame = commentView.frame;
+        commentFrame.origin.x = frame.origin.x;
+        [commentView setFrame:commentFrame];
+    }
+    
+    // move left sibling and children
+    CGRect leftFrame = self.leftSibling.frame;
+    leftFrame.origin.x = frame.origin.x - 320;
+    if (frame.origin.y <= 0) {
+        leftFrame.origin.y = 0;
+    } else {
+        leftFrame.origin.y = self.frame.origin.y;
+    }
+    [self.leftSibling scrollFrame:leftFrame];
+    
+    [self.leftSibling setFrame:leftFrame];
+    for (NCSCommentCell *commentView in leftChildren) {
+        CGRect commentFrame = commentView.frame;
+        commentFrame.origin.x = frame.origin.x-320;
+        [commentView setFrame:commentFrame];
+    }
+    
+    // move right sibling and children
+    CGRect rightFrame = self.rightSibling.frame;
+    rightFrame.origin.x = frame.origin.x + 320;
+    if (frame.origin.y <= 0) {
+        rightFrame.origin.y = 0;
+    } else {
+        rightFrame.origin.y = self.frame.origin.y;
+    }
+    [self.rightSibling scrollFrame:rightFrame];
+    
+    [self.rightSibling setFrame:rightFrame];
+    for (NCSCommentCell *commentView in rightChildren) {
+        CGRect commentFrame = commentView.frame;
+        commentFrame.origin.x = frame.origin.x+320;
+        [commentView setFrame:commentFrame];
+    }
+}
+
+- (NSMutableArray *)visibleChildren
+{
+    NSMutableArray *results = [NSMutableArray array];
+    for (NCSCommentCell *commentView in self.childViews) {
+        if (commentView.frame.origin.x == self.frame.origin.x) {
+            [results addObject:commentView];
+            [results addObjectsFromArray:[commentView visibleChildren]];
+            break;
+        }
+    }
+    return results;
+}
+
 @end
