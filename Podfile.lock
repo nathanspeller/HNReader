@@ -29,9 +29,9 @@ DEPENDENCIES:
   - TTTAttributedLabel
 
 SPEC CHECKSUMS:
-  AFNetworking: 0121f4b69be3fa58d1ab317866e036e12ac9651d
-  CRGradientNavigationBar: dc3ffb640685b43c27f096e7d466e80f9fa887fe
-  MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
-  TTTAttributedLabel: 2de7914255419b3e2b50be36b79a2a82fe6c7488
+  AFNetworking: 8dde8c8a6597ad95dac332a593c27e541bc87371
+  CRGradientNavigationBar: e11429639a863683acc90887b9c86e75cb5d098c
+  MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
+  TTTAttributedLabel: c3a11b538bc7beb4815f156e2ba4b066929e13f9
 
-COCOAPODS: 0.32.1
+COCOAPODS: 0.33.1
