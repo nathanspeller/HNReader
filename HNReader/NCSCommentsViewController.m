@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSMutableArray *comments;
 @property (nonatomic, strong) NSMutableArray *viewControllers;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
 @end
 
 @implementation NCSCommentsViewController
@@ -162,9 +163,9 @@
 //}
 
 
-//- (IBAction)onBackButton:(id)sender {
-//    [self.navigationController popViewControllerAnimated:YES];
-//}
+- (IBAction)onBackButton:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
