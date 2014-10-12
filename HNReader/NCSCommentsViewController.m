@@ -7,15 +7,19 @@
 //
 
 #import "NCSCommentsViewController.h"
-#import "NCSSwipeViewController.h"
 #import "MBProgressHUD.h"
 #import "NCSComment.h"
+#import "NCSCommentCell.h"
 
 @interface NCSCommentsViewController ()
 @property (nonatomic, strong) NSMutableArray *comments;
 @property (nonatomic, strong) NSMutableArray *viewControllers;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (nonatomic, strong) NCSCommentCell *prototype;
+@property (nonatomic, assign) CGPoint panStartingPoint;
+@property (nonatomic, assign) CGPoint viewStartingPoint;
+@property (weak, nonatomic) IBOutlet UIView *viewContainer;
+@property (nonatomic, assign) BOOL isVerticalPan;
 @end
 
 @implementation NCSCommentsViewController
@@ -25,45 +29,73 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.comments = [[NSMutableArray alloc] init];
+        self.viewControllers = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    [self.view setClipsToBounds:YES];
+    // Do any additional setup after loading the view from its nib.
+    
+    [MBProgressHUD showHUDAddedTo:self.viewContainer animated:YES];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         [self fetchData];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            NSUInteger numberPages = self.comments.count;
+            [MBProgressHUD hideHUDForView:self.viewContainer animated:YES];
             
-            // view controllers are created lazily
-            // in the meantime, load the array with placeholders which will be replaced on demand
-            NSMutableArray *controllers = [[NSMutableArray alloc] init];
-            for (NSUInteger i = 0; i < numberPages; i++)
-            {
-                [controllers addObject:[NSNull null]];
-            }
-            self.viewControllers = controllers;
+            NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:@"NCSCommentCell"
+                                                                 owner:self
+                                                               options:nil];
+            self.prototype = [nibContents objectAtIndex:0];
             
-            // a page is the width of the scroll view
-            self.scrollView.pagingEnabled = YES;
-            self.scrollView.contentSize =
-            CGSizeMake(CGRectGetWidth(self.scrollView.frame) * numberPages, CGRectGetHeight(self.scrollView.frame));
-            self.scrollView.showsHorizontalScrollIndicator = NO;
-            self.scrollView.showsVerticalScrollIndicator = NO;
-            self.scrollView.scrollsToTop = NO;
-            self.scrollView.delegate = self;
-            
-            // pages are created on demand
-            // load the visible page
-            // load the page on either side to avoid flashes when the user starts scrolling
-            //
-            [self loadScrollViewWithPage:0];
-            [self loadScrollViewWithPage:1];
+            [self drawComments:self.comments visible:YES offset:0 parent:nil];
         });
     });
+}
+
+- (void)drawComments:(NSMutableArray *)array visible:(BOOL)visible offset:(CGFloat)offset parent:(NCSCommentCell *)parent{
+    NSMutableArray *views = [NSMutableArray array];
+    for (NCSComment *comment in array) {
+        //make some views
+        BOOL visibleReply = visible && (comment == array[0]);
+        NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:@"NCSCommentCell"
+                                                             owner:self
+                                                           options:nil];
+        NCSCommentCell *commentView = [nibContents objectAtIndex:0];
+        CGFloat x = visibleReply ? 0 : 320;
+        CGFloat y = offset;
+        CGFloat height = [NCSCommentCell heightForComment:comment prototype:self.prototype];
+        commentView.frame = CGRectMake(x,y,320, height);
+        commentView.comment = comment;
+        commentView.parentView = parent;
+        [commentView refreshUI];
+        [self.viewContainer addSubview:commentView];
+        [parent.childViews addObject:commentView];
+        [views addObject:commentView];
+        
+        UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onCommentPan:)];
+        [commentView addGestureRecognizer:panGestureRecognizer];
+        
+        [self drawComments:comment.replies visible:visibleReply offset:height+offset parent:commentView];
+    }
+    for (int i=0; i<views.count; i++) {
+        NCSCommentCell *commentView = views[i];
+        if (commentView != views[0]) {
+            commentView.leftSibling = views[i-1];
+        }
+        if (commentView != views[views.count-1]){
+            commentView.rightSibling = views[i+1];
+        }
+    }
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (void)fetchData {
@@ -76,7 +108,6 @@
     
     self.comments = [self parseComments:commentsArray depth:0];
 }
-
 
 - (NSMutableArray *)parseComments:(NSArray *)array depth:(CGFloat)depth{
     NSMutableArray *comments = [NSMutableArray array];
@@ -94,92 +125,50 @@
     return comments;
 }
 
-- (void)loadScrollViewWithPage:(NSUInteger)page
-{
-    if (page >= self.comments.count)
-        return;
+- (void)onCommentPan:(UIPanGestureRecognizer *)panGestureRecognizer{
+    CGPoint point = [panGestureRecognizer locationInView:self.view];
+    CGPoint velocity = [panGestureRecognizer velocityInView:self.view];
+    NCSCommentCell *view = (NCSCommentCell *)panGestureRecognizer.view;
     
-    // replace the placeholder if necessary
-    NCSSwipeViewController *controller = [self.viewControllers objectAtIndex:page];
-    if ((NSNull *)controller == [NSNull null])
-    {
-        controller = [[NCSSwipeViewController alloc] init];
-        controller.post = self.post;
-        NSMutableArray *pagesComments = [NSMutableArray array];
-        [pagesComments addObject:self.comments[page]];
-        controller.comments = pagesComments;
-        [self.viewControllers replaceObjectAtIndex:page withObject:controller];
+    if (panGestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        self.panStartingPoint = point;
+        self.viewStartingPoint = panGestureRecognizer.view.frame.origin;
+        self.isVerticalPan = fabs(velocity.y) > fabs(velocity.x);
+    } else if (self.isVerticalPan) {
+        if (panGestureRecognizer.state == UIGestureRecognizerStateChanged) {
+            CGRect frame = view.frame;
+            frame.origin.y = self.viewStartingPoint.y + (point.y - self.panStartingPoint.y);
+            [view scrollFrame:frame];
+            
+        } else if (panGestureRecognizer.state == UIGestureRecognizerStateEnded) {
+            
+        }
+    } else { // horizontal pan only
+        if (panGestureRecognizer.state == UIGestureRecognizerStateChanged) {
+            CGRect frame = view.frame;
+            frame.origin.x = self.viewStartingPoint.x + (point.x - self.panStartingPoint.x);
+            if ((view.leftSibling == nil && frame.origin.x > 0) || (view.rightSibling == nil && frame.origin.x < 0)) {
+                frame.origin.x /= 3.0;
+            }
+            [view slideFrame:frame];
+        } else if (panGestureRecognizer.state == UIGestureRecognizerStateEnded) {
+            [UIView animateWithDuration:0.2 animations:^{
+                CGRect frame = view.frame;
+                if (velocity.x > 0 && frame.origin.x > 0 && view.leftSibling != nil) {
+                    frame.origin.x = 320;
+                } else if (velocity.x < 0 && frame.origin.x < 0 && view.rightSibling != nil) {
+                    frame.origin.x = -320;
+                } else {
+                    frame.origin.x = 0;
+                }
+                [view slideFrame:frame];
+            }];
+        }
     }
-    
-    // add the controller's view to the scroll view
-    if (controller.view.superview == nil)
-    {
-        CGRect frame = self.scrollView.frame;
-        frame.origin.x = CGRectGetWidth(frame) * page;
-        frame.origin.y = 0;
-        controller.view.frame = frame;
-        
-        [self addChildViewController:controller];
-        [self.scrollView addSubview:controller.view];
-        [controller didMoveToParentViewController:self];
-    }
 }
-
-// at the end of scroll animation, reset the boolean used when scrolls originate from the UIPageControl
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    // switch the indicator when more than 50% of the previous/next page is visible
-    CGFloat pageWidth = CGRectGetWidth(self.scrollView.frame);
-    NSUInteger page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    
-    // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
-    [self loadScrollViewWithPage:page - 1];
-    [self loadScrollViewWithPage:page];
-    [self loadScrollViewWithPage:page + 1];
-    
-    // a possible optimization would be to unload the views+controllers which are no longer visible
-}
-
-- (void)gotoPage:(BOOL)animated
-{
-    CGFloat pageWidth = CGRectGetWidth(self.scrollView.frame);
-    NSUInteger page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    
-    // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
-    [self loadScrollViewWithPage:page - 1];
-    [self loadScrollViewWithPage:page];
-    [self loadScrollViewWithPage:page + 1];
-    
-    // update the scroll view to the appropriate page
-    CGRect bounds = self.scrollView.bounds;
-    bounds.origin.x = CGRectGetWidth(bounds) * page;
-    bounds.origin.y = 0;
-    [self.scrollView scrollRectToVisible:bounds animated:animated];
-}
-
-//- (IBAction)changePage:(id)sender
-//{
-//    [self gotoPage:YES];    // YES = animate
-//}
-
 
 - (IBAction)onBackButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -50,8 +50,6 @@
 		7E9B208219037321008C3E01 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9B208119037321008C3E01 /* GTMNSString+HTML.m */; };
 		7EDDC6D419E2260D00D56DB1 /* NCSCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EDDC6D219E2260D00D56DB1 /* NCSCommentsViewController.m */; };
 		7EDDC6D519E2260D00D56DB1 /* NCSCommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EDDC6D319E2260D00D56DB1 /* NCSCommentsViewController.xib */; };
-		7EDDC6D919E22A2900D56DB1 /* NCSSwipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EDDC6D719E22A2900D56DB1 /* NCSSwipeViewController.m */; };
-		7EDDC6DA19E22A2900D56DB1 /* NCSSwipeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EDDC6D819E22A2900D56DB1 /* NCSSwipeViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,9 +123,6 @@
 		7EDDC6D119E2260D00D56DB1 /* NCSCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSCommentsViewController.h; sourceTree = "<group>"; };
 		7EDDC6D219E2260D00D56DB1 /* NCSCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSCommentsViewController.m; sourceTree = "<group>"; };
 		7EDDC6D319E2260D00D56DB1 /* NCSCommentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NCSCommentsViewController.xib; sourceTree = "<group>"; };
-		7EDDC6D619E22A2900D56DB1 /* NCSSwipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCSSwipeViewController.h; sourceTree = "<group>"; };
-		7EDDC6D719E22A2900D56DB1 /* NCSSwipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCSSwipeViewController.m; sourceTree = "<group>"; };
-		7EDDC6D819E22A2900D56DB1 /* NCSSwipeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NCSSwipeViewController.xib; sourceTree = "<group>"; };
 		B4DF7D3DFB484EBC9A5606E5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -190,9 +185,6 @@
 				7EDDC6D119E2260D00D56DB1 /* NCSCommentsViewController.h */,
 				7EDDC6D219E2260D00D56DB1 /* NCSCommentsViewController.m */,
 				7EDDC6D319E2260D00D56DB1 /* NCSCommentsViewController.xib */,
-				7EDDC6D619E22A2900D56DB1 /* NCSSwipeViewController.h */,
-				7EDDC6D719E22A2900D56DB1 /* NCSSwipeViewController.m */,
-				7EDDC6D819E22A2900D56DB1 /* NCSSwipeViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -402,7 +394,6 @@
 				7E970CBB18E53D0500517A1F /* browser@2x.png in Resources */,
 				7E970C6318E4070300517A1F /* NCSCommentCell.xib in Resources */,
 				7E970C5418DFC3D400517A1F /* comment_bubble.png in Resources */,
-				7EDDC6DA19E22A2900D56DB1 /* NCSSwipeViewController.xib in Resources */,
 				7E970C5E18E3FCB800517A1F /* NCSThreadViewController.xib in Resources */,
 				7EDDC6D519E2260D00D56DB1 /* NCSCommentsViewController.xib in Resources */,
 				7E97F6C5192B14D9009ED5D3 /* NCSFrontPagePostCell.xib in Resources */,
@@ -477,7 +468,6 @@
 				7E970C6818E409A900517A1F /* NCSComment.m in Sources */,
 				7E970C1618DBCF9300517A1F /* NCSAppDelegate.m in Sources */,
 				7E970C4E18DEB4A500517A1F /* NCSPost.m in Sources */,
-				7EDDC6D919E22A2900D56DB1 /* NCSSwipeViewController.m in Sources */,
 				7E970C5D18E3FCB800517A1F /* NCSThreadViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

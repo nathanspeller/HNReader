@@ -65,13 +65,11 @@ static float openMenuPosition = 268; //open menu x position
 
 - (IBAction)setFrontPage:(id)sender {
     [self.container addSubview:self.frontPageNavigationController.view];
-    NSLog(@"%lu", (unsigned long)[self.container.subviews count]);
     [self toggleMenu];
 }
 
 - (IBAction)setTopFifty:(id)sender {
     [self.container addSubview:self.karmaNavigationController.view];
-    NSLog(@"%lu", (unsigned long)[self.container.subviews count]);
     [self toggleMenu];
 }
 
