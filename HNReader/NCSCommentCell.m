@@ -51,6 +51,14 @@ static CGFloat lineHeight = 20.f;
     return offset+(requiredHeight.size.height);
 }
 
++ (NCSCommentCell *)eldestParent:(NCSCommentCell *)commentCell{
+    if (commentCell.parentView) {
+        return [NCSCommentCell eldestParent: commentCell.parentView];
+    } else {
+        return commentCell;
+    }
+}
+
 - (void)refreshUI{
     self.author.text = self.comment.author;
     self.commentText.text = self.comment.commentText;

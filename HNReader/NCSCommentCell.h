@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NCSCommentCell *rightSibling;
 
 + (CGFloat)heightForComment:(NCSComment *)comment prototype:(NCSCommentCell *)prototype;
++ (NCSCommentCell *)eldestParent:(NCSCommentCell *)commentCell;
 
 - (void)refreshUI;
 - (void)scrollFrame:(CGRect)frame;

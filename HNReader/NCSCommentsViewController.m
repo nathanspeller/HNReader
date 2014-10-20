@@ -129,6 +129,7 @@
     CGPoint point = [panGestureRecognizer locationInView:self.view];
     CGPoint velocity = [panGestureRecognizer velocityInView:self.view];
     NCSCommentCell *view = (NCSCommentCell *)panGestureRecognizer.view;
+    NCSCommentCell *eldest = [NCSCommentCell eldestParent:view];
     
     if (panGestureRecognizer.state == UIGestureRecognizerStateBegan) {
         self.panStartingPoint = point;
@@ -139,9 +140,14 @@
             CGRect frame = view.frame;
             frame.origin.y = self.viewStartingPoint.y + (point.y - self.panStartingPoint.y);
             [view scrollFrame:frame];
-            
         } else if (panGestureRecognizer.state == UIGestureRecognizerStateEnded) {
-            
+            if (eldest.frame.origin.y > 0) {
+                [UIView animateWithDuration:0.5 animations:^{
+                    CGRect eldestFrame = eldest.frame;
+                    eldestFrame.origin.y = 0;
+                    [eldest scrollFrame:eldestFrame];
+                }];
+            }
         }
     } else { // horizontal pan only
         if (panGestureRecognizer.state == UIGestureRecognizerStateChanged) {
