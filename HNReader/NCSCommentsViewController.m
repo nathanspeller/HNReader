@@ -18,6 +18,7 @@
 @property (nonatomic, strong) NCSCommentCell *prototype;
 @property (nonatomic, assign) CGPoint panStartingPoint;
 @property (nonatomic, assign) CGPoint viewStartingPoint;
+@property (nonatomic, assign) CGPoint eldestStartingPoint;
 @property (weak, nonatomic) IBOutlet UIView *viewContainer;
 @property (nonatomic, assign) BOOL isVerticalPan;
 @end
@@ -134,11 +135,16 @@
     if (panGestureRecognizer.state == UIGestureRecognizerStateBegan) {
         self.panStartingPoint = point;
         self.viewStartingPoint = panGestureRecognizer.view.frame.origin;
+        self.eldestStartingPoint = [NCSCommentCell eldestParent:view].frame.origin;
         self.isVerticalPan = fabs(velocity.y) > fabs(velocity.x);
     } else if (self.isVerticalPan) {
         if (panGestureRecognizer.state == UIGestureRecognizerStateChanged) {
             CGRect frame = view.frame;
-            frame.origin.y = self.viewStartingPoint.y + (point.y - self.panStartingPoint.y);
+            if (self.eldestStartingPoint.y + (point.y - self.panStartingPoint.y) > 0) {
+                frame.origin.y = self.viewStartingPoint.y + 0.5*(point.y - self.panStartingPoint.y);
+            } else {
+                frame.origin.y = self.viewStartingPoint.y + (point.y - self.panStartingPoint.y);
+            }
             [view scrollFrame:frame];
         } else if (panGestureRecognizer.state == UIGestureRecognizerStateEnded) {
             if (eldest.frame.origin.y > 0) {
